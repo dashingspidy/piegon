@@ -1,0 +1,14 @@
+<div>
+  <%= form_with model: @campaign do |form| %>
+
+    <div>
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+      <%= @campaign.errors[:name].first if @campaign.errors.any? %>
+    </div>
+
+    <div>
+      <%= form.submit "Create campaign" %>
+    </div>
+  <% end %>
+</div>

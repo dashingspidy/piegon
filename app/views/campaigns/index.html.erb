@@ -1,0 +1,9 @@
+<h1>List of campaigns</h1>
+<div>
+  <ul>
+  <% @campaigns.each do |campaign| %>
+    <li><%= link_to campaign.name, campaign_contacts_path(campaign) %></li>
+  <% end %>
+  </ul>
+  <div><%= link_to "create a new campaign", new_campaign_path %></div>
+</div>
