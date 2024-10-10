@@ -1,0 +1,29 @@
+<section>
+  <h1>List of subscribers</h1>
+
+  <div><%= link_to "import from csv", "#" %></div>
+  <div><%= link_to "Embed form to your site", "#" %></div>
+
+
+  <div>
+    <%= form_with model: @csv_upload, url: upload_campaign_subscribers_path do |form| %>
+      <%= form.file_field :csv_file, direct_upload: true %>
+      <%= form.submit "Upload" %>
+    <% end %>
+  </div>
+
+  <div>
+    <% if @headers.present? %>
+    <%= form_with url: parse_csv_campaign_subscribers_path do %>
+      <% @headers.each do |header| %>
+        <div>
+          <label><%= header %></label>
+          <%= select_tag "column_mapping[#{header}]",
+          options_for_select(@columns),
+          include_blank: true %>
+        <% end %>
+      <%= submit_tag %>
+    <% end %>
+    <% end %>
+  </div>
+</section>

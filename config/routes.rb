@@ -11,6 +11,11 @@ Rails.application.routes.draw do
 
   root "home#index"
   resources :campaigns do
-    resources :contacts
+    resources :subscribers do
+      collection do
+        post :upload
+        post :parse_csv
+      end
+    end
   end
 end
