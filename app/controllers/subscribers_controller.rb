@@ -22,9 +22,13 @@ class SubscribersController < ApplicationController
   end
 
   def parse_csv
-    column_mapping = column_mapping_params
-    CsvImportJob.perform_later(@campaign.id, column_mapping)
-    redirect_to campaign_subscribers_path(@campaign)
+    column_mapping = params["column_mapping"].to_unsafe_h
+    if column_mapping.present?
+      CsvImportJob.perform_later(@campaign.id, column_mapping)
+      redirect_to campaign_subscribers_path(@campaign), notice: "CSV import started."
+    else
+      redirect_to campaign_subscribers_path(@campaign), alert: "No column mapping. Try"
+    end
   end
 
   def new
@@ -34,10 +38,6 @@ class SubscribersController < ApplicationController
   end
 
   private
-
-  def column_mapping_params
-    params.require(:column_mapping).permit!
-  end
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
