@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "dashboard", to: "dashboard#index"
   resource :registration, only: [ :new, :create ]
   resource :session
   resources :passwords, param: :token

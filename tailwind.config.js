@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     './app/views/**/*.html.erb',
@@ -8,5 +10,15 @@ module.exports = {
   ],
   plugins : [
     require('flowbite/plugin')
-  ]
+  ],
+  darkMode: 'false',
+  theme: {
+    colors: {
+        primary: colors.slate
+    },
+    fontFamily: {
+      'body': ['Geist'],
+      'sans': ['Geist']
+    }
+  }
 }

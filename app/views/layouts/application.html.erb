@@ -24,7 +24,21 @@
   </head>
 
   <body>
-    <%= render partial: "layouts/nav" %>
-    <%= yield %>
+    <% if authenticated? %>
+      <div class="flex h-screen">
+        <%= render 'layouts/sidenav' %>
+        <main class="flex-1 overflow-x-hidden overflow-y-auto p-6">
+          <%= render "layouts/flash" %>
+          <%= yield %>
+        </main>
+      </div>
+    <% else %>
+      <%= render "layouts/nav" %>
+      <main class="container mx-auto">
+        <%= render "layouts/flash" %>
+        <%= yield %>
+      </main>
+    <% end %>
+    
   </body>
 </html>
