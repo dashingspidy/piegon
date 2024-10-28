@@ -1,14 +1,14 @@
-<div>
-  <%= form_with model: @campaign do |form| %>
-
-    <div>
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-      <%= @campaign.errors[:name].first if @campaign.errors.any? %>
-    </div>
-
-    <div>
-      <%= form.submit "Create campaign" %>
-    </div>
-  <% end %>
-</div>
+<section class="bg-white">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+      <h2 class="mb-4 text-xl font-bold text-gray-900">Create campaign</h2>
+      <%= form_with model: @campaign do |form| %>
+          <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+              <div class="sm:col-span-2">
+                <%= form.label :name, class: "block mb-2 text-sm font-medium text-gray-900" %>
+                <%= form.text_field :name, class: "bg-gray-50 border border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5" %>
+                <%= @campaign.errors[:name].first if @campaign.errors.any? %>
+              </div>
+      <%= form.submit "Create campaign", class: "inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-primary-700 rounded-lg ofcus:ring-4 focus:ring-primary-200" %>
+    <% end %>
+  </div>
+</section>
