@@ -1,8 +1,10 @@
 require "csv"
 class SubscribersController < ApplicationController
+  include Pagy::Backend
   before_action :set_campaign
 
   def index
+    @pagy, @subscribers = pagy(@campaign.subscribers)
     @csv_upload = CsvUploader.new
     if @campaign.csv_uploader
       @campaign.csv_uploader.csv_file.open do |temp|
@@ -35,6 +37,11 @@ class SubscribersController < ApplicationController
   end
 
   def create
+  end
+
+  def destroy
+    @campaign.subscribers.find(params[:id]).delete
+    redirect_to campaign_subscribers_path(@campaign)
   end
 
   private

@@ -1,5 +1,28 @@
 <section>
-  <h1>List of Subscribers</h1>
+  <h1 class="text-primary-600 text-xl">List of Subscribers</h1>
+  <hr class="h-px my-2 bg-gray-200 border-0">
+  <div class="relative overflow-x-auto">
+      <table class="w-full text-sm text-left text-primary-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3">Email</th>
+            <th scope="col" class="px-6 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @subscribers.each do |subscriber| %>
+            <tr class="bg-white border-b">
+              <th scope="row" class="px-6 py-4"><%= subscriber.email %></th>
+              <th scope="row" class="px-6 py-4"><%= link_to "Delete", campaign_subscriber_path(subscriber.campaign, subscriber), data: { turbo_method: :delete } %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  
+  <div class="flex items-center justify-center my-4">
+    <%== pagy_nav(@pagy) %>
+  </div>
 
 
   <div><%= link_to "import from csv", "#" %></div>
