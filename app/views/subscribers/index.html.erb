@@ -23,19 +23,17 @@
   <div class="flex items-center justify-center my-4">
     <%== pagy_nav(@pagy) %>
   </div>
+  <%= render ModalComponent.new(name: "Embed to your site", header: "Embed to your site") %>
 
-
-  <div><%= link_to "import from csv", "#" %></div>
-  <div><%= link_to "Embed form to your site", "#" %></div>
-
-
-  <div>
-    <%= form_with model: @csv_upload, url: upload_campaign_subscribers_path do |form| %>
-      <%= form.file_field :csv_file, direct_upload: true %>
-      <%= form.submit "Upload" %>
-    <% end %>
-  </div>
-
+  <%= render ModalComponent.new(name: "Embed to  site", header: " to your site") %>
+<div>
+      <%= form_with model: @csv_upload, url: upload_campaign_subscribers_path, class: "p-4 md:p-5" do |form| %>
+        <div class="grid gap-4 mb-4">
+          <%= form.file_field :csv_file, direct_upload: true %>
+        </div>
+        <%= form.submit "Upload", class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
+      <% end %>
+    </div>
   <div>
     <% if @headers.present? %>
     <%= form_with url: parse_csv_campaign_subscribers_path do %>
