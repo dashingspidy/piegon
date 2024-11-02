@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   get "confirm_registration", to: "registrations#confirm"
   get "up" => "rails/health#show", as: :rails_health_check
+  post "embed/:api_token", to: "subscribers#embed"
 
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest

@@ -1,7 +1,9 @@
 require "csv"
 class SubscribersController < ApplicationController
+  allow_unauthenticated_access only: :embed
+  skip_before_action :verify_authenticity_token, only: :embed
   include Pagy::Backend
-  before_action :set_campaign
+  before_action :set_campaign, except: :embed
 
   def index
     @pagy, @subscribers = pagy(@campaign.subscribers)
@@ -12,6 +14,7 @@ class SubscribersController < ApplicationController
       end
     end
     @columns = Subscriber.column_names - [ "id", "created_at", "updated_at", "campaign_id" ]
+    @api_token = @campaign.api_token
   end
 
   def upload
@@ -33,10 +36,14 @@ class SubscribersController < ApplicationController
     end
   end
 
-  def new
-  end
-
-  def create
+  def embed
+    @campaign = Campaign.find_by(api_token: params[:api_token])
+    @campaign.subscribers.build(subscribers_params)
+    if @campaign.save
+      render json: { message: "Successfully" }, status: :created
+    else
+      render json: { error: @campaign.errors.full_messages.join(", ") }, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -48,5 +55,9 @@ class SubscribersController < ApplicationController
 
   def set_campaign
     @campaign = Campaign.find(params[:campaign_id])
+  end
+
+  def subscribers_params
+    params.require(:subscribers).permit(:email)
   end
 end

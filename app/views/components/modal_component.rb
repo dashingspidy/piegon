@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ModalComponent < ViewComponent::Base
-
-  def initialize(name:, header:)
+  def initialize(modalId:, name:, header:)
+    @modalId = modalId
     @name = name
     @header = header
   end
