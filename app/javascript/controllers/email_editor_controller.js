@@ -9,4 +9,18 @@ export default class extends Controller {
       displayMode: 'email'
     })
   }
+
+  saveHtml() {
+    unlayer.exportHtml((data) => {
+      const html = data.html
+      console.log(html)
+    })
+  }
+
+  saveJson() {
+    unlayer.exportHtml((data) => {
+      const design = data.design
+      console.log(design)
+    })
+  }
 }
