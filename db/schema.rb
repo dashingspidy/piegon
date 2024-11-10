@@ -56,10 +56,9 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_02_012813) do
   end
 
   create_table "email_templates", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "subject", null: false
-    t.text "body", null: false
-    t.json "template", null: false
+    t.string "name"
+    t.text "body"
+    t.json "template"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

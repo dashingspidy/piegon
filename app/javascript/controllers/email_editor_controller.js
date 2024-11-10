@@ -2,6 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="email-editor"
 export default class extends Controller {
+  static targets = [ "name" ]
+
   connect() {
     unlayer.init({
       id: 'editor',
@@ -13,14 +15,32 @@ export default class extends Controller {
   saveHtml() {
     unlayer.exportHtml((data) => {
       const html = data.html
-      console.log(html)
+      const EmailBody = new FormData()
+      EmailBody.append("email_templates[name]", this.nameTarget.value)
+      EmailBody.append("email_templates[body]", html)
+      fetch("/email_templates", {
+        method: "POST",
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: EmailBody
+      })
     })
   }
 
   saveJson() {
     unlayer.exportHtml((data) => {
-      const design = data.design
-      console.log(design)
+      const template = data.design
+      const EmailBody = new FormData()
+      EmailBody.append("email_templates[name]", this.nameTarget.value)
+      EmailBody.append("email_templates[template]", JSON.rawJSON(template))
+      fetch("/email_templates", {
+        method: "POST",
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: EmailBody
+      })
     })
   }
 }

@@ -8,6 +8,10 @@ class EmailTemplatesController < ApplicationController
   end
 
   def create
+    @email_template = Current.user.email_templates.build(email_template_params)
+    if @email_template.save
+      redirect_to email_templates_path
+    end
   end
 
   def destroy
@@ -19,6 +23,9 @@ class EmailTemplatesController < ApplicationController
   def htmlcode
   end
 
-  def tiptapeditor
+  private
+
+  def email_template_params
+    params.require(:email_templates).permit(:name, :body, :template)
   end
 end

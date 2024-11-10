@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :email_templates, only: [ :index ] do
+  resources :email_templates, only: [ :index, :create ] do
     collection do
       get :draganddrop
       get :htmlcode
