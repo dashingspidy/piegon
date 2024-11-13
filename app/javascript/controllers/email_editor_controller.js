@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="email-editor"
 export default class extends Controller {
-  static targets = [ "name" ]
+  static targets = [ "name", "error" ]
 
   connect() {
     unlayer.init({
@@ -13,34 +13,45 @@ export default class extends Controller {
   }
 
   saveHtml() {
+    this.clearError()
+
+    if (!this.nameTarget.value.trim()) {
+      this.showError("Template name is required")
+      return
+    }
+
     unlayer.exportHtml((data) => {
-      const html = data.html
       const EmailBody = new FormData()
       EmailBody.append("email_templates[name]", this.nameTarget.value)
-      EmailBody.append("email_templates[body]", html)
+      EmailBody.append("email_templates[body]", data.html)
+      EmailBody.append("email_templates[template]", JSON.stringify(data.design))
+      
       fetch("/email_templates", {
         method: "POST",
         headers: {
           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
         },
         body: EmailBody
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.error) {
+          this.showError(data.error)
+        } else {
+          window.location.href = "/email_templates"
+        }
+      })
+      .catch(error => {
+        this.showError("Something went wrong, please try again.")
       })
     })
   }
 
-  saveJson() {
-    unlayer.exportHtml((data) => {
-      const template = data.design
-      const EmailBody = new FormData()
-      EmailBody.append("email_templates[name]", this.nameTarget.value)
-      EmailBody.append("email_templates[template]", JSON.rawJSON(template))
-      fetch("/email_templates", {
-        method: "POST",
-        headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-        },
-        body: EmailBody
-      })
-    })
+  showError(message) {
+    this.errorTarget.textContent = message
+  }
+
+  clearError() {
+    this.errorTarget.textContent = ""
   }
 }
