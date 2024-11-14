@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ColorCodeController from "./color_code_controller"
+application.register("color-code", ColorCodeController)
+
 import EmailEditorController from "./email_editor_controller"
 application.register("email-editor", EmailEditorController)
 

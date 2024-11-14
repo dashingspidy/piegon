@@ -58,6 +58,6 @@ class SubscribersController < ApplicationController
   end
 
   def subscribers_params
-    params.require(:subscribers).permit(:email)
+    params.require(:subscriber).permit(:email)
   end
 end

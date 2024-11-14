@@ -570,10 +570,17 @@ hasown@^2.0.2:
   dependencies:
     function-bind "^1.1.2"
 
-highlight.js@^11.10.0:
+highlight.js@^11.5.1:
   version "11.10.0"
   resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-11.10.0.tgz#6e3600dc4b33d6dc23d5bd94fbf72405f5892b92"
   integrity sha512-SYVnVFswQER+zu1laSya563s+F8VDGt7o35d4utbamowvUNLLMovFqwCLSocpZTz3MgaSRA1IbqRWZv97dtErQ==
+
+highlighted-code@^0.3.7:
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/highlighted-code/-/highlighted-code-0.3.7.tgz#2ab20b8dc726486a3918c3941caf825bacfba0af"
+  integrity sha512-b/O06LsJfHSGmqXWXAznOdmDyUpddQaNdBkL3qnTPG1+L80QO5N0Mz26icGs0rh4hWX7vab7NnT2D7wprRBuGw==
+  dependencies:
+    highlight.js "^11.5.1"
 
 is-binary-path@~2.1.0:
   version "2.1.0"

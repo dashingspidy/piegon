@@ -7,12 +7,22 @@ class EmailTemplatesController < ApplicationController
     @email_template = EmailTemplate.find(params[:id])
   end
 
+  def new
+    @email_template = EmailTemplate.new
+  end
+
   def create
     @email_template = Current.user.email_templates.build(email_template_params)
     if @email_template.save
-      render json: { message: "Email template created." }, status: :created
+      respond_to do |format|
+        format.html { redirect_to email_templates_path }
+        format.json
+      end
     else
-      render json: { error: @email_template.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: { error: @email_template.errors.full_messages.join(", ") }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -22,12 +32,9 @@ class EmailTemplatesController < ApplicationController
   def draganddrop
   end
 
-  def htmlcode
-  end
-
   private
 
   def email_template_params
-    params.require(:email_templates).permit(:name, :body, :template)
+    params.require(:email_template).permit(:name, :body, :template)
   end
 end
