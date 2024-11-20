@@ -20,6 +20,17 @@ module.exports = {
     fontFamily: {
       'body': ['Geist'],
       'sans': ['Geist']
+    },
+    extend: {
+      animation: {
+        fadeout: 'fadeout 1.5s ease-out'
+      },
+      keyframes: {
+        fadeout: {
+          '0%': { opacity: '1'},
+          '100%': { opacity: '0'}
+        }
+      }
     }
   }
 }

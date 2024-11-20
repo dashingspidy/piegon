@@ -10,9 +10,9 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_confirmation_instructions
-      redirect_to root_url, notice: "Please check your email to confirm your account."
+      redirect_to root_path, notice: "Please check your email to confirm your account."
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -23,7 +23,7 @@ class RegistrationsController < ApplicationController
       @user.confirm!
       redirect_to root_path, notice: "Your account has been confirmed. Welcome!"
     else
-      redirect_to root_path, alert: "Invalid confirmation token."
+      redirect_to root_path, alert: "Invalid confirmation token.", status: :unprocessable_entity
     end
   end
 
