@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   if Rails.env.production?
     get "/", to: "home#beta"
+    get "up" => "rails/health#show", as: :rails_health_check
   end
 
   if Rails.env.development?
