@@ -36,3 +36,4 @@ group :development do
 end
 
 gem "aws-sdk-rails", "~> 4"
+gem "csv"
