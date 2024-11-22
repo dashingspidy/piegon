@@ -35,5 +35,5 @@ group :development do
   gem "web-console"
 end
 
-gem "aws-sdk-rails", "~> 4"
+gem "aws-sdk-rails", "~> 5"
 gem "csv"
