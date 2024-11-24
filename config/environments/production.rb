@@ -72,6 +72,7 @@ Rails.application.configure do
 
   # Setup AWS ses for sending email
   config.action_mailer.delivery_method = :ses
+  config.action_mailer.ses_settings = { region: "us-east-1" }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

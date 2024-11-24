@@ -36,6 +36,7 @@ Rails.application.configure do
 
   # Aws ses config
   config.action_mailer.delivery_method = :ses
+  config.action_mailer.ses_settings = { region: "us-east-1" }
 
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false

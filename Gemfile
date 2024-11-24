@@ -36,4 +36,5 @@ group :development do
 end
 
 gem "aws-sdk-rails", "~> 5"
+gem "aws-actionmailer-ses", "~> 1"
 gem "csv"
