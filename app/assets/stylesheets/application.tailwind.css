@@ -11,6 +11,11 @@ a.active {
   src: url("Geist.woff2");
 }
 
+@font-face {
+  font-family: "Borel";
+  src: url("Borel.ttf");
+}
+
 .pagy {
   @apply flex space-x-1 font-semibold text-gray-500;
   a:not(.gap) {
