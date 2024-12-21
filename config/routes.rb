@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   if Rails.env.development?
     root "home#index"
+    get "privacy-policy", to: "home#privacy"
+    get "term-and-conditions", to: "home#terms"
     get "dashboard", to: "dashboard#index"
     resource :registration, only: [ :new, :create ]
     resource :session

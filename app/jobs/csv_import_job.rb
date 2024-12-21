@@ -1,4 +1,3 @@
-require "csv"
 class CsvImportJob < ApplicationJob
   queue_as :default
   BATCH_SIZE = 1000
@@ -9,8 +8,8 @@ class CsvImportJob < ApplicationJob
       batch = []
       CSV.foreach(temp, headers: true) do |row|
         mapped_attributes = map_attributes(row, column_mapping)
-        batch << mapped_attributes if mapped_attributes.present?
 
+        batch << mapped_attributes if mapped_attributes.present? && valid_email?(mapped_attributes)
         if batch.size >= BATCH_SIZE
           import_batch(campaign, batch)
           batch = []
@@ -32,6 +31,11 @@ class CsvImportJob < ApplicationJob
       mapped_attributes[subscriber_attribute] = row[csv_column]
     end
     mapped_attributes
+  end
+
+  def valid_email?(email)
+    email_regexp = URI::MailTo::EMAIL_REGEXP
+    email.match?(email_regexp)
   end
 
   def import_batch(campaign, batch)

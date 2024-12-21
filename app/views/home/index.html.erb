@@ -1,25 +1,137 @@
-<section class="flex flex-col items-center justify-center p-20 h-96">
+<section class="flex flex-col items-center justify-center p-20 h-96" id="home">
   <h1 class="text-5xl font-bold">Pay Only for Your Outreach</h1>
   <h5 class="text-2xl mt-4">Grow Your Audience Without Limits</h5>
   <p class="text-xl mt-4">Expand your audience effortlessly and pay only for the outreach you make—simple, transparent, and limitless growth</p>
-  <%= link_to "Get started", new_registration_path, class: "absolute mt-60 delay-150 duration-300 hover:-translate-y-1 bg-chambray hover:bg-chambray mt-4 p-3 text-white text-md rounded-full border-2 border-black hover:border-b-8" %>    
+  <%= link_to "Get started", new_registration_path, class: "absolute mt-60 delay-150 duration-300 hover:-translate-y-1 bg-chambray hover:bg-chambray p-3 text-white text-md rounded-full border-2 border-black hover:border-b-8" %>    
 </section>
 
-<section class="grid grid-cols-3 mt-20">
+<section class="grid grid-cols-3 mt-20" id="features">
   <div class="bg-prim p-3">
-    <h5 class="text-xl mb-3">Subscriber Widgets</h5>
+    <h5 class="text-xl my-3">Subscriber Widgets</h5>
     <p>Boost your audience effortlessly with sleek, customizable widgets that integrate seamlessly into any website. Attract and manage subscribers like never before.</p>
   </div>
   <div class="bg-link-water p-3">
-    <h5 class="text-xl mb-3">Scalable Bulk Emailing</h5>
+    <h5 class="text-xl my-3">Scalable Bulk Emailing</h5>
     <p>Reach thousands—or millions—of inboxes with confidence. Our powerful infrastructure ensures fast, reliable, and secure email delivery at any scale.</p>
+    <%= image_tag("bulk_email.svg") %>
   </div>
   <div class="bg-lavender-gray p-3">
-    <h5 class="text-xl mb-3">Flexible Email Templates</h5>
+    <h5 class="text-xl my-3">Flexible Email Templates</h5>
     <p>Create emails that impress. Use your own designs or craft professional campaigns in minutes with our intuitive drag-and-drop editor.</p>
   </div>
 </section>
 
-<section>
-  <a href="https://www.creem.io/test/payment/prod_6oKsl0Cze14Ghcf8LNCgcs">Pay</a>
+<section id="pricing">
+  <div class="flex items-center justify-between p-6">
+    <div class="w-1/2">
+        <h1 class="md:text-5xl text-3xl font- font-thin leading-10 mt-3 text-primary-800">Our pricing plan</h1>
+        <p class="text-base leading-5 mt-5 text-primary-600">Find the perfect plan to match your email marketing needs.</p>
+        <div class="w-56">
+          <div class="grid grid-cols-2 gap-1">
+            <div><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+</svg>
+</div>
+            <div><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+</svg>
+</div>
+          </div>
+            <button class="bg-gray-100 shadow flex items-center mt-10 rounded-full">
+                <div class="bg-chambray text-base leading-none text-white rounded-full py-4 px-6">Annually</div>
+            </button>
+        </div>
+    </div>
+    <div class="xl:w-1/2 lg:w-7/12 relative w-full lg:mt-0 mt-12 md:px-8" role="list">
+        <div role="listitem" class="bg-prim cursor-pointer shadow rounded-lg p-8 relative z-30">
+            <div class="md:flex items-center justify-between">
+                <h2 class="text-2xl font-logo font-semibold leading-6 text-primary-800">Whisper <span class="text-base font-logo font-medium">10K email per month</span></h2>
+                <p class="text-2xl font-semibold md:mt-0 mt-4 leading-6 text-gray-800">$99</p>
+            </div>
+            <p class="md:w-80 text-base leading-6 mt-4 text-gray-600">Perfect for individuals and small businesses taking their first steps in email marketing.</p>
+        </div>
+        <div role="listitem" class="bg-link-water cursor-pointer shadow rounded-lg mt-3 flex relative z-30">
+            <div class="w-full p-8">
+                <div class="md:flex items-center justify-between">
+                    <h2 class="text-2xl font-logo font-semibold leading-6 text-gray-800">Echo <span class="text-base font-logo font-medium">30K email per month</span></h2>
+                    <p class="text-2xl md:mt-0 mt-4 font-semibold leading-6 text-gray-800">$199</p>
+                </div>
+                <p class="md:w-80 text-base leading-6 mt-4 text-primary-600">Designed for growing teams ready to expand their audience and impact.</p>
+            </div>
+        </div>
+
+        <div role="listitem" class="bg-lavender-gray cursor-pointer shadow rounded-lg p-8 relative z-30 mt-3">
+            <div class="md:flex items-center justify-between">
+                <h2 class="text-2xl font-logo font-semibold leading-6 text-gray-800">Resonance <span class="text-base font-logo font-medium">50K email per month</span></h2>
+                <p class="text-2xl md:mt-0 mt-4 font-semibold leading-6 text-gray-800">$399</p>
+            </div>
+            <p class="md:w-80 text-base leading-6 mt-4 text-gray-600">Designed for advanced marketers and mid-sized teams.</p>
+        </div>
+
+        <div role="listitem" class="bg-ship-cove cursor-pointer shadow rounded-lg p-8 relative z-30 mt-3">
+            <div class="md:flex items-center justify-between">
+                <h2 class="text-2xl font-logo font-semibold leading-6 text-gray-800">Thunder <span class="text-base font-logo font-medium">100K email per month</span></h2>
+                <p class="text-2xl md:mt-0 mt-4 font-semibold leading-6 text-gray-800">$999</p>
+            </div>
+            <p class="md:w-80 text-base leading-6 mt-4 text-primary-600">Built for high-volume senders and enterprise-level needs.</p>
+        </div>
+    </div>
+  </div>
 </section>
+
+<section class="bg-prim h-64 flex items-center justify-center">
+    <h1 class="font-sans text-3xl">Pay for impact. It’s the emails that matter.</h1>
+    <%= link_to "Get started", new_registration_path, class: "absolute delay-150 duration-300 hover:-translate-y-1 bg-chambray hover:bg-chambray mt-28 p-3 text-white text-md rounded-full border-2 border-black hover:border-b-8" %>    
+</section>
+
+<section></section>
+
+<footer class="p-4 bg-white mt-6">
+    <div class="mx-auto max-w-screen-xl">
+        <div class="flex justify-between">
+            <div class="mb-0">
+              <%= link_to root_path, class: "flex items-center" do %>
+                <span class="self-center mt-3 font-logo text-2xl whitespace-nowrap">Piegon</span>
+              <% end %>
+            </div>
+            <div class="grid grid-cols-3 gap-8">
+                <div>
+                    <h2 class="mb-6 text-base font-semibold">Resources</h2>
+                    <ul>
+                        <li class="mb-4">
+                          <%= link_to "FAQ", "#", class: "hover:underline" %>
+                        </li>
+                        <li>
+                          <%= link_to "Contact Us", "#", class: "hover:underline" %>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-base font-semibold">Follow us</h2>
+                    <ul>
+                        <li class="mb-4">
+                            <a href="#" class="hover:underline ">Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Facebook</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h2 class="mb-6 text-base font-semibold">Legal</h2>
+                    <ul>
+                        <li class="mb-4">
+                          <%= link_to "Privacy Policy", privacy_policy_path , class: "hover:underline" %>
+                        </li>
+                        <li>
+                          <%= link_to "Terms and Conditions", term_and_conditions_path, class: "hover:underline" %>                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <hr class="my-6 border-gray-200" />
+        <div class="flex items-center justify-center">
+            <span class="text-sm">© 2024 <%= link_to "Piegon", root_path, class: "hover:underline" %>. All Rights Reserved.</span>
+        </div>
+    </div>
+</footer>
