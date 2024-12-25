@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     post "embed/:api_token", to: "subscribers#embed"
 
     resources :campaigns do
+      member do
+        get :prepare_campaign
+        post :send_campaign
+      end
       resources :subscribers do
         collection do
           post :upload

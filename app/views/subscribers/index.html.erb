@@ -1,5 +1,8 @@
 <section>
-  <h1 class="text-primary-600 text-xl">List of Subscribers</h1>
+  <div class="flex items-center justify-between">
+    <h1 class="text-primary-600 text-xl">List of Subscribers</h1>
+    <%= link_to "Send now/later", prepare_campaign_campaign_path(@campaign), class: "bg-black text-white border p-2 rounded-xl text-sm" %>
+  </div>
   <hr class="h-px my-2 bg-gray-200 border-0">
   <div class="relative overflow-x-auto">
       <table class="w-full text-sm text-left text-primary-500">
