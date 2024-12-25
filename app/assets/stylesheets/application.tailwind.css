@@ -3,7 +3,17 @@
 @tailwind utilities;
 
 a.active {
-  @apply bg-gray-500 text-white
+  @apply bg-gray-500 text-white;
+}
+
+@layer components {
+  .btn-getting {
+    @apply cursor-pointer text-center leading-none 
+           px-6 py-3 rounded-full shadow-[0_0_0_1px_#241c15] border-none 
+           inline-block relative transform translate-y-0 
+           transition-all duration-300 ease-[cubic-bezier(.5,2.5,.7,.7)] 
+           hover:-translate-y-1 hover:shadow-[0_4px_0_1px_#241c15];
+  }
 }
 
 @font-face {

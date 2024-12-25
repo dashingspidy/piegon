@@ -1,30 +1,30 @@
-<header>
-    <nav class="border-gray-200 px-4 lg:px-6 py-2.5">
-        <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl">
-            <%= link_to root_path, class: "flex items-center" do %>
-              <span class="self-center mt-3 font-logo text-2xl whitespace-nowrap">Piegon</span>
-            <% end %>
-
-            <div class="flex flex-row gap-2 order-2 mr-20">
-              <%= link_to "Log in", new_session_path, class: "mt-1 text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-4 lg:px-5 py-2 lg:py-2.5 focus:outline-none" %>
-              <%= link_to "Get started", new_registration_path, class: "absolute ml-20 delay-150 duration-300 hover:-translate-y-1 bg-chambray hover:bg-chambray mt-4 p-3 text-white text-md rounded-full border-2 border-black hover:border-b-8" %>
-            </div>
-            <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1">
-                <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-                    <li>
-                        <a href="#home" class="block py-2 pr-4 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0" aria-current="page">Home</a>
-                    </li>
-                    <li>
-                        <a href="#features" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Features</a>
-                    </li>
-                    <li>
-                        <a href="#pricing" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Pricing</a>
-                    </li>
-                    <li>
-                        <a href="#" class="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<header class="sticky top-0 z-50 bg-white">
+  <nav class="border-gray-200 px-6 py-2.5 mt-2">
+    <div class="flex flex-wrap justify-between mx-auto max-w-screen-xl">
+      <%= link_to root_path, class: "flex items-center" do %>
+        <span class="-mt-4"><%= image_tag "logo.svg", width: 45 %></span>
+        <span class="self-center mt-3 font-logo text-2xl whitespace-nowrap">Piegon</span>
+      <% end %>
+      <div class="flex flex-row gap-3 order-2">
+        <%= link_to "Log in", new_session_path, class: "btn-getting" %>
+        <%= link_to "Get started", new_registration_path, class: "btn-getting bg-prim" %>
+      </div>
+      <div>
+        <ul class="flex flex-row mt-0 space-x-8">
+          <li>
+            <%= link_to "Home", "#{root_path}#home", class: "block py-2 pr-2 pl-2 text-black rounded hover:bg-gray-100" %>
+          </li>
+          <li>
+            <%= link_to "Features", "#{root_path}#features", class: "block py-2 pr-2 pl-2 text-black rounded hover:bg-gray-100" %>
+          </li>
+          <li>
+            <%= link_to "Pricing", "#{root_path}#pricing", class: "block py-2 pr-2 pl-2 text-black rounded hover:bg-gray-100" %>
+          </li>
+          <li>
+            <%= link_to "Contact", "#{root_path}#", class: "block py-2 pr-2 pl-2 text-black rounded hover:bg-gray-100" %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 </header>

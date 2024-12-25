@@ -2,13 +2,16 @@
   <h1 class="text-5xl font-bold">Pay Only for Your Outreach</h1>
   <h5 class="text-2xl mt-4">Grow Your Audience Without Limits</h5>
   <p class="text-xl mt-4">Expand your audience effortlessly and pay only for the outreach you make—simple, transparent, and limitless growth</p>
-  <%= link_to "Get started", new_registration_path, class: "absolute mt-60 delay-150 duration-300 hover:-translate-y-1 bg-chambray hover:bg-chambray p-3 text-white text-md rounded-full border-2 border-black hover:border-b-8" %>    
+  <%= link_to "Get started", new_registration_path, class: "font-sans text-lg btn-getting mt-10 bg-prim p-4" %>    
 </section>
 
 <section class="grid grid-cols-3 mt-20" id="features">
   <div class="bg-prim p-3">
     <h5 class="text-xl my-3">Subscriber Widgets</h5>
     <p>Boost your audience effortlessly with sleek, customizable widgets that integrate seamlessly into any website. Attract and manage subscribers like never before.</p>
+    <div class="mt-20">
+      <%= image_tag("widget.png") %>
+    </div>
   </div>
   <div class="bg-link-water p-3">
     <h5 class="text-xl my-3">Scalable Bulk Emailing</h5>
@@ -18,6 +21,7 @@
   <div class="bg-lavender-gray p-3">
     <h5 class="text-xl my-3">Flexible Email Templates</h5>
     <p>Create emails that impress. Use your own designs or craft professional campaigns in minutes with our intuitive drag-and-drop editor.</p>
+    <%= image_tag("drag.svg")%>
   </div>
 </section>
 
@@ -69,9 +73,9 @@
   </div>
 </section>
 
-<section class="bg-prim h-64 flex items-center justify-center">
+<section class="bg-prim h-64 flex flex-col items-center justify-center">
     <h1 class="font-sans text-3xl">Pay for impact. It’s the emails that matter.</h1>
-    <%= link_to "Get started", new_registration_path, class: "absolute delay-150 duration-300 hover:-translate-y-1 bg-chambray hover:bg-chambray mt-28 p-3 text-white text-md rounded-full border-2 border-black hover:border-b-8" %>    
+    <%= link_to "Get started", new_registration_path, class: "btn-getting bg-link-water mt-4 p-4" %>    
 </section>
 
 <section></section>
