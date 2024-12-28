@@ -1,3 +1,4 @@
+require "csv"
 class CsvImportJob < ApplicationJob
   queue_as :default
   BATCH_SIZE = 1000
