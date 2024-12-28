@@ -5,10 +5,6 @@ class HomeController < ApplicationController
   def index
   end
 
-  def beta
-    render layout: false
-  end
-
   def privacy
   end
 
