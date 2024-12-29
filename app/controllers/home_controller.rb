@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  allow_unauthenticated_access only: [ :index, :beta, :privacy, :terms ]
+  allow_unauthenticated_access only: [ :index, :privacy, :terms ]
   before_action :resume_session, only: [ :index ]
 
   def index

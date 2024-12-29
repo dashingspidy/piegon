@@ -2,7 +2,7 @@
   <h1 class="text-5xl font-bold">Pay Only for Your Outreach</h1>
   <h5 class="text-2xl mt-4">Grow Your Audience Without Limits</h5>
   <p class="text-xl mt-4">Expand your audience effortlessly and pay only for the outreach you make—simple, transparent, and limitless growth</p>
-  <%= link_to "Get started", new_registration_path, class: "font-sans text-lg btn-getting mt-10 bg-prim p-4" %>    
+  <%= link_to "Get started", "#pricing", class: "font-sans text-lg btn-getting mt-10 bg-prim p-4" %>    
 </section>
 
 <section class="grid grid-cols-3 mt-20" id="features">
@@ -25,57 +25,66 @@
   </div>
 </section>
 
-<section id="pricing">
-  <div class="flex items-center justify-between p-6">
-    <div class="w-1/2">
-        <h1 class="md:text-5xl text-3xl font- font-thin leading-10 mt-3 text-primary-800">Our pricing plan</h1>
-        <p class="text-base leading-5 mt-5 text-primary-600">Find the perfect plan to match your email marketing needs.</p>
-        <div class="w-56">
-            <button class="bg-gray-100 shadow flex items-center mt-10 rounded-full">
-                <div class="bg-chambray text-base leading-none text-white rounded-full py-4 px-6">Annually</div>
-            </button>
-        </div>
+<section id="pricing" class="p-6">
+  <div class="flex flex-wrap justify-between gap-8">
+    <div class="w-full max-w-md">
+      <h1 class="text-5xl font-thin leading-10 mt-3">Our pricing plan</h1>
+      <p class="text-base leading-5 mt-5">Find the perfect plan to match your email marketing needs.</p>
+      <div class="w-56 mt-10">
+        <button class="bg-gray-100 shadow flex items-center rounded-full">
+          <div class="bg-chambray text-white rounded-full py-4 px-6">Annually</div>
+        </button>
+      </div>
     </div>
-    <div class="xl:w-1/2 lg:w-7/12 relative w-full lg:mt-0 mt-12 md:px-8" role="list">
-        <div role="listitem" class="bg-prim cursor-pointer shadow rounded-lg p-8 relative z-30">
-            <div class="md:flex items-center justify-between">
-                <h2 class="text-2xl font-logo font-semibold leading-6 text-primary-800">Whisper <span class="text-base font-logo font-medium">10K email per month</span></h2>
-                <p class="text-2xl font-semibold md:mt-0 mt-4 leading-6 text-gray-800">$99</p>
-            </div>
-            <p class="md:w-80 text-base leading-6 mt-4 text-gray-600">Perfect for individuals and small businesses taking their first steps in email marketing.</p>
-        </div>
-        <div role="listitem" class="bg-link-water cursor-pointer shadow rounded-lg mt-3 flex relative z-30">
-            <div class="w-full p-8">
-                <div class="md:flex items-center justify-between">
-                    <h2 class="text-2xl font-logo font-semibold leading-6 text-gray-800">Echo <span class="text-base font-logo font-medium">30K email per month</span></h2>
-                    <p class="text-2xl md:mt-0 mt-4 font-semibold leading-6 text-gray-800">$199</p>
-                </div>
-                <p class="md:w-80 text-base leading-6 mt-4 text-primary-600">Designed for growing teams ready to expand their audience and impact.</p>
-            </div>
-        </div>
 
-        <div role="listitem" class="bg-lavender-gray cursor-pointer shadow rounded-lg p-8 relative z-30 mt-3">
-            <div class="md:flex items-center justify-between">
-                <h2 class="text-2xl font-logo font-semibold leading-6 text-gray-800">Resonance <span class="text-base font-logo font-medium">50K email per month</span></h2>
-                <p class="text-2xl md:mt-0 mt-4 font-semibold leading-6 text-gray-800">$399</p>
-            </div>
-            <p class="md:w-80 text-base leading-6 mt-4 text-gray-600">Designed for advanced marketers and mid-sized teams.</p>
+    <div class="flex-1 flex flex-col gap-3">
+      <%= link_to new_registration_path(plan: "whisper") do %>
+        <div class="bg-prim shadow rounded-lg p-8">
+          <div class="flex flex-wrap justify-between items-center">
+            <h2 class="text-2xl font-logo font-semibold">Whisper <span class="text-base font-medium">10K email per month</span></h2>
+            <p class="text-2xl font-semibold">$99</p>
+          </div>
+          <p class="text-base mt-4">Perfect for small businesses taking their first steps in email marketing.</p>
         </div>
+      <% end %>
 
-        <div role="listitem" class="bg-ship-cove cursor-pointer shadow rounded-lg p-8 relative z-30 mt-3">
-            <div class="md:flex items-center justify-between">
-                <h2 class="text-2xl font-logo font-semibold leading-6 text-gray-800">Thunder <span class="text-base font-logo font-medium">100K email per month</span></h2>
-                <p class="text-2xl md:mt-0 mt-4 font-semibold leading-6 text-gray-800">$999</p>
-            </div>
-            <p class="md:w-80 text-base leading-6 mt-4 text-primary-600">Built for high-volume senders and enterprise-level needs.</p>
+      <%= link_to new_registration_path(plan: "echo") do %>
+        <div class="bg-link-water shadow rounded-lg p-8">
+          <div class="flex flex-wrap justify-between items-center">
+            <h2 class="text-2xl font-logo font-semibold">Echo <span class="text-base font-medium">30K email per month</span></h2>
+            <p class="text-2xl font-semibold">$199</p>
+          </div>
+          <p class="text-base mt-4">Designed for growing teams ready to expand their audience and impact.</p>
         </div>
+      <% end %>
+      
+      <%= link_to new_registration_path(plan: "resonance") do %>
+        <div class="bg-lavender-gray shadow rounded-lg p-8">
+          <div class="flex flex-wrap justify-between items-center">
+            <h2 class="text-2xl font-logo font-semibold">Resonance <span class="text-base font-medium">50K email per month</span></h2>
+            <p class="text-2xl font-semibold">$399</p>
+          </div>
+          <p class="text-base mt-4">Designed for advanced marketers and mid-sized teams.</p>
+        </div>
+      <% end %>
+
+      <%= link_to new_registration_path(plan: "payandgo") do %>
+        <div class="bg-ship-cove shadow rounded-lg p-8">
+          <div class="flex flex-wrap justify-between items-center">
+            <h2 class="text-2xl font-logo font-semibold">Solo <span class="text-base font-medium">1000 email for 1$</span></h2>
+            <p class="text-2xl font-semibold">$20</p>
+          </div>
+          <p class="text-base mt-4">Designed for individuals and solo creators to start.</p>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </section>
 
 <section class="bg-prim h-64 flex flex-col items-center justify-center">
     <h1 class="font-sans text-3xl">Pay for impact. It’s the emails that matter.</h1>
-    <%= link_to "Get started", new_registration_path, class: "btn-getting bg-link-water mt-4 p-4" %>    
+    <%= link_to "Get started", "#pricing", class: "btn-getting bg-link-water mt-4 p-4" %>    
 </section>
 
 <section></section>
@@ -87,6 +96,12 @@
               <%= link_to root_path, class: "flex items-center" do %>
                 <span class="self-center mt-3 font-logo text-2xl whitespace-nowrap">Piegon</span>
               <% end %>
+              <div class="flex">
+                <span class="mr-1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E1D6DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <a href="mailto:arif@piegon.pro">arif@piegon.pro</a>
+              </div>
             </div>
             <div class="grid grid-cols-3 gap-8">
                 <div>
