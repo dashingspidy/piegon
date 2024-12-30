@@ -61,6 +61,6 @@ jobs:
       - name: Health check
         run: |
           sleep 30
-          curl --fail https://${DEPLOY_HOST}/health || exit 1
+          curl --fail https://${DEPLOY_HOST}/up || exit 1
         env:
           DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
