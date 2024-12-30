@@ -35,7 +35,5 @@ group :development do
   gem "web-console"
 end
 
-gem "aws-sdk-rails", "~> 5"
-gem "aws-actionmailer-ses", "~> 1"
 gem "aws-sdk-s3", require: false
 gem "csv"

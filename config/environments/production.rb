@@ -70,10 +70,6 @@ Rails.application.configure do
   #   authentication: :plain
   # }
 
-  # Setup AWS ses for sending email
-  config.action_mailer.delivery_method = :ses
-  config.action_mailer.ses_settings = { region: "us-east-1" }
-
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
@@ -85,11 +81,11 @@ Rails.application.configure do
   config.active_record.attributes_for_inspect = [ :id ]
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  # config.hosts = [
-  #   "example.com",     # Allow requests from example.com
-  #   /.*\.example\.com/ # Allow requests from subdomains like `www.example.com`
-  # ]
+  config.hosts = [
+    "piegon.pro",     # Allow requests from example.com
+    /.*\.piegon\.pro/ # Allow requests from subdomains like `www.example.com`
+  ]
   #
   # Skip DNS rebinding protection for the default health check endpoint.
-  # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+  config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 end
