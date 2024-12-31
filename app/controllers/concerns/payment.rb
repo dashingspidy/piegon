@@ -25,6 +25,7 @@ module Payment
 
     request.body = {
       product_id: PRODUCTS[product_name],
+      success_url: "http://localhost:3000/dashboard",
       customer: {
         email: email
       }

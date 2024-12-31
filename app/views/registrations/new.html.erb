@@ -9,7 +9,7 @@
               <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
                   Create an account
               </h1>
-              <%= form_with(model: @user, url: registration_path, local: true, class: "space-y-4 md:space-y-6") do |form| %>
+              <%= form_with(model: @user, url: registration_path, local: true, data: { turbo: false }, class: "space-y-4 md:space-y-6") do |form| %>
                 <% if @user.errors.any? %>
                   <div id="error_explanation">
                     <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>

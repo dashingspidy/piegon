@@ -1,7 +1,5 @@
 class RegistrationsController < ApplicationController
-  allow_unauthenticated_access only: [ :new, :create, :confirm ]
-
-
+  allow_unauthenticated_access
   def new
     @user = User.new
   end
@@ -12,7 +10,9 @@ class RegistrationsController < ApplicationController
       start_new_session_for @user
       # @user.send_confirmation_instructions
       payment_url = Payment.create_checkout(@user.plan, @user.email_address)
-      redirect_to payment_url, allow_other_host: true
+      respond_to do |format|
+        format.html { redirect_to payment_url, allow_other_host: true }
+      end
     else
       render :new, status: :unprocessable_entity
     end
