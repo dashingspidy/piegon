@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
       # @user.send_confirmation_instructions
       payment_url = Payment.create_checkout(@user.plan, @user.email_address)
       respond_to do |format|
-        format.html { redirect_to payment_url, allow_other_host: true }
+        format.html { redirect_to payment_url.to_s, allow_other_host: true }
       end
     else
       render :new, status: :unprocessable_entity
