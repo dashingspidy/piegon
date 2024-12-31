@@ -37,3 +37,4 @@ end
 
 gem "aws-sdk-s3", require: false
 gem "csv"
+gem "postmark-rails"

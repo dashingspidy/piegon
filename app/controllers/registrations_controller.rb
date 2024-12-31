@@ -9,8 +9,10 @@ class RegistrationsController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      @user.send_confirmation_instructions
-      redirect_to root_path, notice: "Please check your email to confirm your account."
+      start_new_session_for @user
+      # @user.send_confirmation_instructions
+      payment_url = Payment.create_checkout(@user.plan, @user.email_address)
+      redirect_to payment_url, allow_other_host: true
     else
       render :new, status: :unprocessable_entity
     end
@@ -21,9 +23,9 @@ class RegistrationsController < ApplicationController
 
     if @user
       @user.confirm!
-      redirect_to root_path, notice: "Your account has been confirmed. Welcome!"
+      redirect_to dashboard_path, notice: "Your account has been confirmed. Welcome!"
     else
-      redirect_to root_path, alert: "Invalid confirmation token.", status: :unprocessable_entity
+      redirect_to dashboard_path, alert: "Invalid confirmation token.", status: :unprocessable_entity
     end
   end
 
