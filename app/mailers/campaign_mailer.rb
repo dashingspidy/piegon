@@ -5,8 +5,8 @@ class CampaignMailer < ApplicationMailer
     @rendered_body = render_template(email_template.body)
     mail(
       to: @subscriber.email,
-      subject: @subject,
-      from: "no-reply@piegon.pro"
+      subject: @email_subject,
+      from: "Kawser no-reply@piegon.pro"
     )
   end
 

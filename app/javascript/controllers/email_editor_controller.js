@@ -42,7 +42,7 @@ export default class extends Controller {
         }
       })
       .catch(error => {
-        this.showError("Something went wrong, please try again.")
+        this.showError(error)
       })
     })
   }

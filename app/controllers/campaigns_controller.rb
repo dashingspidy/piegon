@@ -27,12 +27,12 @@ class CampaignsController < ApplicationController
     subject = params[:subject]
 
     campaign.subscribers.find_each do |subscriber|
-      CampaignMailer.campaign_email(subscriber, template, subject).devliver_later
+      CampaignMailer.campaign_email(subscriber, template, subject).deliver_later
     rescue StandardError => e
       Rails.logger.error("Failed to send email to #{subscriber.email}: #{e.message}")
     end
 
-    redirect_to campaign_path(campaign), notice: "Campaign email queued for delivery"
+    redirect_to campaign_subscribers_path(campaign), notice: "Campaign email queued for delivery"
   end
 
   private
