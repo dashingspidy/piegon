@@ -8,6 +8,7 @@ class Subscriber < ApplicationRecord
   private
 
   def unique_email_by_campaign
+    return unless campaign
     if campaign.subscribers.where.not(id: id).exists?(email: email)
       errors.add(:email, "Email already subscribed.")
     end

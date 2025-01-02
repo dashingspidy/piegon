@@ -26,7 +26,8 @@
   <div class="flex items-center justify-center my-4">
     <%== pagy_nav(@pagy) %>
   </div>
-  <%= render ModalComponent.new(modalId: "embed-modal",name: "Add widget to your site", header: "Add widget to your site") do %>
+  <div class="flex gap-2">
+  <%= render ModalComponent.new(modalId: "embed-modal", name: "Add widget to your site", header: "Add widget to your site") do %>
       <div class="p-4 md:p-5 space-y-4">
         <%= render ClipboardComponent.new(header: "Copy Paste this widget to your site:") do %>
   &lt;div id=&quot;piegon-form&quot;&gt;&lt;/div&gt;
@@ -41,26 +42,9 @@
         <% end %>
       </div>
   <% end %>
-  <div>
-      <%= form_with model: @csv_upload, url: upload_campaign_subscribers_path, class: "p-4 md:p-5" do |form| %>
-        <div class="grid gap-4 mb-4">
-          <%= form.file_field :csv_file, direct_upload: true %>
-        </div>
-        <%= form.submit "Upload", class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
-      <% end %>
-  </div>
-  <div>
-    <% if @headers.present? %>
-    <%= form_with url: parse_csv_campaign_subscribers_path do %>
-      <% @headers.each do |header| %>
-        <div>
-          <label><%= header %></label>
-          <%= select_tag "column_mapping[#{header}]",
-          options_for_select(@columns),
-          include_blank: true %>
-        <% end %>
-      <%= submit_tag %>
-    <% end %>
-    <% end %>
+
+  <%= render ModalComponent.new(modalId: "csvUploadModal", name: "Upload CSV", header: "Upload list of your subscribers") do %>
+    <%= render "subscribers/csv_upload_modal_content" %>
+  <% end %>
   </div>
 </section>

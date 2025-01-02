@@ -20,9 +20,20 @@ class SubscribersController < ApplicationController
   def upload
     @csv_upload = @campaign.build_csv_uploader(params.require(:csv_uploader).permit(:csv_file))
     if @csv_upload.save
-      redirect_to campaign_subscribers_path(@campaign), notice: "Upload successful"
+      @csv_upload.csv_file.open do |temp|
+        @headers = CSV.foreach(temp, headers: false).first
+      end
+      @columns = Subscriber.column_names - [ "id", "created_at", "updated_at", "campaign_id" ]
+      render turbo_stream: turbo_stream.replace(
+        "modal_form_content",
+        partial: "subscribers/column_mapping_content"
+      )
     else
-      render campaign_subscribers_path(@campign)
+      render turbo_stream: turbo_stream.replace(
+        "modal_form_content",
+        partial: "subscribers/csv_upload_modal_content",
+        locals: { csv_upload: @csv_upload }
+      )
     end
   end
 
@@ -30,9 +41,19 @@ class SubscribersController < ApplicationController
     column_mapping = params["column_mapping"].to_unsafe_h
     if column_mapping.present?
       CsvImportJob.perform_later(@campaign.id, column_mapping)
-      redirect_to campaign_subscribers_path(@campaign), notice: "CSV import started."
+      @modal_id = "csvUploadModal"
+      render turbo_stream: [
+        turbo_stream.replace(
+          "modal_form_content",
+          partial: "subscribers/success_message"
+        )
+      ]
     else
-      redirect_to campaign_subscribers_path(@campaign), alert: "No column mapping. Try"
+      render turbo_stream: turbo_stream.replace(
+        "modal_form_content",
+        partial: "subscribers/column_mapping_content",
+        locals: { headers: @headers, columns: @columns }
+      )
     end
   end
 

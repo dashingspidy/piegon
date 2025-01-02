@@ -12,3 +12,9 @@ application.register("email-editor", EmailEditorController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import MappingController from "./mapping_controller"
+application.register("mapping", MappingController)
+
+import UploadController from "./upload_controller"
+application.register("upload", UploadController)

@@ -1,0 +1,12 @@
+<div class="p-5">
+  <%= turbo_frame_tag "modal_form_content" do %>
+    <div class="text-center">
+      <p class="mb-4">CSV import started. You'll be notified when it's complete.</p>
+      <button type="button" 
+              class="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5"
+              data-modal-toggle="<%= @modal_id %>">
+        Close
+      </button>
+    </div>
+  <% end %>
+</div>
