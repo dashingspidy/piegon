@@ -16,5 +16,8 @@ application.register("hello", HelloController)
 import MappingController from "./mapping_controller"
 application.register("mapping", MappingController)
 
+import PricingController from "./pricing_controller"
+application.register("pricing", PricingController)
+
 import UploadController from "./upload_controller"
 application.register("upload", UploadController)

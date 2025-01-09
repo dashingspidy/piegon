@@ -26,58 +26,71 @@
 </section>
 
 <section id="pricing" class="p-6">
-  <div class="flex flex-wrap justify-between gap-8">
-    <div class="w-full max-w-md">
-      <h1 class="text-5xl font-thin leading-10 mt-3">Our pricing plan</h1>
-      <p class="text-base leading-5 mt-5">Find the perfect plan to match your email marketing needs.</p>
-      <div class="w-56 mt-10">
-        <button class="bg-gray-100 shadow flex items-center rounded-full">
-          <div class="bg-chambray text-white rounded-full py-4 px-6">Annually</div>
-        </button>
+  <div>
+    <h1 class="text-3xl text-center"><span class="bg-link-water p-2">Our Pricing Plan</span></h1>
+  </div>
+  <div class="grid grid-cols-3 gap-4 p-4 h-96 mt-6">
+
+    <div class="border-2 border-lavender-gray rounded-lg text-center">
+      <div>
+        <h1 class="font-logo text-2xl mt-4">Start</h1>
+      </div>
+      <div class="mt-5">
+        <p class="text-lg font-medium">100 Subscriber</p>
+        <p class="text-lg font-medium">1 Campaign</p>
+        <p class="text-lg font-medium">Subscriber Form Widget</p>
+        <p class="text-lg font-medium">Drag and Drop editor</p>
+      </div>
+      
+      <div class="mt-5">
+      <p class="font-bold text-xl m-2">Free</p>
+        <%= link_to "Choose", new_registration_path(plan: "free"), class: "btn-getting bg-lavender-gray px-6 py-3" %>
       </div>
     </div>
 
-    <div class="flex-1 flex flex-col gap-3">
-      <%= link_to new_registration_path(plan: "whisper") do %>
-        <div class="bg-prim shadow rounded-lg p-8">
-          <div class="flex flex-wrap justify-between items-center">
-            <h2 class="text-2xl font-logo font-semibold">Whisper <span class="text-base font-medium">10K email per month</span></h2>
-            <p class="text-2xl font-semibold">$99</p>
-          </div>
-          <p class="text-base mt-4">Perfect for small businesses taking their first steps in email marketing.</p>
-        </div>
-      <% end %>
+    <div class="border-2 border-lavender-gray rounded-lg text-center" data-controller="pricing">
+      <div class="flex items-center justify-center mt-2">
+        <h1 class="text-2xl font-logo mt-3">Email per month:</h1>
+        <select name="plan" id="plan" class="rounded-full ml-2"
+          data-pricing-target="planSelect"
+          data-action="change->pricing#updatePrice"
+        >
+          <option value="whisper" data-price="10">5000</option>
+          <option value="echo" data-price="20">10000</option>
+          <option value="resonance" data-price="60">30000</option>
+          <option value="thunder" data-price="99">50000</option>
+        </select>
+      </div>
+      <div class="mt-4">
+        <p class="text-lg font-medium">Unlimited Subscribers</p>
+        <p class="text-lg font-medium">Unlimited Campaigns</p>
+        <p class="text-lg font-medium">Subscriber Form Widget</p>
+        <p class="text-lg font-medium">Drag and Drop editor</p>
+        <p class="text-lg font-medium">Custom domain/verified sender</p>
+      </div>
+      <div class="mt-5">
+        <p class="text-xl font-bold m-2">$<span data-pricing-target="price">10</span> <span class="text-base font-normal bg-prim">per month</span></p>
+        <%= link_to "Choose", new_registration_path(plan: "whisper"), 
+        class: "btn-getting bg-prim px-6 py-3",
+        data: { pricing_target: "planLink" } %>
+      </div>
+    </div>
 
-      <%= link_to new_registration_path(plan: "echo") do %>
-        <div class="bg-link-water shadow rounded-lg p-8">
-          <div class="flex flex-wrap justify-between items-center">
-            <h2 class="text-2xl font-logo font-semibold">Echo <span class="text-base font-medium">30K email per month</span></h2>
-            <p class="text-2xl font-semibold">$199</p>
-          </div>
-          <p class="text-base mt-4">Designed for growing teams ready to expand their audience and impact.</p>
-        </div>
-      <% end %>
+    <div class="border-2 border-lavender-gray rounded-lg text-center">
+      <div>
+        <h1 class="font-logo text-2xl mt-4">LifeTime</h1>
+      </div>
+      <div class="mt-4">
+        <p class="text-lg font-medium">Unlimited Subscribers</p>
+        <p class="text-lg font-medium">Unlimited Campaigns</p>
+        <p class="text-lg font-medium">Subscriber Form Widget</p>
+        <p class="text-lg font-medium">Drag and Drop editor</p>
+      </div>
       
-      <%= link_to new_registration_path(plan: "resonance") do %>
-        <div class="bg-lavender-gray shadow rounded-lg p-8">
-          <div class="flex flex-wrap justify-between items-center">
-            <h2 class="text-2xl font-logo font-semibold">Resonance <span class="text-base font-medium">50K email per month</span></h2>
-            <p class="text-2xl font-semibold">$399</p>
-          </div>
-          <p class="text-base mt-4">Designed for advanced marketers and mid-sized teams.</p>
-        </div>
-      <% end %>
-
-      <%= link_to new_registration_path(plan: "payandgo") do %>
-        <div class="bg-ship-cove shadow rounded-lg p-8">
-          <div class="flex flex-wrap justify-between items-center">
-            <h2 class="text-2xl font-logo font-semibold">Solo <span class="text-base font-medium">1000 email for 1$</span></h2>
-            <p class="text-2xl font-semibold">$20</p>
-          </div>
-          <p class="text-base mt-4">Designed for individuals and solo creators to start.</p>
-        </div>
-      <% end %>
-
+      <div class="mt-5">
+        <p class="font-bold text-xl m-2">$99 <span class="text-base font-normal bg-link-water">for once</span></p>
+        <%= link_to "Choose", new_registration_path(plan: "lifetime"), class: "btn-getting bg-link-water px-6 py-3" %>
+      </div>
     </div>
   </div>
 </section>
@@ -140,7 +153,7 @@
         </div>
         <hr class="my-6 border-gray-200" />
         <div class="flex items-center justify-center">
-            <span class="text-sm">© 2024 <%= link_to "Piegon", root_path, class: "hover:underline" %>. All Rights Reserved.</span>
+            <span class="text-sm">© <%= Date.current.year %> <%= link_to "Piegon", root_path, class: "hover:underline" %>. All Rights Reserved.</span>
         </div>
     </div>
 </footer>

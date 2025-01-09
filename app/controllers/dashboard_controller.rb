@@ -9,5 +9,8 @@ class DashboardController < ApplicationController
       product = params[:product_id]
       Current.user.update(email_limit: PRODUCTS[product])
     end
+
+    @campaign_count = Current.user.campaigns.size
+    @total_subscribers = Current.user.campaigns.sum { |c| c.subscribers.size }
   end
 end
