@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "home#index"
   get "privacy-policy", to: "home#privacy"
   get "term-and-conditions", to: "home#terms"
+  get "help", to: "home#help"
   get "dashboard", to: "dashboard#index"
   resource :registration, only: [ :new, :create ]
   resource :session
