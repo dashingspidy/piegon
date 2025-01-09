@@ -1,5 +1,4 @@
-<h1 class="text-primary-600 text-xl">New email template</h1>
-<hr class="h-px my-2 bg-gray-200 border-0">
+<h1 class="text-xl">New email template</h1>
 <div class="my-8">
   <%= link_to "Drag and drop editor", 
      draganddrop_email_templates_path,
@@ -11,6 +10,13 @@
   %>
 </div>
 
-<div class="my-8">
-
-</div>
+<section class="my-5">
+  <h1 class="text-xl">Your Templates</h1>
+</section>
+<section class="grid grid-cols-4 gap-4">
+    <% @email_templates.each do |email| %>
+      <div class="p-2 border-2 h-10 text-center">
+        <%= link_to "#{email.name}", edit_email_template_path(email) %>
+      </div>
+    <% end %>
+</section>

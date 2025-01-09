@@ -8,6 +8,7 @@
             <%= form.text_field :name, placeholder: "Template name", class: "bg-gray-50 border border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5" %>
             <%= @email_template.errors[:name].first if @email_template.errors.any? %>
           </div>
+          <%= form.hidden_field :editor, value: "html" %>
           <%= form.submit "Submit", class: "w-32 h-10 rounded-sm text-sm font-medium text-center text-white bg-primary-700" %>
         </div>
       </div>

@@ -23,6 +23,7 @@ export default class extends Controller {
     unlayer.exportHtml((data) => {
       const EmailBody = new FormData()
       EmailBody.append("email_template[name]", this.nameTarget.value)
+      EmailBody.append("email_template[editor]", "draganddrop")
       EmailBody.append("email_template[body]", data.html)
       EmailBody.append("email_template[template]", JSON.stringify(data.design))
       

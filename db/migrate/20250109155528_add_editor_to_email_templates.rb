@@ -1,0 +1,5 @@
+class AddEditorToEmailTemplates < ActiveRecord::Migration[8.0]
+  def change
+    add_column :email_templates, :editor, :string
+  end
+end
