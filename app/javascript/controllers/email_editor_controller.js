@@ -1,6 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="email-editor"
 export default class extends Controller {
   static targets = [ "name", "error" ]
 
@@ -10,11 +9,42 @@ export default class extends Controller {
       projectId: 252280,
       displayMode: 'email'
     })
+
+    const path = window.location.pathname
+    if (path.includes('/edit')) {
+      const templateId = path.split('/')[2]
+      this.loadTemplate(templateId)
+    }
+  }
+
+  async loadTemplate(templateId) {
+    try {
+      const response = await fetch(`/email_templates/${templateId}/edit`, {
+        headers: {
+          'Accept': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+      })
+      
+      const data = await response.json()
+      
+      if (data.template) {
+        const design = JSON.parse(data.template)
+        unlayer.loadDesign(design)
+        
+        if (this.hasNameTarget) {
+          this.nameTarget.value = data.name
+        }
+      }
+    } catch (error) {
+      this.showError("Failed to load template")
+      console.error("Error loading template:", error)
+    }
   }
 
   saveHtml() {
     this.clearError()
-
+    
     if (!this.nameTarget.value.trim()) {
       this.showError("Template name is required")
       return
@@ -26,11 +56,19 @@ export default class extends Controller {
       EmailBody.append("email_template[editor]", "draganddrop")
       EmailBody.append("email_template[body]", data.html)
       EmailBody.append("email_template[template]", JSON.stringify(data.design))
+
+      const path = window.location.pathname
+      const isEdit = path.includes('/edit')
+      const templateId = isEdit ? path.split('/')[2] : null
       
-      fetch("/email_templates", {
-        method: "POST",
+      const url = isEdit ? `/email_templates/${templateId}` : "/email_templates"
+      const method = isEdit ? "PATCH" : "POST"
+
+      fetch(url, {
+        method: method,
         headers: {
-          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+          'Accept': 'application/json'
         },
         body: EmailBody
       })
@@ -39,7 +77,7 @@ export default class extends Controller {
         if (data.error) {
           this.showError(data.error)
         } else {
-          window.location.href = "/email_templates"
+          window.location.href = data.redirect_url || "/email_templates"
         }
       })
       .catch(error => {

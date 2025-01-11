@@ -18,5 +18,8 @@
       <div class="p-2 border-2 h-10 text-center">
         <%= link_to "#{email.name}", edit_email_template_path(email) %>
       </div>
+      <div class="">
+        <%= button_to "Delete", email_template_path(email), method: :delete, data: { turbo_confirm: "Are you sure?"} %>
+      </div>
     <% end %>
 </section>

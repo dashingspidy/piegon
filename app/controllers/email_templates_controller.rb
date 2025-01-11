@@ -1,5 +1,5 @@
 class EmailTemplatesController < ApplicationController
-  before_action :set_email_template, only: [ :show, :edit, :update ]
+  before_action :set_email_template, only: [ :show, :edit, :update, :destroy ]
   def index
     @email_templates = Current.user.email_templates
   end
@@ -15,8 +15,12 @@ class EmailTemplatesController < ApplicationController
     @email_template = Current.user.email_templates.build(email_template_params)
     if @email_template.save
       respond_to do |format|
-        format.html { redirect_to email_templates_path }
-        format.json
+        format.html {
+          redirect_to email_templates_path, notice: "Email template created successfully"
+        }
+        format.json {
+          render json: { redirect_url: email_templates_path, notice: "Email template created successfully" }
+        }
       end
     else
       respond_to do |format|
@@ -27,13 +31,21 @@ class EmailTemplatesController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.json { render json: @email_template }
+    end
   end
 
   def update
     if @email_template.update(email_template_params)
       respond_to do |format|
-        format.html { redirect_to email_templates_path }
-        format.json
+        format.html {
+          redirect_to email_templates_path, notice = "Email template updated successfully"
+        }
+        format.json {
+          render json: { redirect_url: email_templates_path, notice: "Email template updated successfully" }
+        }
       end
     else
       respond_to do |format|
@@ -44,6 +56,8 @@ class EmailTemplatesController < ApplicationController
   end
 
   def destroy
+    @email_template.destroy
+    redirect_to email_templates_path, notice: "Email template successfully deleted."
   end
 
   def draganddrop
