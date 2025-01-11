@@ -6,7 +6,11 @@ class SubscribersController < ApplicationController
   before_action :set_campaign, except: :embed
 
   def index
-    @pagy, @subscribers = pagy(@campaign.subscribers)
+    subscriber_scope = @campaign.subscribers
+    if Current.user.plan == "free"
+      subscriber_scope = subscriber_scope.limit(100)
+    end
+    @pagy, @subscribers = pagy(subscriber_scope)
     @csv_upload = CsvUploader.new
     if @campaign.csv_uploader
       @campaign.csv_uploader.csv_file.open do |temp|

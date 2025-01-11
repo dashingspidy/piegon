@@ -36,4 +36,36 @@ module Payment
     response = JSON.parse(response.body)
     response["checkout_url"]
   end
+
+  private
+
+  def free_account?
+    false if Current.user.plan == "free"
+  end
+
+  def can_send_email?
+    return false if Current.user.plan.blank?
+    emails_sent_this_month < Current.user.email_limit
+  end
+
+  def emails_sent_this_month
+    EmailLog.where(user_id: Current.user.id).where("created_at >= ?", Time.current.beginning_of_month).count
+  end
+
+  def remaining_emails
+    return 0 if Current.user.plan == "free" || Current.user.plan == "lifetime"
+    return 0 if Current.user.email_limit.nil?
+    [ 0, Current.user.email_limit - emails_sent_this_month ].max
+  end
+
+  def check_email_limit
+    return if can_send_email?
+
+    if Current.user.plan == "lifetime"
+      flash[:alert] = "Please bring either your API/SMTP settings or purchase our email credit."
+    else
+      flash[:alert] = "Monthly email limit reached. Please buy additional email credit."
+    end
+    redirect_to dashboard_path
+  end
 end

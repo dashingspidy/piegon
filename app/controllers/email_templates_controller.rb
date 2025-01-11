@@ -25,7 +25,7 @@ class EmailTemplatesController < ApplicationController
     else
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: { error: @email_template.errors.full_messages.join(", ") }, status: :unprocessable_entity }
+        format.json { render json: { alert: @email_template.errors.full_messages.join(", ") }, status: :unprocessable_entity }
       end
     end
   end
@@ -50,7 +50,7 @@ class EmailTemplatesController < ApplicationController
     else
       respond_to do |format|
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: { error: @email_template.errors.full_messages.join(", ") }, status: :unprocessable_entity }
+        format.json { render json: { alert: @email_template.errors.full_messages.join(", ") }, status: :unprocessable_entity }
       end
     end
   end

@@ -1,4 +1,6 @@
 class CampaignsController < ApplicationController
+  include Payment
+  before_action :check_email_limit, only: [ :send_campaign, :prepare_campaign ]
   def index
     @campaigns = Current.user.campaigns
   end
@@ -28,6 +30,7 @@ class CampaignsController < ApplicationController
 
     campaign.subscribers.find_each do |subscriber|
       CampaignMailer.campaign_email(subscriber, template, subject).deliver_later
+      EmailLog.create!(user: Current.user)
     rescue StandardError => e
       Rails.logger.error("Failed to send email to #{subscriber.email}: #{e.message}")
     end

@@ -1,6 +1,12 @@
 <section>
+  <% if free_account %>
+    <%= render AlertComponent.new(
+      type: :alert, 
+      message: "Showing first 100 subscribers only. Upgrade your plan to see all subscribers."
+    ) %>
+  <% end %>
   <div class="flex items-center justify-between">
-    <h1 class="text-xl">List of Subscribers</h1>
+    <h1 class="text-xl">List of Subscribers</h1>      
     <%= link_to "Send", prepare_campaign_campaign_path(@campaign), class: "bg-link-water px-6 py-3" %>
   </div>
   <hr class="h-px my-2 bg-gray-200 border-0">
@@ -42,9 +48,10 @@
         <% end %>
       </div>
   <% end %>
-
-  <%= render ModalComponent.new(modalId: "csvUploadModal", name: "Upload CSV", header: "Upload list of your subscribers") do %>
-    <%= render "subscribers/csv_upload_modal_content" %>
+  <% if !free_account %>
+    <%= render ModalComponent.new(modalId: "csvUploadModal", name: "Upload CSV", header: "Upload list of your subscribers") do %>
+      <%= render "subscribers/csv_upload_modal_content" %>
+    <% end %>
   <% end %>
   </div>
 </section>

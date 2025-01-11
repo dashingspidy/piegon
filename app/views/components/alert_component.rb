@@ -8,7 +8,7 @@ class AlertComponent < ViewComponent::Base
 
   def alert_color
     case @type
-    when :error
+    when :alert
       "text-red-600"
     when :success
       "text-green-600"
