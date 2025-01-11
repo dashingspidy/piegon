@@ -2,14 +2,14 @@
   <div>
     <%= form_with model: @email_template do |form| %>
       <div class="flex justify-between">
-        <h2 class="mb-4 text-xl text-gray-900">Copy-Paste you html template</h2>
+        <h2 class="mb-4 text-xl">Copy-Paste you html template</h2>
         <div class="flex gap-2">
           <div class="flex flex-col">
-            <%= form.text_field :name, placeholder: "Template name", class: "bg-gray-50 border border-gray-900 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 w-full p-2.5" %>
+            <%= form.text_field :name, placeholder: "Template name", class: "border border-lavender-gray text-sm focus:ring-lavender-gray focus:border-lavender-gray w-full p-2.5" %>
             <%= @email_template.errors[:name].first if @email_template.errors.any? %>
           </div>
           <%= form.hidden_field :editor, value: "html" %>
-          <%= form.submit "Submit", class: "w-32 h-10 rounded-sm text-sm font-medium text-center text-white bg-primary-700" %>
+          <%= form.submit "Submit", class: "w-32 h-10 font-medium text-center bg-link-water hover:bg-lavender-gray" %>
         </div>
       </div>
       <div class="mt-3">
