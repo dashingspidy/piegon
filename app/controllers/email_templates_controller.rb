@@ -41,7 +41,7 @@ class EmailTemplatesController < ApplicationController
     if @email_template.update(email_template_params)
       respond_to do |format|
         format.html {
-          redirect_to email_templates_path, notice = "Email template updated successfully"
+          redirect_to email_templates_path, notice: "Email template updated successfully"
         }
         format.json {
           render json: { redirect_url: email_templates_path, notice: "Email template updated successfully" }
