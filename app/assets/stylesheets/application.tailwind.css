@@ -27,23 +27,23 @@ a.active {
 }
 
 .pagy {
-  @apply flex space-x-1 font-semibold text-gray-500;
+  @apply flex space-x-1 font-semibold text-black;
   a:not(.gap) {
-    @apply block rounded-lg px-3 py-1 bg-gray-200;
+    @apply block rounded-lg px-3 py-1 bg-link-water;
     &:hover {
-      @apply bg-gray-300;
+      @apply bg-lavender-gray;
     }
-    &:not([href]) { /* disabled links */
-      @apply text-gray-300 bg-gray-100 cursor-default;
+    &:not([href]) {
+      @apply text-black bg-prim cursor-default;
     }
     &.current {
-      @apply text-white bg-gray-400;
+      @apply text-black bg-prim;
     }
   }
   label {
-    @apply inline-block whitespace-nowrap bg-gray-200 rounded-lg px-3 py-0.5;
+    @apply inline-block whitespace-nowrap bg-link-water rounded-lg px-3 py-0.5;
     input {
-      @apply bg-gray-100 border-none rounded-md;
+      @apply bg-link-water border-none rounded-md;
     }
   }
 }
