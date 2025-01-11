@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 a.active {
-  @apply bg-gray-500 text-white;
+  @apply bg-prim;
 }
 
 @layer components {
