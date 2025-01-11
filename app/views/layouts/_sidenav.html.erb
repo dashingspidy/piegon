@@ -6,20 +6,19 @@
       <% end %>
       <ul class="space-y-2">
           <li>
-            <%= link_to dashboard_path, class: ["flex items-center p-2 text-base font-normal", active_link(dashboard_path)] do %>
+            <%= link_to dashboard_path, class: ["flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim", active_link(dashboard_path)] do %>
               <%= image_tag "dashboard.svg" %>
               <span class="ml-3">Dashboard</span>
             <% end %>
           </li>
           <li>
-            <%= link_to campaigns_path, class: ["flex items-center p-2 text-base font-normal", active_link(campaigns_path)] do %>
+            <%= link_to campaigns_path, class: ["flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim", active_link(campaigns_path)] do %>
               <%= image_tag "megaphone.svg" %>
               <span class="ml-3">Campaign</span>
             <% end %>
           </li>
-
           <li>
-            <%= link_to email_templates_path, class: ["flex items-center p-2 text-base font-normal", active_link(email_templates_path)] do %>
+            <%= link_to email_templates_path, class: ["flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim", active_link(email_templates_path)] do %>
               <%= image_tag "template.svg" %>
               <span class="ml-3">Email Template</span>
             <% end %>
@@ -27,13 +26,13 @@
       </ul>
       <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200">
           <li>
-            <%= link_to "#", class: "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100" do %>
+            <%= link_to "#", class: "flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim" do %>
               <%= image_tag "user.svg" %>
               <span class="ml-3">Account</span>
             <% end %>
           </li>
           <li>
-            <%= link_to help_path, class: "flex items-center p-2 text-base font-normal text-gray-900 rounded-lg transition duration-75 hover:bg-gray-100" do %>
+            <%= link_to help_path, class: "flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim" do %>
               <%= image_tag "help.svg" %>
               <span class="ml-3">Help</span>
             <% end %>
