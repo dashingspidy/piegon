@@ -1,8 +1,10 @@
 class DashboardController < ApplicationController
   PRODUCTS = {
-    "prod_3JnckOZ4aY8Ytw8riAGEWF" => "50000",
-    "prod_5pV4mr0T1rESraqRjNw92K" => "30000",
-    "prod_1RS2SrBVdAxw6PjcuHjFJb" => "10000"
+    "prod_6CyPOsSvhDJY8S6fNm2aWQ" => "50000",
+    "prod_4As6TLeqHEKv4Ke2ZIugJI" => "30000",
+    "prod_5JnWM2R0tec5w9GBuEGQK4" => "10000",
+    "prod_3MYGwNyNuWU3QofK7OMm15" => "50000",
+    "prod_2DZbUpGOu8G5K3ukSP26yW" => "0"
   }.freeze
   def index
     if params[:order_id] && params[:product_id]

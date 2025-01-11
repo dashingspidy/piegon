@@ -9,9 +9,13 @@ class RegistrationsController < ApplicationController
     if @user.save
       start_new_session_for @user
       # @user.send_confirmation_instructions
-      payment_url = Payment.create_checkout(@user.plan, @user.email_address)
-      respond_to do |format|
-        format.html { redirect_to payment_url.to_s, allow_other_host: true }
+      if @user.plan != "free"
+        payment_url = Payment.create_checkout(@user.plan, @user.email_address)
+        respond_to do |format|
+          format.html { redirect_to payment_url.to_s, allow_other_host: true }
+        end
+      else
+        redirect_to dashboard_path, notice: "Welcome to Piegon!"
       end
     else
       render :new, status: :unprocessable_entity

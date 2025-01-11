@@ -5,12 +5,14 @@ require "json"
 module Payment
   extend ActiveSupport::Concern
 
-  API_URL = "https://test-api.creem.io/v1/checkouts"
-  API_KEY = "creem_test_1hoBTkXDjgQJi6AHcOABF4"
+  API_URL = "https://api.creem.io/v1/checkouts"
+  API_KEY = "creem_4x2oER23SBPEcDcZL4r4IX"
   PRODUCTS = {
-      "resonance" => "prod_3JnckOZ4aY8Ytw8riAGEWF",
-      "echo"      => "prod_5pV4mr0T1rESraqRjNw92K",
-      "whisper"   => "prod_1RS2SrBVdAxw6PjcuHjFJb"
+      "lifetime"  => "prod_2DZbUpGOu8G5K3ukSP26yW",
+      "thunder"   => "prod_6CyPOsSvhDJY8S6fNm2aWQ",
+      "resonance" => "prod_4As6TLeqHEKv4Ke2ZIugJI",
+      "echo"      => "prod_5JnWM2R0tec5w9GBuEGQK4",
+      "whisper"   => "prod_3MYGwNyNuWU3QofK7OMm15"
   }.freeze
 
   def self.create_checkout(product_name, email)
@@ -25,7 +27,7 @@ module Payment
 
     request.body = {
       product_id: PRODUCTS[product_name],
-      success_url: "http://localhost:3000/dashboard",
+      success_url: "https://piegon.pro/dashboard",
       customer: {
         email: email
       }

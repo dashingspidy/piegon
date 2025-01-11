@@ -18,6 +18,6 @@ class User < ApplicationRecord
 
   def send_confirmation_instructions
     regenerate_confirmation_token
-    UserMailer.confirmation_instructions(self).deliver_now
+    UserMailer.confirmation_instructions(self).deliver_later
   end
 end
