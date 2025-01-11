@@ -15,11 +15,14 @@
 </section>
 <section class="grid grid-cols-4 gap-4">
     <% @email_templates.each do |email| %>
-      <div class="p-2 border-2 h-10 text-center">
-        <%= link_to "#{email.name}", edit_email_template_path(email) %>
-      </div>
-      <div class="">
-        <%= button_to "Delete", email_template_path(email), method: :delete, data: { turbo_confirm: "Are you sure?"} %>
+      <div class="flex-col justify-between">
+        <div class="p-2 border-2 h-10 text-center">
+          <%= link_to "#{email.name}", "#" %>
+        </div>
+        <div class="flex justify-between m-1">
+          <%= link_to "Edit", edit_email_template_path(email), class: "bg-link-water p-2 rounded-md" %>
+          <%= button_to "Delete", email_template_path(email), method: :delete, data: { turbo_confirm: "Are you sure?"}, class: "bg-red-500 p-2 rounded-md" %>
+        </div>
       </div>
     <% end %>
 </section>
