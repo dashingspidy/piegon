@@ -7,9 +7,10 @@ class DashboardController < ApplicationController
     "prod_2DZbUpGOu8G5K3ukSP26yW" => "0"
   }.freeze
   def index
-    if params[:order_id] && params[:product_id]
+    if params[:subscription_id] && params[:product_id]
       product = params[:product_id]
-      Current.user.update(email_limit: PRODUCTS[product])
+      subscription_id = params[:subscription_id]
+      Current.user.update(email_limit: PRODUCTS[product], subscription_id: subscription_id)
     end
 
     @campaign_count = Current.user.campaigns.size

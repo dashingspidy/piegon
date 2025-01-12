@@ -1,2 +1,2 @@
-<%= render AlertComponent.new(type: :error, message: "#{flash[:alert]}") if flash[:alert] %>
-<%= render AlertComponent.new(type: :success, message: "#{flash[:notice]}") if flash[:notice] %>
+<%= render AlertComponent.new(type: :alert, message: "#{flash[:alert]}") if flash[:alert] %>
+<%= render AlertComponent.new(type: :notice, message: "#{flash[:notice]}") if flash[:notice] %>

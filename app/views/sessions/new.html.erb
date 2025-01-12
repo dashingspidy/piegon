@@ -6,7 +6,7 @@
               <h1 class="text-xl font-bold leading-tight tracking-tight">
                   Sign in to your account
               </h1>
-              <%= form_with url: session_path, class: "space-y-4 md:space-y-6" do |form| %>
+              <%= form_with url: session_path, class: "space-y-6" do |form| %>
                 <div>
                   <%= form.email_field :email_address, required: true, autofocus: true, placeholder: "Enter your email address", value: params[:email_address], class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-full p-2.5" %>
                 </div>

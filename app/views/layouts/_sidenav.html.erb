@@ -26,7 +26,7 @@
       </ul>
       <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200">
           <li>
-            <%= link_to "#", class: "flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim" do %>
+            <%= link_to accounts_path, class: ["flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim", active_link(accounts_path)] do %>
               <%= image_tag "user.svg" %>
               <span class="ml-3">Account</span>
             <% end %>

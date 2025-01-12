@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   get "confirm_registration", to: "registrations#confirm"
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
+  resources :accounts, only: [ :index, :create ] do
+    patch :update_password
+  end
 
   resources :campaigns do
     member do

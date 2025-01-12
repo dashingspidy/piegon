@@ -1,4 +1,5 @@
 class RegistrationsController < ApplicationController
+  include Payment
   allow_unauthenticated_access
   def new
     @user = User.new

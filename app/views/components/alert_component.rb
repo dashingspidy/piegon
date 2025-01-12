@@ -10,7 +10,7 @@ class AlertComponent < ViewComponent::Base
     case @type
     when :alert
       "text-red-600"
-    when :success
+    when :notice
       "text-green-600"
     else
       "text-black-600"
