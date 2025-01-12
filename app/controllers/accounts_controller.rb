@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
     begin
       checkout_url = Payment.create_update_checkout(@plan)
       respond_to do |format|
-        format.html { redirect_to checkout_url, allow_other_host: true }
+        format.html { redirect_to checkout_url.to_s, allow_other_host: true }
       end
     rescue => e
       Rails.logger.error("Subscription update failed: #{e.message}")
