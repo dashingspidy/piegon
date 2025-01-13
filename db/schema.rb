@@ -107,9 +107,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_12_120744) do
     t.datetime "confirmed_at"
     t.string "plan"
     t.integer "email_limit"
-    t.integer "subscription_id"
+    t.string "subscription_id"
     t.datetime "next_payment_date"
     t.string "subscription_status"
+    t.integer "email_used"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end

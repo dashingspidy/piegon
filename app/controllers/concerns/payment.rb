@@ -61,6 +61,19 @@ module Payment
     parsed_response["checkout_url"]
   end
 
+  def cancel_subscription(subs_id)
+    uri = URI.parse("https://api.creem.io/v1/subscriptions/#{subs_id}/cancel")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request["x-api-key"] = API_KEY
+    request["Content-Type"] = "application/json"
+    request["Accept"] = "application/json"
+
+    http.request(request)
+  end
+
   private
 
   def free_account?

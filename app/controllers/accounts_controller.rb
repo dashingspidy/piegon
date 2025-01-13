@@ -25,6 +25,12 @@ class AccountsController < ApplicationController
     end
   end
 
+  def cancel_subscription
+    subs_id = Current.user.subscription_id
+    Payment.cancel_subscription(subs_id)
+    redirect_to accounts_path, notice: "Subscription canceled."
+  end
+
   def create
     @plan = params[:plan]
     if @plan == Current.user.plan
@@ -42,5 +48,10 @@ class AccountsController < ApplicationController
       flash[:alert] = "Unable to process plan update. Please try again later."
       redirect_to dashboard_path
     end
+  end
+
+  def destroy
+    Current.user.destroy
+    redirect_to root_path, notice: "Your account has been deleted."
   end
 end

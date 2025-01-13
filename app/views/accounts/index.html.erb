@@ -4,7 +4,7 @@
   <div class="flex justify-between my-4">
     <h2 class="text-xl">Update Password</h2>
     <div class="flex mr-32">
-      <%= form_with(url: account_update_password_path(Current.user.id), method: :patch) do |form| %>
+      <%= form_with(url:  update_password_accounts_path, method: :patch) do |form| %>
         <div class="mt-2">
           <%= form.password_field :current_password, placeholder: "Current Password", class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-auto p-2.5" %>
         </div>
@@ -45,11 +45,15 @@
   <hr>
   <div class="my-4">
     <h2 class="text-xl mb-3">Cancel Subscription</h2>
-    <%= button_to "Cancel Subscription", "#", class: "bg-prim px-6 py-3" %>
+    <% if Current.user.subscription_id %>
+      <%= button_to "Cancel Subscription", cancel_subscription_accounts_path, method: :post, class: "bg-prim px-6 py-3" %>
+    <% else %>
+      <p>You have no active Subscription.</p>
+    <% end %>
   </div>
   <hr>
   <div class="my-4">
     <h2 class="text-xl mb-3">Delete Account</h2>
-    <%= button_to "Delete Account", "#", class: "bg-red-600 text-white px-6 py-3" %>
+    <%= button_to "Delete Account", account_path(Current.user), method: :delete, data: { turbo_confirm: "Are you sure you want to permanently delete your account? This action cannot be undone." }, class: "bg-red-600 text-white px-6 py-3 hover:bg-red-700" %>
   </div>
 </section>
