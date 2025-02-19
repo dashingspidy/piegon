@@ -21,7 +21,7 @@ gem "solid_cable"
 gem "bootsnap", require: false
 gem "kamal", ">= 2.0.0.rc2", require: false
 gem "thruster", require: false
-gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.14"
 gem "pagy"
 gem "rack-cors"
 
