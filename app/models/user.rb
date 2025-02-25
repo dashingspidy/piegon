@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :campaigns, dependent: :destroy
   has_many :email_templates, dependent: :destroy
   has_many :email_logs
+  has_one :mail_setting, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }

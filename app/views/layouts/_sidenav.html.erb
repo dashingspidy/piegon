@@ -23,6 +23,14 @@
               <span class="ml-3">Email Template</span>
             <% end %>
           </li>
+          <% if ["free", "forever"].include?(Current.user.plan) %>
+            <li>
+              <%= link_to mail_settings_path, class: ["flex items-center p-2 text-base font-normal transition duration-75 hover:bg-prim", active_link(mail_settings_path)] do %>
+              <%= image_tag "at-sign.svg" %>
+              <span class="ml-3">Mail Setting</span>
+              <% end %>
+            </li>
+          <% end %>
       </ul>
       <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200">
           <li>

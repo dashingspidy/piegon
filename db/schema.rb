@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_12_120744) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_24_091455) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -73,6 +73,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_12_120744) do
     t.index ["user_id"], name: "index_email_templates_on_user_id"
   end
 
+  create_table "mail_settings", force: :cascade do |t|
+    t.string "host"
+    t.string "username"
+    t.string "password"
+    t.string "port", default: "587"
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_mail_settings_on_user_id"
+  end
+
   create_table "schedule_campaigns", force: :cascade do |t|
     t.integer "campaign_id", null: false
     t.datetime "send_at", default: "2024-10-07 01:09:03"
@@ -121,6 +132,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_12_120744) do
   add_foreign_key "csv_uploaders", "campaigns"
   add_foreign_key "email_logs", "users"
   add_foreign_key "email_templates", "users"
+  add_foreign_key "mail_settings", "users"
   add_foreign_key "schedule_campaigns", "campaigns"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "campaigns"

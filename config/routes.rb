@@ -34,4 +34,6 @@ Rails.application.routes.draw do
       get :draganddrop
     end
   end
+
+  resources :mail_settings
 end

@@ -1,0 +1,39 @@
+<section class="grid grid-cols-3 gap-4">
+  <div class="col-span-1">
+    <h2 class="text-xl">Mail Settings</h2>
+    <p class="text-sm">Please add the SMTP settings you will use to send emails.</p>
+    <%= render "form", mail_setting: @new_mail_setting %>
+  </div>
+  <div class="col-span-2 overflow-scroll">
+    <% if @mail_setting&.persisted? %>
+      <h2 class="text-xl">Your Mail settings</h2>
+        <table class="w-full text-sm text-left">
+          <thead class="text-xs uppercase">
+            <tr>
+              <th scope="col" class="px-6 py-3">Host</th>
+              <th scope="col" class="px-6 py-3">Username</th>
+              <th scope="col" class="px-6 py-3">Password</th>
+              <th scope="col" class="px-6 py-3">Port</th>
+              <th scope="col" class="px-6 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b">
+              <th scope="row" class="px-6 py-4"><%= @mail_setting.host %></th>
+              <th scope="row" class="px-6 py-4"><%= @mail_setting.username %></th>
+              <th scope="row" class="px-6 py-4">******</th>
+              <th scope="row" class="px-6 py-4"><%= @mail_setting.port %></th>
+              <th scope="row" class="px-6 py-4 flex gap-2">
+                <%= link_to "Edit", edit_mail_setting_path(@mail_setting), class: "border p-2 bg-lavender-gray" %>
+                <%= button_to "Delete", 
+                    mail_setting_path(@mail_setting), 
+                    method: :delete, 
+                    data: { turbo_confirm: "Are you sure you want to delete your mail settings?" },
+                    class: "bg-red-600 text-white p-2" %>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+    <% end %>
+  </div>
+</section>

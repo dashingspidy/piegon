@@ -82,6 +82,7 @@ module Payment
 
   def can_send_email?
     return false if Current.user.plan.blank?
+    return true if [ "free", "lifetime" ].include?(Current.user.plan) && Current.user.mail_setting.present?
     emails_sent_this_month < Current.user.email_limit
   end
 
@@ -98,11 +99,12 @@ module Payment
   def check_email_limit
     return if can_send_email?
 
-    if Current.user.plan == "lifetime"
-      flash[:alert] = "Please bring either your API/SMTP settings or purchase our email credit."
+    if [ "free", "lifetime" ].include?(Current.user.plan)
+      flash[:alert] = "Please configure your SMTP settings to send emails."
+      redirect_to mail_settings_path
     else
       flash[:alert] = "Monthly email limit reached. Please buy additional email credit."
+      redirect_to accounts_path
     end
-    redirect_to dashboard_path
   end
 end
