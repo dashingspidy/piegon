@@ -5,6 +5,8 @@ class Subscriber < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Not a valid email address" }
   validate :unique_email_by_campaign
 
+  scope :subscribed, -> { where(unsubscribed: false) }
+
   private
 
   def unique_email_by_campaign

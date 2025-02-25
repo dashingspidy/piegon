@@ -37,7 +37,7 @@ class CampaignsController < ApplicationController
       end
     end
 
-    subscribers = campaign.subscribers
+    subscribers = campaign.subscribers.subscribed
 
     if Current.user.plan == "free"
       subscribers = subscribers.limit(100)

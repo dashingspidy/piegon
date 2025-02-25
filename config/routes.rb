@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "term-and-conditions", to: "home#terms"
   get "help", to: "home#help"
   get "dashboard", to: "dashboard#index"
+  get "unsubscribe", to: "unsubscribe#unsubscribe", as: :unsubscribe
   resource :registration, only: [ :new, :create ]
   resource :session
   resources :passwords, param: :token

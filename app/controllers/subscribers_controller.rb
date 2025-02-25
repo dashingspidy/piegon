@@ -6,7 +6,7 @@ class SubscribersController < ApplicationController
   before_action :set_campaign, except: :embed
 
   def index
-    subscriber_scope = @campaign.subscribers
+    subscriber_scope = @campaign.subscribers.subscribed
     if Current.user.plan == "free"
       subscriber_scope = subscriber_scope.limit(100)
     end

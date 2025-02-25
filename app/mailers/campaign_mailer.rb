@@ -5,6 +5,18 @@ class CampaignMailer < ApplicationMailer
     @rendered_body = render_template(email_template.body)
     @email_from = email_from
 
+    signature = OpenSSL::HMAC.hexdigest(
+      "SHA256",
+      Rails.application.credentials.secret_key_base,
+      "#{subscriber.camppaign_id}:#{subscriber.email}"
+    )
+
+    @unsubscriber_url = unsubscribe_url(
+      campaign_id: subscriber.campaign_id,
+      email: subscriber.email,
+      signature: signature
+    )
+
     mail_options = {
       to: @subscriber.email,
       subject: @email_subject

@@ -28,4 +28,3 @@
 /node_modules
 /*.pem
 /config/credentials/production.key
-.DS_Store
