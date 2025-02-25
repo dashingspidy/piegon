@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
   include Payment
   def index
-    @products = PRODUCTS.reject { |plan, _| plan == "lifetime" }
+    @products = PRODUCTS
   end
 
   def update_password

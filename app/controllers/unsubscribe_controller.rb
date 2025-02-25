@@ -1,18 +1,18 @@
 class UnsubscribeController < ApplicationController
-  skip_before_action :authenticate_user!
+  allow_unauthenticated_access
 
   def unsubscribe
     campaign_id = params[:campaign_id]
     email = params[:email]
     signature = params[:signature]
 
-    expected_signature =OpenSSL::HMAC.hexdigest(
+    expected_signature = OpenSSL::HMAC.hexdigest(
       "SHA256",
-      Rails.application.credentials.secret_access_key,
+      Rails.application.credentials.secret_key_base,
       "#{campaign_id}:#{email}"
     )
 
-    if signature =! expected_signature
+    if signature != expected_signature
       render plain: "Invalid signature", status: :forbidden
       return
     end

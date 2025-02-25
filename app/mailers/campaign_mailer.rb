@@ -8,10 +8,10 @@ class CampaignMailer < ApplicationMailer
     signature = OpenSSL::HMAC.hexdigest(
       "SHA256",
       Rails.application.credentials.secret_key_base,
-      "#{subscriber.camppaign_id}:#{subscriber.email}"
+      "#{subscriber.campaign_id}:#{subscriber.email}"
     )
 
-    @unsubscriber_url = unsubscribe_url(
+    @unsubscribe_url = unsubscribe_url(
       campaign_id: subscriber.campaign_id,
       email: subscriber.email,
       signature: signature

@@ -62,8 +62,6 @@ class CampaignsController < ApplicationController
           ).deliver_later
         end
 
-        EmailLog.create!(user: Current.user)
-
         unless [ "free", "lifetime" ].include?(Current.user.plan)
           email_limit_reached = emails_sent >= (Current.user.email_limit.to_i - emails_sent_this_month)
           break if email_limit_reached
