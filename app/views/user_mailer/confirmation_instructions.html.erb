@@ -1,5 +1,9 @@
-<h1>Welcome <%= @user.email_address %>!</h1>
-
-<p>You can confirm your account email through the link below:</p>
-
-<p><%= link_to 'Confirm my account', @confirmation_url %></p>
+<h2>Confirm Your Account</h2>
+<h3>Welcome <%= @user.email_address %>!</h3>
+<p>Thank you for signing up with Piegon. We're excited to have you on board!</p>
+<p>Please confirm your account email by clicking the button below:</p>
+<div style="text-align: center;">
+  <%= link_to "Confirm My Account", @confirmation_url, class: "btn" %>
+</div>
+<p>If the button doesn't work, you can copy and paste this link into your browser:</p>
+<p style="word-break: break-all;"><%= @confirmation_url %></p>

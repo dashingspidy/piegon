@@ -22,4 +22,8 @@ class User < ApplicationRecord
     regenerate_confirmation_token
     UserMailer.confirmation_instructions(self).deliver_later
   end
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_later
+  end
 end

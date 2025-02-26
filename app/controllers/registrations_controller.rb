@@ -9,7 +9,8 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       start_new_session_for @user
-      # @user.send_confirmation_instructions
+      @user.send_welcome_email
+      @user.send_confirmation_instructions
       if @user.plan != "free"
         payment_url = Payment.create_checkout(@user.plan, @user.email_address)
         respond_to do |format|

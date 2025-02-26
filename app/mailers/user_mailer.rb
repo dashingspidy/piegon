@@ -5,4 +5,10 @@ class UserMailer < ApplicationMailer
 
     mail(to: @user.email_address, subject: "Confirm your account")
   end
+
+  def welcome(user)
+    @user = user
+
+    mail(to: @user.email_address, subject: "Welcome to Piegon")
+  end
 end
