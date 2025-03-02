@@ -28,6 +28,7 @@ class CampaignsController < ApplicationController
     template = EmailTemplate.find(params[:template_id])
     subject = params[:subject]
     email_from = params[:email_from]
+    email_send_in_batch = 0
 
     if [ "free", "lifetime" ].include?(Current.user.plan)
       mail_setting = Current.user.mail_setting
@@ -37,13 +38,25 @@ class CampaignsController < ApplicationController
       end
     end
 
+    if ![ "free", "lifetime" ].include?(Current.user.plan) &&
+      Current.user.subscription_status != "active"
+     redirect_to accounts_path, alert: "Your subscription is not active. Please update your payment information."
+     return
+    end
+
     subscribers = campaign.subscribers.subscribed
 
     if Current.user.plan == "free"
       subscribers = subscribers.limit(100)
     end
 
+    max_emails_for_batch = Current.user.plan == "free" ? 100 :
+                          (Current.user.plan == "lifetime" ? Float::INFINITY :
+                          [ remaining_emails, subscribers.count ].min)
+
     subscribers.find_each do |subscriber|
+      break if emails_sent_in_batch >= max_emails_for_batch
+
       begin
         if [ "free", "lifetime" ].include?(Current.user.plan) && Current.user.mail_setting.present?
           CampaignMailer.campaign_email(
@@ -62,16 +75,22 @@ class CampaignsController < ApplicationController
           ).deliver_later
         end
 
-        unless [ "free", "lifetime" ].include?(Current.user.plan)
-          email_limit_reached = emails_sent >= (Current.user.email_limit.to_i - emails_sent_this_month)
-          break if email_limit_reached
-        end
+        Current.user.email_logs.create!
+        Current.user.increment!(:emails_used)
+        email_send_in_batch += 1
+
       rescue StandardError => e
         Rails.logger.error("Failed to send email to #{subscriber.email}: #{e.message}")
       end
     end
 
-    redirect_to campaign_subscribers_path(campaign), notice: "Campaign email queued for delivery."
+    notice_message = "Campaign email queued for delivery to #{emails_sent_in_batch} subscribers."
+
+    if emails_sent_in_batch < subscribers.count
+      notice_message += " Some subscribers were skipped due to your plan limits."
+    end
+
+    redirect_to campaign_subscribers_path(campaign), notice: notice_message
   end
 
   private

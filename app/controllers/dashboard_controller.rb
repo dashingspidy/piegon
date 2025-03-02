@@ -1,19 +1,53 @@
 class DashboardController < ApplicationController
-  PRODUCTS = {
-    "prod_6CyPOsSvhDJY8S6fNm2aWQ" => "50000",
-    "prod_4As6TLeqHEKv4Ke2ZIugJI" => "30000",
-    "prod_5JnWM2R0tec5w9GBuEGQK4" => "10000",
-    "prod_3MYGwNyNuWU3QofK7OMm15" => "50000",
-    "prod_2DZbUpGOu8G5K3ukSP26yW" => "0"
-  }.freeze
   def index
     if params[:subscription_id] && params[:product_id]
-      product = params[:product_id]
-      subscription_id = params[:subscription_id]
-      Current.user.update(email_limit: PRODUCTS[product], subscription_id: subscription_id)
+      handle_subscription_update
     end
-
     @campaign_count = Current.user.campaigns.size
     @total_subscribers = Current.user.campaigns.sum { |c| c.subscribers.size }
+    @emails_sent_this_month = Current.user.email_logs.where("created_at >= ?", Time.current.beginning_of_month).count
+
+    if Current.user.plan == "free"
+      @email_limit = 100
+      @remaining_emails = 100
+    elsif Current.user.plan == "lifetime"
+      @email_limit = "Unlimited"
+      @remaining_emails = "Unlimited"
+    else
+      @email_limit = Current.user.email_limit
+      @remaining_emails = [ @email_limit.to_i - @emails_sent_this_month, 0 ].max
+    end
+  end
+
+  private
+
+  def handle_subscription_update
+    product_id = params[:product_id]
+    subscription_id = params[:subscription_id]
+
+    plan_name = nil
+    Payment::PRODUCTS.each do |plan, details|
+      if details[:id] == product_id
+        plan_name = plan
+        break
+      end
+    end
+
+    if plan_name
+      email_limit = Payment::PRODUCTS[plan_name][:email_limit]
+
+      Current.user.update(
+        plan: plan_name,
+        email_limit: email_limit,
+        subscription_id: subscription_id,
+        subscription_status: "active",
+        next_payment_date: 1.month.from_now
+      )
+
+      flash[:notice] = "Your subscription has been updated to the #{plan_name.titleize} plan."
+    else
+      Rails.logger.error("Unknown product ID received: #{product_id}")
+      flash[:alert] = "There was an issue updating your subscription. Please contact support."
+    end
   end
 end

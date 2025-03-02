@@ -77,22 +77,33 @@ module Payment
   private
 
   def free_account?
-    false if Current.user.plan == "free"
+    Current.user.plan == "free"
   end
 
   def can_send_email?
     return false if Current.user.plan.blank?
-    return true if [ "free", "lifetime" ].include?(Current.user.plan) && Current.user.mail_setting.present?
-    emails_sent_this_month < Current.user.email_limit
+
+    if ![ "free", "lifetime" ].include?(Current.user.plan) &&
+       Current.user.subscription_status != "active"
+      return false
+    end
+
+    if [ "free", "lifetime" ].include?(Current.user.plan)
+      return Current.user.mail_setting.present?
+    end
+
+    remaining_emails > 0
   end
 
   def emails_sent_this_month
-    EmailLog.where(user_id: Current.user.id).where("created_at >= ?", Time.current.beginning_of_month).count
+    Current.user.email_logs.where("created_at >= ?", Time.current.beginning_of_month).count
   end
 
   def remaining_emails
-    return 0 if Current.user.plan == "free" || Current.user.plan == "lifetime"
+    return Float::INFINITY if Current.user.plan == "lifetime" && Current.user.mail_setting.present?
+    return 100 if Current.user.plan == "free" && Current.user.mail_setting.present?
     return 0 if Current.user.email_limit.nil?
+
     [ 0, Current.user.email_limit - emails_sent_this_month ].max
   end
 
@@ -102,8 +113,11 @@ module Payment
     if [ "free", "lifetime" ].include?(Current.user.plan)
       flash[:alert] = "Please configure your SMTP settings to send emails."
       redirect_to mail_settings_path
+    elsif Current.user.subscription_status != "active"
+      flash[:alert] = "Your subscription is not active. Please update your payment information."
+      redirect_to accounts_path
     else
-      flash[:alert] = "Monthly email limit reached. Please buy additional email credit."
+      flash[:alert] = "Monthly email limit reached. Please upgrade your plan or wait until next month."
       redirect_to accounts_path
     end
   end
