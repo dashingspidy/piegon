@@ -27,10 +27,12 @@ class SubscribersController < ApplicationController
       @csv_upload.csv_file.open do |temp|
         @headers = CSV.foreach(temp, headers: false).first
       end
-      @columns = Subscriber.column_names - [ "id", "created_at", "updated_at", "campaign_id" ]
+      @columns = Subscriber.column_names - [ "id", "created_at", "updated_at", "campaign_id", "unsubscribed" ]
+      @modal_id = "csvUploadModal"
       render turbo_stream: turbo_stream.replace(
         "modal_form_content",
-        partial: "subscribers/column_mapping_content"
+        partial: "subscribers/column_mapping_content",
+        locals: { modal_id: "csvUploadModal" }
       )
     else
       render turbo_stream: turbo_stream.replace(
@@ -49,14 +51,15 @@ class SubscribersController < ApplicationController
       render turbo_stream: [
         turbo_stream.replace(
           "modal_form_content",
-          partial: "subscribers/success_message"
+          partial: "subscribers/success_message",
+          locals: { modal_id: "csvUploadModal" }
         )
       ]
     else
       render turbo_stream: turbo_stream.replace(
         "modal_form_content",
         partial: "subscribers/column_mapping_content",
-        locals: { headers: @headers, columns: @columns }
+        locals: { headers: @headers, columns: @columns, modal_id: "csvUploadModal" }
       )
     end
   end

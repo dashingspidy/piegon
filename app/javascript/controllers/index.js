@@ -16,6 +16,12 @@ application.register("hello", HelloController)
 import MappingController from "./mapping_controller"
 application.register("mapping", MappingController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
+import ModalResetController from "./modal_reset_controller"
+application.register("modal-reset", ModalResetController)
+
 import PricingController from "./pricing_controller"
 application.register("pricing", PricingController)
 

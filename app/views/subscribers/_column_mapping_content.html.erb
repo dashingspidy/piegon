@@ -16,5 +16,14 @@
       <%= form.submit "Import CSV", 
                      class: "w-full bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-none focus:ring-lavender-gray font-medium rounded-lg px-5 py-2.5 text-center" %>
     <% end %>
+    
+    <!-- Add cancel button for this step that properly triggers modal close -->
+    <div class="mt-3 text-center">
+      <button type="button"
+              class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg mt-2"
+              data-modal-hide="<%= local_assigns[:modal_id] || 'csvUploadModal' %>">
+        Cancel
+      </button>
+    </div>
   <% end %>
 </div>
