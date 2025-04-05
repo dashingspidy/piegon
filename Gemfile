@@ -38,3 +38,7 @@ end
 gem "aws-sdk-s3", require: false
 gem "csv"
 gem "postmark-rails"
+
+group :production do
+  gem "tailwindcss-rails"
+end
