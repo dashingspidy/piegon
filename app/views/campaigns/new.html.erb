@@ -8,7 +8,7 @@
                 <%= form.text_field :name, class: "border border-lavender-gray text-sm rounded-lg focus:ring-lavender-gray focus:border-lavender-gray w-full p-2.5" %>
                 <%= @campaign.errors[:name].first if @campaign.errors.any? %>
               </div>
-      <%= form.submit "Create campaign", class: "w-full bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-none focus:ring-lavender-gray font-medium px-5 py-2.5 text-center" %>
+      <%= form.submit "Create campaign", class: "w-full bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-hidden focus:ring-lavender-gray font-medium px-5 py-2.5 text-center" %>
     <% end %>
   </div>
 </section>

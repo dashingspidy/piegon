@@ -15,6 +15,6 @@
     "flowbite": "^2.5.2",
     "highlighted-code": "^0.3.7",
     "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^4.1.3"
   }
 }

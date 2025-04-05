@@ -1,11 +1,11 @@
 <div data-controller="modal-reset" data-modal-reset-id-value="<%= @modalId %>">
-  <button data-modal-target="<%= @modalId %>" data-modal-toggle="<%= @modalId %>" class="block bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-none focus:ring-lavender-gray font-medium px-5 py-2.5 text-center" type="button">
+  <button data-modal-target="<%= @modalId %>" data-modal-toggle="<%= @modalId %>" class="block bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-hidden focus:ring-lavender-gray font-medium px-5 py-2.5 text-center" type="button">
     <%= @name %>
   </button>
 
   <div id="<%= @modalId %>" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative p-4 w-full max-w-2xl max-h-full">
-      <div class="relative bg-white rounded-lg shadow">
+      <div class="relative bg-white rounded-lg shadow-sm">
         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t">
           <h3 class="text-lg">
             <%= @header %>
