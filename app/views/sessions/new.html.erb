@@ -1,32 +1,30 @@
 <% content_for(:title, "Sign in")%>
-<section>
-  <div class="flex flex-col items-center justify-center px-6 mx-auto h-screen py-0">
-      <div class="w-full bg-white rounded-lg shadow-sm max-w-md">
-          <div class="space-y-6 p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight">
-                  Sign in to your account
-              </h1>
-              <%= form_with url: session_path, class: "space-y-6" do |form| %>
-                <div>
-                  <%= form.email_field :email_address, required: true, autofocus: true, placeholder: "Enter your email address", value: params[:email_address], class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-full p-2.5" %>
-                </div>
+<section class="max-w-md mx-auto lg:mt-16">
+  <div class="fieldset border border-base-300 rounded-box p-8">
+    <h1 class="text-xl font-bold leading-tight tracking-tight">
+        Sign in to your account
+    </h1>
+    <%= form_with url: session_path do |form| %>
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Email Address</legend>
+        <%= form.email_field :email_address, required: true, autofocus: true, placeholder: "Enter your email address", value: params[:email_address], class: "input" %>
+      </fieldset>
 
-                <div>
-                  <%= form.password_field :password, required: true, placeholder: "Enter your password", maxlength: 72, class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-full p-2.5" %>
-                </div>
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Password</legend>
+        <%= form.password_field :password, required: true, placeholder: "Enter your password", maxlength: 72, class: "input" %>
+      </fieldset>
 
-                <div class="flex items-center">
-                  <%= link_to "Forgot password?", new_password_path, class: "text-sm hover:underline" %>
-                </div>
-
-                <%= form.submit "Sign in", class: "w-full bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-hidden focus:ring-lavender-gray font-medium px-5 py-2.5 text-center" %>
-              <% end %>
-
-              <p class="text-sm">
-                  Don’t have an account yet? <%= link_to "Register", new_registration_path, class: "font-medium hover:underline" %>
-              </p>
-          </div>
+      <div class="flex items-center mb-2">
+        <%= link_to "Forgot password?", new_password_path, class: "link link-secondary" %>
       </div>
+
+      <%= form.submit "Sign in", class: "btn btn-neutral" %>
+    <% end %>
+
+    <p class="text-sm">
+        Don’t have an account yet? <%= link_to "Register", new_registration_path, class: "link link-neutral" %>
+    </p>
   </div>
 </section>
 

@@ -3,14 +3,14 @@ class CsvImportJob < ApplicationJob
   queue_as :default
   BATCH_SIZE = 1000
 
-  def perform(campaign_id, column_mapping)
-    @campaign = Campaign.find(campaign_id)
-    @existing_emails = Set.new(@campaign.subscribers.pluck(:email))
+  def perform(contact_id, column_mapping)
+    @contact = Contact.find(contact_id)
+    @existing_emails = Set.new(@contact.subscribers.pluck(:email))
     @duplicates = []
     @processed = 0
     @imported = 0
 
-    @campaign.csv_uploader.csv_file.open do |temp|
+    @contact.csv_uploader.csv_file.open do |temp|
       batch = []
       CSV.foreach(temp, headers: true) do |row|
         @processed += 1
@@ -22,11 +22,11 @@ class CsvImportJob < ApplicationJob
         end
 
         if batch.size >= BATCH_SIZE
-          import_batch(@campaign, batch)
+          import_batch(@contact, batch)
           batch = []
         end
       end
-      import_batch(@campaign, batch) if batch.any?
+      import_batch(@contact, batch) if batch.any?
     end
     log_import_results
     cleanup_resources
@@ -59,9 +59,9 @@ class CsvImportJob < ApplicationJob
     attributes["email"].match?(email_regexp)
   end
 
-  def import_batch(campaign, batch)
+  def import_batch(contact, batch)
     ActiveRecord::Base.transaction do
-      campaign.subscribers.insert_all(batch)
+      contact.subscribers.insert_all(batch)
     end
   rescue => e
     Rails.logger.error "Error importing batch: #{e.message}"
@@ -82,20 +82,20 @@ class CsvImportJob < ApplicationJob
   end
 
   def cleanup_resources
-    @campaign.csv_uploader.csv_file.purge_later
-    @campaign.csv_uploader.destroy
+    @contact.csv_uploader.csv_file.purge_later
+    @contact.csv_uploader.destroy
   end
 
   def notify_user_of_completion(message)
     # You can implement this based on your notification system
     # For example:
-    # UserMailer.csv_import_completed(@campaign.user, message).deliver_later
+    # UserMailer.csv_import_completed(@contact.user, message).deliver_later
   end
 
   def notify_admin_of_error(error)
     # You can implement this based on your error notification system
     # For example:
-    # AdminMailer.csv_import_error(@campaign, error).deliver_later
+    # AdminMailer.csv_import_error(@contact, error).deliver_later
     # or
     # Sentry.capture_exception(error)
   end

@@ -2,14 +2,14 @@ class UnsubscribeController < ApplicationController
   allow_unauthenticated_access
 
   def unsubscribe
-    campaign_id = params[:campaign_id]
+    contact_id = params[:contact_id]
     email = params[:email]
     signature = params[:signature]
 
     expected_signature = OpenSSL::HMAC.hexdigest(
       "SHA256",
       Rails.application.credentials.secret_key_base,
-      "#{campaign_id}:#{email}"
+      "#{contact_id}:#{email}"
     )
 
     if signature != expected_signature
@@ -17,11 +17,11 @@ class UnsubscribeController < ApplicationController
       return
     end
 
-    subscriber = Subscriber.find_by(campaign_id: campaign_id, email: email)
+    subscriber = Subscriber.find_by(contact_id: contact_id, email: email)
 
     if subscriber
       subscriber.update(unsubscribed: true)
-      @campaign = subscriber.campaign
+      @contact = subscriber.contact
     else
       render plain: "Subscriber not found", status: :not_found
     end

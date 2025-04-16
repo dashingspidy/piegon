@@ -1,15 +1,15 @@
-<div class="p-5">
-  <%= turbo_frame_tag "modal_form_content" do %>
-    <%= form_with model: @csv_upload, 
-                  url: upload_campaign_subscribers_path, 
-                  data: { controller: "upload", action: "upload#submit" } do |form| %>
-      <div class="grid gap-4 mb-4">
-        <%= form.file_field :csv_file, 
-                           direct_upload: true,
-                           data: { upload_target: "file" } %>
-      </div>
-      <%= form.submit "Upload", 
-                     class: "w-full bg-link-water hover:bg-lavender-gray focus:ring-4 focus:outline-hidden focus:ring-lavender-gray font-medium px-5 py-2.5 text-center" %>
-    <% end %>
+<%= turbo_frame_tag "modal_form_content" do %>
+  <%= form_with model: @csv_upload, 
+                url: upload_contact_subscribers_path, 
+                data: { controller: "upload", action: "upload#submit" } do |form| %>
+    <fieldset class="fieldset">
+      <legend class="fieldset-label">Upload CSV file</legend>
+      <%= form.file_field :csv_file, 
+                          direct_upload: true,
+                          data: { upload_target: "file" },
+                          class: "file-input file-input-neutral" %>
+      <p class="fieldset-label">.csv file only</p>
+    </fieldset>
+    <%= form.submit "Upload", class: "btn btn-neutral w-full" %>
   <% end %>
-</div>
+<% end %>

@@ -23,16 +23,11 @@
 
   <body>
     <% if authenticated? %>
-      <div class="flex h-screen">
         <%= render 'layouts/sidenav' %>
-        <main class="flex-1 overflow-x-hidden overflow-y-auto p-4">
-          <%= render "layouts/flash" %>
-          <%= yield %>
-        </main>
-      </div>
+        <%= render "layouts/flash" %>
     <% else %>
       <%= render "layouts/nav" %>
-      <main class="mx-auto">
+      <main>
         <%= render "layouts/flash" %>
         <%= yield %>
       </main>

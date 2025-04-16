@@ -1,0 +1,16 @@
+<section>
+  <h2 class="text-xl">Create contact list</h2>
+  <%= form_with model: @contact do |form| %>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend"><%= form.label :name %></legend>
+      <%= form.text_field :name, class: "input", placeholder: "Ex. Black Friday 2025" %>
+      <%= @contact.errors[:name].first if @contact.errors.any? %>
+    </fieldset>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend"><%= form.label "Website URL" %></legend>
+      <%= form.text_field :url, class: "input", placeholder: "Ex. www.google.com" %>
+      <%= @contact.errors[:url].first if @contact.errors.any? %>
+    </fieldset>
+    <%= form.submit "Create contact list", class: "btn btn-neutral" %>
+  <% end %>
+</section>

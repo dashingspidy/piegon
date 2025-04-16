@@ -1,0 +1,36 @@
+<button class="btn btn-primary" onclick="widget_modal.showModal()">Add Widget to your website</button>
+
+<dialog id="widget_modal" class="modal">
+  <div class="modal-box w-11/12 max-w-3xl">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+    </form>
+
+    <div data-controller="clipboard">
+      <label class="fieldset-legend">Copy-Paste this code to your website:</label>
+      <div class="relative">
+        <button
+          class="btn btn-sm absolute top-2 right-2 z-10"
+          data-action="click->clipboard#copy"
+        >
+          <span data-clipboard-target="labelDefault"><%= image_tag "copy.svg", class: "w-4 h-4" %></span>
+          <span data-clipboard-target="labelCopied" class="hidden text-sm">Copied!</span>
+        </button>
+
+        <textarea
+          readonly
+          class="textarea textarea-ghost bg-gray-200 w-full h-50 font-mono text-sm pr-12"
+          data-clipboard-target="input"
+        ><div id="piegon-form"></div>
+<script src="https://widget-f55.pages.dev/widget-min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    initPiegonForm('#piegon-form', {
+      api_key: '<%= @api_token %>'
+    });
+  });
+</script></textarea>
+      </div>
+    </div>
+  </div>
+</dialog>

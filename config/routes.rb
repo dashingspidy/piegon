@@ -5,24 +5,20 @@ Rails.application.routes.draw do
   get "help", to: "home#help"
   get "dashboard", to: "dashboard#index"
   get "unsubscribe", to: "unsubscribe#unsubscribe", as: :unsubscribe
-  resource :registration, only: [ :new, :create ]
-  resource :session
-  resources :passwords, param: :token
   get "confirm_registration", to: "registrations#confirm"
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
+  resource :registration, only: [ :new, :create ]
+  resource :session
+  resources :passwords, param: :token
   resources :accounts do
     collection do
+      get :profile
+      get :billing
       patch :update_password
-      post :cancel_subscription
     end
   end
-
-  resources :campaigns do
-    member do
-      get :prepare_campaign
-      post :send_campaign
-    end
+  resources :contacts do
     resources :subscribers do
       collection do
         post :upload
@@ -35,6 +31,5 @@ Rails.application.routes.draw do
       get :draganddrop
     end
   end
-
   resources :mail_settings
 end

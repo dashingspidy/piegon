@@ -38,9 +38,5 @@ module Piegon
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-
-    # View components config
-    config.view_component.view_component_path = "app/views/components"
-    config.eager_load_paths << Rails.root.join("app/views/components")
   end
 end

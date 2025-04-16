@@ -1,0 +1,31 @@
+<section class="flex justify-center items-center">
+  <div class="w-full max-w-xl mx-auto">
+    <%= form_tag "#" do %>
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Campaign Name</legend>
+        <%= text_field_tag :campaign_name, nil, class: "input w-full" %>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Select Contact list</legend>
+        <%= select_tag :campaign_id, options_from_collection_for_select(@campaigns, :id, :name), prompt: "Select", class: "select select-secondary" %>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">From:</legend>
+        <%= email_field_tag :email_from, nil, required: true, placeholder: "no-reply@piegon.pro", class: "input" %>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend">Subject</legend>
+        <%= text_field_tag :subject, nil, required: true, placeholder: "Welcome offer", class: "input" %>
+      </fieldset>
+
+      <fieldset class="fieldset">
+        <legend class="fieldset-legend"> Select Template</legend>
+        <%= select_tag :template_id, options_from_collection_for_select(@email_templates, :id, :name), class: "select select-secondary" %>
+      </fieldset>
+
+    <% end %>
+  </div>  
+</section>

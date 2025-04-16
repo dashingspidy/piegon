@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
     if params[:subscription_id] && params[:product_id]
       handle_subscription_update
     end
-    @campaign_count = Current.user.campaigns.size
-    @total_subscribers = Current.user.campaigns.sum { |c| c.subscribers.size }
+    @contact_count = Current.user.contacts.size
+    @total_subscribers = Current.user.contacts.sum { |c| c.subscribers.size }
     @emails_sent_this_month = Current.user.email_logs.where("created_at >= ?", Time.current.beginning_of_month).count
 
     if Current.user.plan == "free"

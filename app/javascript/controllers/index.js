@@ -4,23 +4,17 @@
 
 import { application } from "./application"
 
+import ClipboardController from "./clipboard_controller"
+application.register("clipboard", ClipboardController)
+
 import ColorCodeController from "./color_code_controller"
 application.register("color-code", ColorCodeController)
 
 import EmailEditorController from "./email_editor_controller"
 application.register("email-editor", EmailEditorController)
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
-
 import MappingController from "./mapping_controller"
 application.register("mapping", MappingController)
-
-import ModalController from "./modal_controller"
-application.register("modal", ModalController)
-
-import ModalResetController from "./modal_reset_controller"
-application.register("modal-reset", ModalResetController)
 
 import PricingController from "./pricing_controller"
 application.register("pricing", PricingController)

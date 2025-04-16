@@ -1,25 +1,18 @@
-<h1 class="font-sans text-xl">Dashboard</h1>
-<section class="grid grid-cols-4 gap-2 mt-4">
-  <div class="border-2 border-link-water rounded-lg p-2 text-center">
-    <%= link_to campaigns_path do %>
-      <h1 class="text-xl">Total Campaign</h1>
-      <%= @campaign_count %>
-    <% end %>
+<h1 class=" text-xl">Dashboard</h1>
+
+<div class="stats shadow">
+  <div class="stat place-items-center">
+    <div class="stat-title">Total Contact List</div>
+    <div class="stat-value"><%= @contact_count %></div>
   </div>
 
-  <div class="border-2 border-link-water rounded-lg p-2 text-center">
-    <h1 class="text-xl">Total Subscribers</h1>
-    <%= @total_subscribers %>
+  <div class="stat place-items-center">
+    <div class="stat-title">Total Subscribers</div>
+    <div class="stat-value text-secondary"><%= @total_subscribers %></div>
   </div>
 
-  <div class="border-2 border-link-water rounded-lg p-2 text-center">
-    <h1 class="text-xl">Campaign Scheduled</h1>
-    <%= "0" %>
+  <div class="stat place-items-center">
+    <div class="stat-title">Campaign Scheduled</div>
+    <div class="stat-value">0</div>
   </div>
-
-  <div class="border-2 border-link-water rounded-lg p-2 text-center">
-    <h1 class="text-xl">Campaign Running</h1>
-    <%= "0" %>
-  </div>
-</section>
-
+</div>

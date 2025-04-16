@@ -39,20 +39,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "campaigns", force: :cascade do |t|
+  create_table "contacts", force: :cascade do |t|
     t.string "name"
+    t.string "api_token"
+    t.string "url"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "api_token"
-    t.index ["user_id"], name: "index_campaigns_on_user_id"
+    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "csv_uploaders", force: :cascade do |t|
-    t.integer "campaign_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["campaign_id"], name: "index_csv_uploaders_on_campaign_id"
+    t.index ["contact_id"], name: "index_csv_uploaders_on_contact_id"
   end
 
   create_table "email_logs", force: :cascade do |t|
@@ -103,11 +104,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
 
   create_table "subscribers", force: :cascade do |t|
     t.string "email", null: false
-    t.integer "campaign_id", null: false
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "unsubscribed", default: false
-    t.index ["campaign_id"], name: "index_subscribers_on_campaign_id"
+    t.index ["contact_id"], name: "index_subscribers_on_contact_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,12 +130,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "campaigns", "users"
-  add_foreign_key "csv_uploaders", "campaigns"
+  add_foreign_key "contacts", "users"
+  add_foreign_key "csv_uploaders", "contacts"
   add_foreign_key "email_logs", "users"
   add_foreign_key "email_templates", "users"
   add_foreign_key "mail_settings", "users"
   add_foreign_key "schedule_campaigns", "campaigns"
   add_foreign_key "sessions", "users"
-  add_foreign_key "subscribers", "campaigns"
+  add_foreign_key "subscribers", "contacts"
 end

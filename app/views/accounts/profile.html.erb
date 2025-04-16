@@ -1,0 +1,20 @@
+<section>
+  <h1 class="text-xl">Profile</h1>
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Update Password</legend>
+    <%= form_with(url: update_password_accounts_path, method: :patch) do |form| %>
+      <%= form.label :current_password, class: "fieldset-label" %>
+      <%= form.password_field :current_password, placeholder: "Current Password", class: "input" %>
+      <%= form.label "New Password", class: "fieldset-label" %>
+      <%= form.password_field :password, placeholder: "New Password", class: "input" %>
+      <%= form.label "Confirm new password", class: "fieldset-label" %>
+      <%= form.password_field :password_confirmation, placeholder: "Confirm Password", class: "input" %>
+  </fieldset>
+      <%= form.submit "Update Password", class: "btn btn-neutral mt-4" %>
+    <% end %>
+</section>
+
+<section class="mt-8">
+  <h2>If you want to delete account, please check your subscription first then procced to delete your account.</h2>
+  <%= button_to "Delete Account", account_path(Current.user), method: :delete, data: { turbo_confirm: "Are you sure you want to permanently delete your account? This action cannot be undone." }, class: "btn btn-error" %>
+</section>

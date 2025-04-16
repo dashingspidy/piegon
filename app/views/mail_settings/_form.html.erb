@@ -1,27 +1,21 @@
-<%= form_with model: mail_setting do |form| %>
-  <% if mail_setting.errors.any? %>
-    <div class="text-red-500 mb-4">
-      <ul>
-        <% mail_setting.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_with model: mail_setting, class: "flex gap-2" do |form| %>
   <div class="mt-2">
-    <%= form.text_field :host, placeholder: "Host", class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-auto p-2.5" %>
+    <%= form.text_field :host, placeholder: "Host", class: "input" %>
+    <%= mail_setting.errors[:host].first if mail_setting.errors.any? %>
   </div>
   <div class="mt-2">
-    <%= form.text_field :username, placeholder: "Username", class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-auto p-2.5" %>
+    <%= form.text_field :username, placeholder: "Username", class: "input" %>
+    <%= mail_setting.errors[:username].first if mail_setting.errors.any? %>
   </div>
   <div class="mt-2">
-    <%= form.text_field :password, placeholder: "Password", class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-auto p-2.5" %>
+    <%= form.text_field :password, placeholder: "Password", class: "input" %>
+    <%= mail_setting.errors[:password].first if mail_setting.errors.any? %>
   </div>
   <div class="mt-2">
-    <%= form.number_field :port, placeholder: "Port", class: "border border-lavender-gray focus:ring-lavender-gray focus:border-lavender-gray block w-auto p-2.5" %>
+    <%= form.number_field :port, placeholder: "Port", class: "input" %>
+    <%= mail_setting.errors[:port].first if mail_setting.errors.any? %>
   </div>
   <div class="mt-2">
-    <%= form.submit mail_setting.persisted? ? "Update" : "Save", class: "bg-link-water hover:bg-lavender-gray px-6 py-3" %>
+    <%= form.submit mail_setting.persisted? ? "Update" : "Save", class: "btn" %>
   </div>
 <% end %>

@@ -1,0 +1,14 @@
+<h1 class="text-xl mb-4">Contact Lists</h1>
+<% @contacts.each do |contact| %>
+  <%= link_to contact_subscribers_path(contact) do %>
+    <div class="stats shadow ml-1">
+      <div class="stat">
+        <div class="stat-title"><%= contact.name %></div>
+        <div class="stat-value"><%= number_to_k(contact.subscribers.size) %></div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+<div class="mt-4">
+  <%= link_to "Create a new contact list", new_contact_path, class: "btn btn-neutral" %>
+</div>

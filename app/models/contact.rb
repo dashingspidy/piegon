@@ -1,4 +1,4 @@
-class Campaign < ApplicationRecord
+class Contact < ApplicationRecord
   belongs_to :user
   has_many :subscribers
   has_one :csv_uploader

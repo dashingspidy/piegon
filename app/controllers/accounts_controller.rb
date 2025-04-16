@@ -1,6 +1,9 @@
 class AccountsController < ApplicationController
   include Payment
-  def index
+  def profile
+  end
+
+  def billing
     @products = PRODUCTS
   end
 
@@ -13,29 +16,23 @@ class AccountsController < ApplicationController
           redirect_to new_session_path
         else
           flash[:alert] = "Unable to update password. Please try again."
-          redirect_to accounts_path
+          redirect_to profile_accounts_path
         end
       else
         flash[:alert] = "New password and confirmation do not match"
-        redirect_to accounts_path
+        redirect_to profile_accounts_path
       end
     else
       flash[:alert] = "Current password is incorrect"
-      redirect_to accounts_path
+      redirect_to profile_accounts_path
     end
-  end
-
-  def cancel_subscription
-    subs_id = Current.user.subscription_id
-    Payment.cancel_subscription(subs_id)
-    redirect_to accounts_path, notice: "Subscription canceled."
   end
 
   def create
     @plan = params[:plan]
     if @plan == Current.user.plan
       flash[:alert] = "You are already on this plan"
-      redirect_to accounts_path
+      redirect_to billing_accounts_path
     end
 
     begin
