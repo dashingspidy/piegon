@@ -32,4 +32,5 @@ Rails.application.routes.draw do
     end
   end
   resources :mail_settings
+  resources :campaigns
 end

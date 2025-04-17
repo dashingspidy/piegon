@@ -1,0 +1,30 @@
+<% if @campaigns.any? %>
+<section class="w-full max-w-2xl">
+  <ul class="list bg-base-100 rounded-box shadow-md">
+    <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">List of Campaigns</li>
+    <% @campaigns.each do |campaign| %>
+      <li class="list-row">
+        <div>
+          <div class="text-lg">
+            <%= link_to campaign.name, campaign_path(campaign), class: "link link-hover" %>
+          </div>
+        </div>
+        <div>
+          <div></div>
+        </div>
+        <% if campaign.finished %>
+          <div class="mt-2 tooltip tooltip-left" data-tip="Finished"><%= image_tag "circle-check.svg" %></div>
+        <% else %>
+            <div class="mt-2"><%= campaign.running ? "Running" : "Start at: #{l(campaign.send_at, format: :long)}".html_safe %></div>
+        <% end %>
+        <%= link_to "Edit", edit_campaign_path(campaign), class: "btn btn-secondary" %>
+        <%= button_to "Delete", campaign_path(campaign), method: :delete, data: { turbo_confirm: "Are you sure?"}, class: "btn btn-warning" %>
+      </li>
+    <% end %>
+  </ul>
+</section>
+<% end %>
+
+<section class="mt-4">
+  <%= link_to "Start new campaign", new_campaign_path, class: "btn btn-neutral" %>
+</section>

@@ -1,0 +1,60 @@
+<section>
+  <%= form_with model: campaign, data: { controller: "send-timing" } do |form| %>
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Campaign Name</legend>
+      <%= form.text_field :name, class: "input" %>
+      <%= campaign.errors[:name].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Select Contact list</legend>
+      <%= form.select :contact_id, @contacts.map { |c| [c.name, c.id] }, {include_blank: "Select Contact list" }, { class: "select select-secondary" } %>
+      <%= campaign.errors[:contact_id].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend"> Select Email Template</legend>
+      <%= form.select :email_template_id, @templates.map { |t| [t.name, t.id] }, {include_blank: "Select Email Template" }, { class: "select select-secondary" } %>
+      <%= campaign.errors[:email_template_id].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">From</legend>
+      <%= form.email_field :from, placeholder: "no-reply@piegon.pro", class: "input" %>
+      <%= campaign.errors[:from].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Header</legend>
+      <%= form.text_field :header, placeholder: "Arif from Piegon", class: "input" %>
+      <%= campaign.errors[:header].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend class="fieldset-legend">Subject</legend>
+      <%= form.text_field :subject, placeholder: "Black Friday sale", class: "input" %>
+      <%= campaign.errors[:subject].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset flex gap-4 mb-4">
+      <legend class="fieldset-legend">When do you want to send the campaign?</legend>
+      <label class="text-[1rem]">
+        <%= form.radio_button :send_time_option, "now", checked: true, class: "radio", data: { action: "send-timing#toggle" } %>
+        Send now
+      </label>
+      <label class="text-[1rem]">
+        <%= form.radio_button :send_time_option, "later", class: "radio", data: { action: "send-timing#toggle" } %>
+        Send later
+      </label>
+      <%= campaign.errors[:send_time_option].first if campaign.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset" data-send-timing-target="scheduleField" hidden>
+      <legend class="fieldset-legend">Select Date</legend>
+      <%= form.date_field :send_at, class: "input" %>
+      <%= campaign.errors[:send_at].first if campaign.errors.any? %>
+    </fieldset>
+
+    <%= form.submit campaign.persisted? ? "Update Campaign" : "Start Campaign", class: "btn btn-neutral" %>
+  <% end %>
+</section>

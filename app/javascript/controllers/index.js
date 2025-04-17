@@ -19,5 +19,8 @@ application.register("mapping", MappingController)
 import PricingController from "./pricing_controller"
 application.register("pricing", PricingController)
 
+import SendTimingController from "./send_timing_controller"
+application.register("send-timing", SendTimingController)
+
 import UploadController from "./upload_controller"
 application.register("upload", UploadController)

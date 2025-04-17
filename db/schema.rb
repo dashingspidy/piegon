@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_16_132351) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,24 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "campaigns", force: :cascade do |t|
+    t.string "name"
+    t.integer "contact_id", null: false
+    t.integer "email_template_id", null: false
+    t.integer "user_id", null: false
+    t.string "from"
+    t.string "header"
+    t.string "subject"
+    t.datetime "send_at"
+    t.boolean "finished", default: false
+    t.boolean "running", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_campaigns_on_contact_id"
+    t.index ["email_template_id"], name: "index_campaigns_on_email_template_id"
+    t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "name"
     t.string "api_token"
@@ -54,13 +72,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_csv_uploaders_on_contact_id"
-  end
-
-  create_table "email_logs", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_email_logs_on_user_id"
   end
 
   create_table "email_templates", force: :cascade do |t|
@@ -83,14 +94,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_mail_settings_on_user_id"
-  end
-
-  create_table "schedule_campaigns", force: :cascade do |t|
-    t.integer "campaign_id", null: false
-    t.datetime "send_at", default: "2024-10-07 01:09:03"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["campaign_id"], name: "index_schedule_campaigns_on_campaign_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -119,23 +122,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_25_124622) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.string "plan"
-    t.integer "email_limit"
-    t.string "subscription_id"
-    t.datetime "next_payment_date"
-    t.string "subscription_status"
-    t.integer "email_used"
+    t.string "customer_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "campaigns", "contacts"
+  add_foreign_key "campaigns", "email_templates"
+  add_foreign_key "campaigns", "users"
   add_foreign_key "contacts", "users"
   add_foreign_key "csv_uploaders", "contacts"
-  add_foreign_key "email_logs", "users"
   add_foreign_key "email_templates", "users"
   add_foreign_key "mail_settings", "users"
-  add_foreign_key "schedule_campaigns", "campaigns"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "contacts"
 end
