@@ -1,4 +1,5 @@
 class EmailTemplatesController < ApplicationController
+  before_action :check_confirmed_user, only: %i[new create]
   before_action :set_email_template, only: [ :show, :edit, :update, :destroy ]
   def index
     @email_templates = Current.user.email_templates

@@ -36,13 +36,15 @@ module Payment
     response["checkout_url"]
   end
 
-  private
+  def current_plan
+    Plan.new(Current.user.plan)
+  end
 
   def free_account?
-    Current.user.plan == "free"
+    current_plan.name == "free"
   end
 
   def can_send_email?
-    false if Current.user.plan.blank? || Current.user.mail_settings.blank?
+    !Current.user.plan.blank? && Current.user.mail_settings.present?
   end
 end

@@ -1,4 +1,5 @@
 class ContactsController < ApplicationController
+  before_action :check_confirmed_user, only: %i[new create]
   def index
     @contacts = Current.user.contacts
   end

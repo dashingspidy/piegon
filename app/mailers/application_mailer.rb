@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "no-reply@piegon.pro"
+  default from: "Piegon <no-reply@piegon.pro>"
   layout "mailer"
 
   before_action :attach_logo

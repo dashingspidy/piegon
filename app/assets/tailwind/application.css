@@ -43,7 +43,13 @@
   --color-ship-cove: #838bad;
   --color-chambray: #464e7f;
 
-  --font-sans: Geist;
+  --font-sans: WorkSans-Regular;
+  --font-thin: WorkSans-Thin;
+  --font-light: WorkSans-Light;
+  --font-medium: WorkSans-Medium;
+  --font-black: WorkSans-Black;
+  --font-bold: WorkSans-Bold;
+  --font-extra-bold: WorkSans-ExtraBold;
   --font-logo: Borel;
 
   @keyframes fadeOut {
@@ -85,8 +91,38 @@
 }
 
 @font-face {
-  font-family: "Geist";
-  src: url("Geist.woff2");
+  font-family: "WorkSans-Regular";
+  src: url("WorkSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "WorkSans-Black";
+  src: url("WorkSans-Black.ttf");
+}
+
+@font-face {
+  font-family: "WorkSans-Bold";
+  src: url("WorkSans-Bold.ttf");
+}
+
+@font-face {
+  font-family: "WorkSans-ExtraBold";
+  src: url("WorkSans-ExtraBold.ttf");
+}
+
+@font-face {
+  font-family: "WorkSans-Light";
+  src: url("WorkSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "WorkSans-Medium";
+  src: url("WorkSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "WorkSans-Thin";
+  src: url("WorkSans-Thin.ttf");
 }
 
 @font-face {

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get "dashboard", to: "dashboard#index"
   get "unsubscribe", to: "unsubscribe#unsubscribe", as: :unsubscribe
   get "confirm_registration", to: "registrations#confirm"
+  post "resend_confirmation_email", to: "registrations#resend_confirmation"
+  get "procced_to_payment", to: "registrations#procced_to_payment"
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
   resource :registration, only: [ :new, :create ]

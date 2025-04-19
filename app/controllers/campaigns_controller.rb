@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  before_action :check_confirmed_user, only: %i[new create]
   before_action :set_contact_and_template, only: %i[new create edit]
   before_action :set_campaign, only: %i[show edit update destroy]
   def index

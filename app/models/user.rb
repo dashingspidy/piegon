@@ -26,4 +26,13 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.welcome(self).deliver_later
   end
+
+  def plan_object
+    Plan.new(plan || "free")
+  end
+
+  def limit_reached?(resource)
+    current_count = public_send(resource).count
+    current_count >= plan_object.limit_for(resource)
+  end
 end

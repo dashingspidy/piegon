@@ -4,7 +4,6 @@ class AccountsController < ApplicationController
   end
 
   def billing
-    @products = PRODUCTS
   end
 
   def update_password
@@ -29,22 +28,6 @@ class AccountsController < ApplicationController
   end
 
   def create
-    @plan = params[:plan]
-    if @plan == Current.user.plan
-      flash[:alert] = "You are already on this plan"
-      redirect_to billing_accounts_path
-    end
-
-    begin
-      checkout_url = Payment.create_update_checkout(@plan)
-      respond_to do |format|
-        format.html { redirect_to checkout_url.to_s, allow_other_host: true }
-      end
-    rescue => e
-      Rails.logger.error("Subscription update failed: #{e.message}")
-      flash[:alert] = "Unable to process plan update. Please try again later."
-      redirect_to dashboard_path
-    end
   end
 
   def destroy
