@@ -14,7 +14,9 @@
     <% end %>
 </section>
 
-<section class="mt-8">
-  <h2>If you want to delete account, please check your subscription first then procced to delete your account.</h2>
-  <%= button_to "Delete Account", account_path(Current.user), method: :delete, data: { turbo_confirm: "Are you sure you want to permanently delete your account? This action cannot be undone." }, class: "btn btn-error" %>
-</section>
+<% if Current.user.plan == "free" %>
+  <section class="mt-8">
+    <h2 class="text-lg font-bold">Warning: This action will permanently delete all data associated with your account. Proceed with caution.</h2>
+    <%= button_to "Delete Account", account_path(Current.user), method: :delete, data: { turbo_confirm: "Are you sure you want to permanently delete your account? This action cannot be undone." }, class: "btn btn-error" %>
+  </section>
+<% end %>

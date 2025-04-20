@@ -36,6 +36,25 @@ module Payment
     response["checkout_url"]
   end
 
+  def self.customer_portal(customer_id)
+    uri = URI.parse("https://api.creem.io/v1/customers/billing")
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Post.new(uri.request_uri)
+    request["x-api-key"] = API_KEY
+    request["Content-Type"] = "application/json"
+    request["Accept"] = "application/json"
+
+    request.body = {
+      "customer_id": "#{customer_id}"
+    }.to_json
+
+    response = http.request(request)
+    response = JSON.parse(response.body)
+    response["customer_portal_link"]
+  end
+
   def current_plan
     Plan.new(Current.user.plan)
   end

@@ -1,7 +1,13 @@
 <section>
-  <h1 class="text-2xl font-medium">Billing</h1>
+  <h1 class="text-2xl font-bold">Billing</h1>
   <p>Current Plan: <span class="font-black text-xl"><%=  Current.user.plan %></span></p>
-  <p>Status: <%= Current.user.customer_id ? "Paid" : "Unpaid" %></p>
+  <% unless Current.user.plan == "free" %>
+    <p>Status: <%= Current.user.customer_id ? "Paid" : "Unpaid" %></p>
+  <% end %>
+  <% if Current.user.customer_id %>
+    <p class="mt-2 font-bold text-lg">Customer Portal: You can see your payments and other details. Provided by Creem.io</p>
+    <%= link_to "Customer Portal", customer_portal_path, class: "btn btn-secondary" %>
+  <% end %>
 </section>
 
 <% unless Current.user.plan != "free" %>
@@ -52,9 +58,9 @@
       </div>
     </div>
 
-    <div class="card w-96 bg-base-200 border-2 border-warning">
+    <div class="card w-96 bg-base-200 border-2 border-lavender-gray">
       <div class="card-body">
-        <span class="absolute -mt-9 badge badge-warning">Most Popular</span>
+        <span class="absolute -mt-9 badge bg-lavender-gray border-lavender-gray">Most Popular</span>
         <div class="flex justify-between">
           <h2 class="text-3xl font-black">Whisper</h2>
           <span class="text-3xl font-black">$179</span>
@@ -65,37 +71,37 @@
         </div>
         <ul class="mt-6 flex flex-col gap-4">
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">10 Websites</span>
           </li>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">20 Email templates</span>
           </li>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Subscribers</span>
           </li>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Campaigns</span>
           </li>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Embeddable widget, Import contacts</span>
           </li>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Real-Time Analytics</span>
           </li>
           <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-warning" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">LifeTime Support</span>
           </li>
         </ul>
         
         <div class="mt-6">
-          <%= link_to "Upgrade to Whisper", procced_to_payment_path(plan: "whisper"), class: "btn btn-warning btn-block" %>
+          <%= link_to "Upgrade to Whisper", procced_to_payment_path(plan: "whisper"), class: "btn bg-lavender-gray btn-block" %>
         </div>
         <div>
         </div>

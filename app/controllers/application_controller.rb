@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def require_payment
+    return unless authenticated?
+    return if Current.user.plan == "free"
+    unless Current.user.customer_id
+      redirect_to billing_accounts_path, alert: "Please complete your payment."
+    end
+  end
+
   def check_confirmed_user
     return unless Current.user
     return if Current.user.confirmed_at?

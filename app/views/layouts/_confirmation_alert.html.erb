@@ -5,6 +5,6 @@
 <% end %>
 <% if Current.user.confirmed? && Current.user.customer_id.nil? && Current.user.plan != "free" %>
   <div role="alert" class="alert alert-info alert-soft">
-    <p>Email Address confirmed. Your can now procced to payment now. <%= link_to "Procced to Payment", procced_to_payment_path, class: "link" %></p>
+    <p>Please proceed to payment to continue. <%= link_to "Proceed to Payment", procced_to_payment_path, class: "link" %></p>
   </div>
 <% end %>

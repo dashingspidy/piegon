@@ -8,20 +8,22 @@
     class: "btn bg-prim font-normal" 
   %>
 </div>
-<section class="w-full max-w-lg mt-4">
-  <ul class="list bg-base-100 rounded-box shadow-md">
-    <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">Your Templates</li>
-    <% @email_templates.each do |email| %>
-      <li class="list-row">
-        <div>
+<% if @email_templates.any? %>
+  <section class="w-full max-w-lg mt-4">
+    <ul class="list bg-base-100 rounded-box shadow-md">
+      <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">Your Templates</li>
+      <% @email_templates.each do |email| %>
+        <li class="list-row">
           <div>
-            <%= email.name %>
+            <div>
+              <%= email.name %>
+            </div>
           </div>
-        </div>
-        <div></div>
-        <%= link_to "Edit", edit_email_template_path(email), class: "btn btn-secondary" %>
-        <%= button_to "Delete", email_template_path(email), method: :delete, data: { turbo_confirm: "Are you sure?"}, class: "btn btn-warning" %>
-      </li>
-    <% end %>
-  </ul>
-</section>
+          <div></div>
+          <%= link_to "Edit", edit_email_template_path(email), class: "btn btn-secondary" %>
+          <%= button_to "Delete", email_template_path(email), method: :delete, data: { turbo_confirm: "Are you sure?"}, class: "btn btn-warning" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

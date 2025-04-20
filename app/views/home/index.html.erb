@@ -29,74 +29,206 @@
   <div>
     <h1 class="text-3xl text-center"><span class="bg-link-water p-2">Our Pricing Plan</span></h1>
   </div>
-  <div class="grid grid-cols-3 gap-4 p-4 h-96 mt-6">
+   <section class="flex items-center justify-center gap-2 mt-8">
+    <div class="card w-96 border-2">
+      <div class="card-body">
+        <div class="flex justify-between">
+          <h2 class="text-3xl font-black">Echo</h2>
+          <span class="text-3xl font-black">$99</span>
+        </div>
+        <div class="flex justify-between">
+          <h2></h2>
+          <span class="font-light">one-time payment</span>
+        </div>
+        <ul class="mt-6 flex flex-col gap-4">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">5 Websites</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">10 Email templates</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Subscribers</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Campaigns</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Real-Time Analytics</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Embeddable widget</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Import from CSV</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">LifeTime Support</span>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <%= link_to "Get started", new_registration_path(plan: "echo"), class: "btn-block font-medium text-xl btn-getting" %>
+        </div>
+      </div>
+    </div>
 
-    <div class="border-2 border-lavender-gray rounded-lg text-center">
-      <div>
-        <h1 class="font-logo text-2xl mt-4">Start</h1>
-      </div>
-      <div class="mt-5">
-        <p class="text-lg font-medium">100 Subscriber</p>
-        <p class="text-lg font-medium">1 Campaign</p>
-        <p class="text-lg font-medium">Subscriber Form Widget</p>
-        <p class="text-lg font-medium">Drag and Drop editor</p>
-      </div>
-      
-      <div class="mt-5">
-        <p class="font-bold text-xl m-2">Free</p>
-        <%= link_to "Choose", new_registration_path(plan: "free"), class: "btn-getting bg-lavender-gray px-6 py-3" %>
+    <div class="card w-96 bg-base-200 border-2 border-lavender-gray">
+      <div class="card-body">
+        <span class="absolute -mt-9 badge border-lavender-gray bg-lavender-gray">Most Popular</span>
+        <div class="flex justify-between">
+          <h2 class="text-3xl font-black">Whisper</h2>
+          <span class="text-3xl font-black">$179</span>
+        </div>
+        <div class="flex justify-between">
+          <h2></h2>
+          <span class="font-light">one-time payment</span>
+        </div>
+        <ul class="mt-6 flex flex-col gap-4">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">10 Websites</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">20 Email templates</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Subscribers</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Campaigns</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Real-Time Analytics</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Embeddable widget</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Import from CSV</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">LifeTime Support</span>
+          </li>
+        </ul>
+        
+        <div class="mt-6">
+          <%= link_to "Get started", new_registration_path(plan: "whisper"), class: "btn-block font-medium text-xl btn-getting bg-lavender-gray" %>
+        </div>
+        <div>
+        </div>
       </div>
     </div>
 
-    <div class="border-2 border-lavender-gray rounded-lg text-center" data-controller="pricing">
-      <div class="flex items-center justify-center mt-2">
-        <h1 class="text-2xl font-logo mt-3">Email per month:</h1>
-        <select name="plan" id="plan" class="rounded-full ml-2"
-          data-pricing-target="planSelect"
-          data-action="change->pricing#updatePrice"
-        >
-          <option value="whisper" data-price="12">5000</option>
-          <option value="echo" data-price="20">10000</option>
-          <option value="resonance" data-price="60">30000</option>
-          <option value="thunder" data-price="99">50000</option>
-        </select>
-      </div>
-      <div class="mt-4">
-        <p class="text-lg font-medium">Unlimited Subscribers</p>
-        <p class="text-lg font-medium">Unlimited Campaigns</p>
-        <p class="text-lg font-medium">Subscriber Form Widget</p>
-        <p class="text-lg font-medium">Drag and Drop editor</p>
-        <p class="text-lg font-medium">Custom domain/verified sender</p>
-      </div>
-      <div class="mt-5">
-        <p class="text-xl font-bold m-2">$<span data-pricing-target="price">12</span> <span class="text-base font-normal bg-prim">per month</span></p>
-        <%= link_to "Choose", new_registration_path(plan: "whisper"), 
-        class: "btn-getting bg-prim px-6 py-3",
-        data: { pricing_target: "planLink" } %>
+    <div class="card w-96  border-2">
+      <div class="card-body">
+        <div class="flex justify-between">
+          <h2 class="text-3xl font-black">Thunder</h2>
+          <span class="text-3xl font-black">$399</span>
+        </div>
+        <div class="flex justify-between">
+          <h2></h2>
+          <span class="font-light">one-time payment</span>
+        </div>
+        <ul class="mt-6 flex flex-col gap-4">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Websites</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Email templates</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Subscribers</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Campaigns</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Real-Time Analytics</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Embeddable widget</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Import from CSV</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">LifeTime Support</span>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <%= link_to "Get started", new_registration_path(plan: "thunder"), class: "btn-block font-medium text-xl btn-getting" %>
+        </div>
       </div>
     </div>
+  </section>
+  <section class="flex items-center justify-center mt-2">
+    <div class="card border-2 w-lg">
+      <div class="card-body">
+        <div class="flex justify-between">
+          <h2 class="text-2xl font-black">Free</h2>
+          <%= link_to "Get started", new_registration_path(plan: "free"), class: "font-medium btn-getting" %>
+        </div>
+        <ul class="grid grid-cols-2 gap-4">
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">1 Website</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">1 Email template</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Subscribers</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">2 Campaigns</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Real-Time Analytics</span>
+          </li>
+          <li>
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Embeddable widget</span>
+          </li>
+          <li class="opacity-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px] line-through">Import from CSV</span>
+          </li>
+          <li class="opacity-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px] line-through">LifeTime Support</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-    <div class="border-2 border-lavender-gray rounded-lg text-center">
-      <div>
-        <h1 class="font-logo text-2xl mt-4">LifeTime</h1>
-      </div>
-      <div class="mt-4">
-        <p class="text-lg font-medium">Unlimited Subscribers</p>
-        <p class="text-lg font-medium">Unlimited Campaigns</p>
-        <p class="text-lg font-medium">Subscriber Form Widget</p>
-        <p class="text-lg font-medium">Drag and Drop editor</p>
-      </div>
-      
-      <div class="mt-5">
-        <p class="font-bold text-xl m-2">$99 <span class="text-base font-normal bg-link-water">for once**</span></p>
-        <%= link_to "Choose", new_registration_path(plan: "lifetime"), class: "btn-getting bg-link-water px-6 py-3" %>
-      </div>
-    </div>
-  </div>
-  <div>
-    <p>* Emails @ 1000/$1.90</p>
-    <p>** For lifetime plan, your can bring your own smtp/api settings</p>
-  </div>
 </section>
 
 <section class="bg-prim h-64 flex flex-col items-center justify-center">

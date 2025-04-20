@@ -8,12 +8,14 @@ Rails.application.routes.draw do
   get "confirm_registration", to: "registrations#confirm"
   post "resend_confirmation_email", to: "registrations#resend_confirmation"
   get "procced_to_payment", to: "registrations#procced_to_payment"
+  get "customer_portal", to: "accounts#customer_portal"
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
+  post "webhook", to: "accounts#webhook"
   resource :registration, only: [ :new, :create ]
   resource :session
   resources :passwords, param: :token
-  resources :accounts do
+  resources :accounts, only: [ :destroy ] do
     collection do
       get :profile
       get :billing
