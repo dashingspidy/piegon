@@ -1,5 +1,5 @@
 class CampaignMailer < ApplicationMailer
-  skip_before_action :attach_logo
+  layout false
 
   def campaign_email(subscriber, email_template, email_from, email_header, email_subject, mail_setting = nil)
     @subscriber = subscriber
