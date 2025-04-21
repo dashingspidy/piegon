@@ -139,6 +139,10 @@ GEM
       raabro (~> 1.4)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    httparty (0.23.1)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -208,6 +212,8 @@ GEM
       stimulus-rails
       turbo-rails
     msgpack (1.7.5)
+    multi_xml (0.7.1)
+      bigdecimal (~> 3.1)
     multipart-post (2.4.1)
     net-http (0.6.0)
       uri
@@ -451,6 +457,7 @@ DEPENDENCIES
   cssbundling-rails
   csv
   debug
+  httparty
   image_processing (~> 1.14)
   jbuilder
   jsbundling-rails

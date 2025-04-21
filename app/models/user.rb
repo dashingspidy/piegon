@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include DisposableEmailCheck
   has_secure_password
   has_secure_token :confirmation_token
   has_many :sessions, dependent: :destroy
