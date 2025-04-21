@@ -9,7 +9,6 @@
     <%= link_to "Customer Portal", customer_portal_path, class: "btn btn-secondary" %>
   <% end %>
 </section>
-
 <% unless Current.user.plan != "free" %>
   <section class="flex gap-2 mt-6">
     <div class="card w-96 border-2">
