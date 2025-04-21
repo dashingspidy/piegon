@@ -152,6 +152,8 @@ GEM
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
+    invisible_captcha (2.3.0)
+      rails (>= 5.2)
     io-console (0.8.0)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -459,6 +461,7 @@ DEPENDENCIES
   debug
   httparty
   image_processing (~> 1.14)
+  invisible_captcha
   jbuilder
   jsbundling-rails
   kamal (>= 2.0.0.rc2)

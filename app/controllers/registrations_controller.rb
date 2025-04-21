@@ -2,6 +2,7 @@ class RegistrationsController < ApplicationController
   include Payment
   rate_limit to: 4, within: 1.minute, only: :create
   verify_turnstile_request only: %i[create]
+  invisible_captcha only: %i[create], honeypot: :bot
   allow_unauthenticated_access(only: [ :new, :create, :confirm ])
   def new
     @user = User.new
