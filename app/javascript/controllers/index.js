@@ -16,9 +16,6 @@ application.register("email-editor", EmailEditorController)
 import MappingController from "./mapping_controller"
 application.register("mapping", MappingController)
 
-import PricingController from "./pricing_controller"
-application.register("pricing", PricingController)
-
 import SendTimingController from "./send_timing_controller"
 application.register("send-timing", SendTimingController)
 
