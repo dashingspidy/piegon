@@ -62,7 +62,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "piegon.pro" }
 
   config.action_mailer.delivery_method = :mailgun
-  config.action_mailer.postmark_settings = {
+  config.action_mailer.mailgun_settings = {
     api_key: Rails.application.credentials.dig(:mailgun_api_key),
     domain: "piegon.pro"
   }
