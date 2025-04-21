@@ -1,7 +1,8 @@
 class CampaignMailer < ApplicationMailer
   layout false
+  skip_before_action :attach_logo
 
-  def campaign_email(subscriber, email_template, email_from, email_header, email_subject, mail_setting = nil)
+  def campaign_email(subscriber, email_template, email_from, email_header, email_subject, mail_setting)
     @subscriber = subscriber
     @rendered_body = render_template(email_template.body)
     @unsubscribe_url = generate_unsubscribe_url(subscriber)
@@ -33,7 +34,7 @@ class CampaignMailer < ApplicationMailer
     )
 
     unsubscribe_url(
-      campaign_id: subscriber.contact_id,
+      contact_id: subscriber.contact_id,
       email: subscriber.email,
       signature: signature
     )

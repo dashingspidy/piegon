@@ -52,7 +52,7 @@ jobs:
           bundler-cache: true
 
       - name: Deploy command
-        run: bundle exec kamal deploy
+        run: bundle exec kamal redeploy
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
           KAMAL_REGISTRY_PASSWORD: ${{ secrets.SECRET_TOKEN }}

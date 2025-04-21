@@ -7,6 +7,10 @@ class RegistrationsController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    if @user.plan.blank?
+      @user.plan = "free"
+    end
+
     if @user.save
       start_new_session_for @user
       @user.send_welcome_email

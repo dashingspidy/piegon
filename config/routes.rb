@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount MissionControl::Jobs::Engine, at: "/jobs"
   root "home#index"
   get "privacy-policy", to: "home#privacy"
   get "term-and-conditions", to: "home#terms"
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
   post "webhook", to: "accounts#webhook"
+
   resource :registration, only: [ :new, :create ]
   resource :session
   resources :passwords, param: :token

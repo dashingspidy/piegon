@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Authentication
   before_action :check_plan_limits
+  allow_unauthenticated_access if: -> { request.path.start_with?("/jobs") }
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 

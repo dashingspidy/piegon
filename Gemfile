@@ -15,6 +15,7 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "solid_cache"
 gem "solid_queue"
 gem "solid_cable"
+gem "mission_control-jobs"
 
 gem "bootsnap", require: false
 gem "kamal", ">= 2.0.0.rc2", require: false
@@ -37,6 +38,7 @@ gem "aws-sdk-s3", "1.170", require: false
 gem "aws-sdk-core", "3.211"
 gem "csv"
 gem "postmark-rails"
+gem "mailgun-ruby"
 
 group :production do
   gem "tailwindcss-rails"

@@ -61,8 +61,11 @@ Rails.application.configure do
   # Set host to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "piegon.pro" }
 
-  config.action_mailer.delivery_method = :postmark
-  config.action_mailer.postmark_settings = { api_token: Rails.application.credentials.dig(:postmark_api_key) }
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.postmark_settings = {
+    api_token: Rails.application.credentials.dig(:mailgun_api_key),
+    domain: "piegon.pro"
+  }
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   # config.action_mailer.smtp_settings = {
