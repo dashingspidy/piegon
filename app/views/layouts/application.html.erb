@@ -8,6 +8,7 @@
     <meta name="turbo-prefetch" content="false">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= turnstile_javascript_tag %>
 
     <%= yield :head %>
 
@@ -19,7 +20,6 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= turnstiled_javascript_tag %>
     <script src="https://editor.unlayer.com/embed.js"></script>
   </head>
 
