@@ -7,26 +7,28 @@
       <%= link_to "Start Campaign", new_campaign_path, class: "btn btn-neutral" %>
     </div>
   </div>
-  <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mt-4">
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Email</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @subscribers.each do |subscriber| %>
+  <% if @subscribers.any? %>
+    <div class="overflow-x-auto rounded-box border border-base-content/5 bg-base-100 mt-4">
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= subscriber.email %></td>
-            <td><%= link_to "Delete", contact_subscriber_path(subscriber.contact, subscriber), class: "link link-error", data: { turbo_method: :delete } %></td>
+            <th>Email</th>
+            <th>Action</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  
-  <div class="flex items-center justify-center mt-4">
-    <%== pagy_nav(@pagy) %>
-  </div>
+        </thead>
+        <tbody>
+          <% @subscribers.each do |subscriber| %>
+            <tr>
+              <td><%= subscriber.email %></td>
+              <td><%= link_to "Delete", contact_subscriber_path(subscriber.contact, subscriber), class: "link link-error", data: { turbo_method: :delete } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="flex items-center justify-center mt-4">
+      <%== pagy_nav(@pagy) %>
+    </div>
+  <% end %>
 </section>
