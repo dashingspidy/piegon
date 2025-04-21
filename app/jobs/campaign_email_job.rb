@@ -10,7 +10,7 @@ class CampaignEmailJob < ApplicationJob
       campaign.from,
       campaign.header,
       campaign.subject,
-      campaign.mail_setting
+      campaign.user.mail_setting
     ).deliver_now
   end
 end
