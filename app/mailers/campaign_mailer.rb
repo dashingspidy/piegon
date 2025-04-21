@@ -9,13 +9,11 @@ class CampaignMailer < ApplicationMailer
 
     mail_options = {
       to: @subscriber.email,
-      subject: email_subject
+      subject: email_subject,
+      from: "#{email_header} <#{email_from}>",
+      delivery_method: :smtp,
+      delivery_method_options: mail_setting.to_smtp_settings
     }
-
-    if mail_setting
-      mail_options[:from] = "#{email_header} <#{email_from}>"
-      mail_options[:delivery_method_options] = mail_setting.to_smtp_settings
-    end
 
     mail(mail_options)
   end

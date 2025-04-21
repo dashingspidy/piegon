@@ -63,7 +63,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :mailgun
   config.action_mailer.postmark_settings = {
-    api_token: Rails.application.credentials.dig(:mailgun_api_key),
+    api_key: Rails.application.credentials.dig(:mailgun_api_key),
     domain: "piegon.pro"
   }
 
