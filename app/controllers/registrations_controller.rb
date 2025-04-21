@@ -1,5 +1,7 @@
 class RegistrationsController < ApplicationController
   include Payment
+  rate_limit to: 4, within: 1.minute, only: :create
+  verify_turnstile_request only: %i[create]
   allow_unauthenticated_access(only: [ :new, :create, :confirm ])
   def new
     @user = User.new
@@ -13,7 +15,6 @@ class RegistrationsController < ApplicationController
 
     if @user.save
       start_new_session_for @user
-      @user.send_welcome_email
       @user.send_confirmation_instructions
       redirect_to dashboard_path, notice: "Welcome to Piegon! Confirm your email address to continue further."
     else

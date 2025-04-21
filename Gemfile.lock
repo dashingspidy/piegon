@@ -405,6 +405,9 @@ GEM
     turbo-rails (2.0.13)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
+    turnstiled (0.1.14)
+      faraday
+      rails (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (3.1.4)
@@ -469,6 +472,7 @@ DEPENDENCIES
   tailwindcss-rails
   thruster
   turbo-rails
+  turnstiled
   tzinfo-data
   web-console
 
