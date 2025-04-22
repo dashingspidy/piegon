@@ -8,8 +8,10 @@ module ApplicationHelper
     number_to_human(number, format: "%n%u", units: { thousand: "K" })
   end
 
-  def free_account
-    Current.user.plan == "free"
+  def resource_usage_label(resource)
+    current = Current.user.send(resource).count
+    limit = Plan.new(Current.user.plan).limit_for(resource)
+    "#{current}/#{limit == Float::INFINITY ? '∞' : limit}"
   end
 
   def pagy_nav(pagy)

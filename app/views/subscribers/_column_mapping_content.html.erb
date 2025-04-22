@@ -3,16 +3,16 @@
                 data: { controller: "mapping", action: "mapping#submit" } do |form| %>
     <section>
       <h2 class="font-bold">Please select the column in your CSV that contains the email addresses</h2>
-      <% @headers.each do |header| %>
+      <% @columns.each do |column| %>
         <div class="flex justify-between gap-2 mt-2">
           <div>
-            Your CSV column name: <span class="text-error"><%= header %></span>
+            Select your <span class="text-error"><%= column.humanize %></span> field:
           </div>
           <div>
-            <%= select_tag "column_mapping[#{header}]",
-                          options_for_select(@columns),
-                          prompt: "Select a Email column",
-                          class: "select select-secondary w-8/12" %>
+            <%= select_tag "column_mapping[#{column}]",
+                          options_for_select(@headers),
+                          prompt: "Select CSV column",
+                          class: "select select-secondary" %>
           </div>
         </div>
       <% end %>

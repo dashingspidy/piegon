@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
   before_action :check_confirmed_user, only: %i[new create]
   before_action :require_payment, only: %i[new create]
+  before_action :set_contact, only: %i[edit update destroy]
   def index
     @contacts = Current.user.contacts
   end
@@ -18,9 +19,31 @@ class ContactsController < ApplicationController
     end
   end
 
+  def edit
+    @contact = Current.user.contacts.find(params[:id])
+  end
+
+  def update
+    @contact = Current.user.contacts.find(params[:id])
+    if @contact.update(contact_params)
+      redirect_to contacts_path, notice: "Contact list updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @contact.destroy
+    redirect_to contacts_path, alert: "Contact list deleted."
+  end
+
   private
 
   def contact_params
     params.require(:contact).permit(:name, :url)
+  end
+
+  def set_contact
+    @contact = Current.user.contacts.find(params[:id])
   end
 end

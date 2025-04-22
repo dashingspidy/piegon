@@ -23,17 +23,17 @@
       </li>
       <li>
         <%= link_to campaigns_path, class: [active_link(campaigns_path)] do %>
-          <%= image_tag "megaphone.svg" %><span>Campaign</span>
+          <%= image_tag "megaphone.svg" %><span>Campaign</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:campaigns) %></span>
         <% end %>
       </li>
       <li>
         <%= link_to contacts_path, class: [active_link(contacts_path)] do %>
-          <%= image_tag "contact.svg" %><span>Contact List</span>
+          <%= image_tag "contact.svg" %><span>Contact List</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:contacts) %></span>
         <% end %>
       </li>
       <li>
         <%= link_to email_templates_path, class: [active_link(email_templates_path)] do %>
-          <%= image_tag "template.svg" %><span>Template</span>
+          <%= image_tag "template.svg" %><span>Template</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:email_templates) %></span>
         <% end %>
       </li>
       <li>

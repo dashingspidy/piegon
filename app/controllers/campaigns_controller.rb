@@ -70,7 +70,7 @@ class CampaignsController < ApplicationController
   def schedule_campaign_emails(campaign)
     delivery_time = campaign.send_time_option == "later" ? campaign.send_at : Time.current
 
-    campaign.contact.subscribers.find_each do |subscriber|
+    campaign.contact.subscribers.subscribed.find_each do |subscriber|
       job = CampaignEmailJob.set(wait_until: delivery_time)
       job.perform_later(subscriber.id, campaign.id)
     end

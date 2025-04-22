@@ -24,7 +24,6 @@ class ApplicationController < ActionController::Base
 
   def check_plan_limits
     return unless authenticated?
-    return unless Current.user.customer_id
 
     limited_resources = %w[contacts email_templates campaigns]
     limited_resources.each do |resource|
