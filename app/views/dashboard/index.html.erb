@@ -1,18 +1,148 @@
 <h1 class=" text-xl">Dashboard</h1>
+<section>
+  <div class="stats shadow mt-2">
+    <div class="stat">
+      <div class="stat-figure">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M16 2v2"/>
+          <path d="M7 22v-2a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/>
+          <path d="M8 2v2"/>
+          <circle cx="12" cy="11" r="3"/>
+          <rect x="3" y="4" width="18" height="18" rx="2"/>
+        </svg>
+      </div>
+      <div class="stat-title">Contact List</div>
+      <div class="stat-value"><%= @contact_count %></div>
+      <div class="stat-desc">Your lists</div>
+    </div>
 
-<div class="stats shadow">
-  <div class="stat place-items-center">
-    <div class="stat-title">Total Contact List</div>
-    <div class="stat-value"><%= @contact_count %></div>
-  </div>
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <div class="stat-title">Subscribers</div>
+      <div class="stat-value text-secondary"><%= number_to_short @total_subscribers %></div>
+      <div class="stat-desc">All contacts</div>
+    </div>
 
-  <div class="stat place-items-center">
-    <div class="stat-title">Total Subscribers</div>
-    <div class="stat-value text-secondary"><%= @total_subscribers %></div>
-  </div>
+    <div class="stat">
+      <div class="stat-figure text-success">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M9 18v-6H5l7-7 7 7h-4v6H9z"/>
+        </svg>
+      </div>
+      <div class="stat-title">New Subscribers</div>
+      <div class="stat-value"><%= number_with_delimiter @new_subscribers %></div>
+      <div class="stat-desc">This week</div>
+    </div>
 
-  <div class="stat place-items-center">
-    <div class="stat-title">Campaign Scheduled</div>
-    <div class="stat-value"><%= @total_campaigns %></div>
+    <div class="stat">
+      <div class="stat-figure text-error">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M15 6v6h4l-7 7-7-7h4V6h6z"/>
+        </svg>
+      </div>
+      <div class="stat-title">Unsubscribed</div>
+      <div class="stat-value"><%= number_with_delimiter @unsubscribed_count %></div>
+      <div class="stat-desc">Opted out</div>
+    </div>
   </div>
-</div>
+</section>
+
+<section>
+  <div class="stats shadow mt-4">
+    <div class="stat">
+      <div class="stat-figure">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <circle cx="12" cy="13" r="8"/>
+          <path d="M12 9v4l2 2"/>
+          <path d="M5 3 2 6"/>
+          <path d="m22 6-3-3"/>
+          <path d="M6.38 18.7 4 21"/>
+          <path d="M17.64 18.67 20 21"/>
+        </svg>  
+      </div>
+      <div class="stat-title">Campaign Scheduled</div>
+      <div class="stat-value"><%= @scheduled_campaigns %></div>
+      <div class="stat-desc">Queued</div>
+  </div>
+  <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+          <path d="M21 3v5h-5"/>
+          <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+          <path d="M8 16H3v5"/>
+        </svg>
+      </div>
+      <div class="stat-title">Campaign Running</div>
+      <div class="stat-value text-secondary"><%= @running_campaigns %></div>
+      <div class="stat-desc">Active</div>
+  </div>
+  <div class="stat">
+      <div class="stat-figure text-success">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" 
+          fill="none"
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          <path d="m16 19 2 2 4-4"/>
+        </svg> 
+      </div>
+      <div class="stat-title">Campaign Completed</div>
+      <div class="stat-value"><%= @completed_campaigns %></div>
+      <div class="stat-desc">Sent</div>
+  </div>
+</section>

@@ -4,8 +4,19 @@ module ApplicationHelper
     "active" if request.path.start_with?(url_path)
   end
 
-  def number_to_k(number)
-    number_to_human(number, format: "%n%u", units: { thousand: "K" })
+  def number_to_short(number)
+    number_to_human(
+      number,
+      format: "%n%u",
+      precision: 1,
+      significant: false,
+      strip_insignificant_zeros: true,
+      units: {
+        thousand: "K",
+        million: "M",
+        billion: "B"
+      }
+    )
   end
 
   def resource_usage_label(resource)

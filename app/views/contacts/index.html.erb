@@ -14,7 +14,7 @@
               <td><%= contact.name %></td>
               <td><%= contact.url %></td>
               <td>
-                <%= number_to_k(contact.subscribers.size) %> <%= contact.subscribers.size > 1 ? "contacts" : "contact" %>
+                <%= number_to_short(contact.subscribers.size) %> <%= contact.subscribers.size > 1 ? "contacts" : "contact" %>
               </td>
               <td class="flex gap-2">
                 <%= link_to "View", contact_subscribers_path(contact), class: "btn btn-sm" %>

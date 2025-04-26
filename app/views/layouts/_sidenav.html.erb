@@ -37,7 +37,7 @@
         <% end %>
       </li>
       <li>
-        <details <%= 'open' if current_page?(profile_accounts_path) || current_page?(billing_accounts_path) || current_page?(mail_settings_path) %>>
+        <details <%= 'open' if current_page?(profile_accounts_path) || current_page?(billing_accounts_path) || current_page?(mail_settings_path) || controller_name == 'mail_settings' %>>
           <summary>
             <%= image_tag "user.svg" %><span>Account</span>
           </summary>
