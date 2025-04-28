@@ -22,6 +22,8 @@ class CampaignMailer < ApplicationMailer
 
   def render_template(body)
     ERB.new(body).result(binding)
+  rescue => e
+    Rails.logger.error("Error rendering email template: #{e.message}")
   end
 
   def generate_unsubscribe_url(subscriber)

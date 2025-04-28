@@ -17,10 +17,6 @@ class CampaignsController < ApplicationController
   def create
     @campaign = Current.user.campaigns.build(campaign_params)
     @campaign.send_time_option = params[:campaign][:send_time_option]
-    if @campaign.send_time_option == "now"
-      @campaign.send_at = Time.current
-      @campaign.running = true
-    end
 
     if @campaign.save
       schedule_campaign_emails(@campaign)
@@ -68,11 +64,6 @@ class CampaignsController < ApplicationController
   end
 
   def schedule_campaign_emails(campaign)
-    delivery_time = campaign.send_time_option == "later" ? campaign.send_at : Time.current
-
-    campaign.contact.subscribers.subscribed.find_each do |subscriber|
-      job = CampaignEmailJob.set(wait_until: delivery_time)
-      job.perform_later(subscriber.id, campaign.id)
-    end
+    CampaignSchedulerJob.perform_later(campaign.id)
   end
 end
