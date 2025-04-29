@@ -1,5 +1,6 @@
 class Subscriber < ApplicationRecord
   belongs_to :contact
+  has_many :campaign_events, dependent: :destroy
 
   validates :email, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP, message: "Not a valid email address" }

@@ -8,6 +8,13 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    @total_sent = @campaign.total_sent
+    @total_opened = @campaign.total_opened
+    @total_bounced = @campaign.total_bounced
+    @open_percentage = @campaign.open_percentage
+    @bounce_percentage = @campaign.bounce_percentage
+    @country_distribution = @campaign.country_distribution
+    @device_distribution = @campaign.device_distribution
   end
 
   def new

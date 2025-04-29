@@ -1,0 +1,94 @@
+<%= content_for :title, "Campaign Analytics" %>
+
+<h1 class="text-xl mb-4"><%= @campaign.name %> Reports</h1>
+<section class="mb-4">
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          <path d="m16 19 2 2 4-4"/>
+        </svg>
+      </div>
+      <div class="stat-title">Total Sent</div>
+      <div class="stat-value"><%= @total_sent %></div>
+      <div class="stat-desc"></div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/>
+          <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/>
+        </svg>
+      </div>
+      <div class="stat-title">Total Opened</div>
+      <div class="stat-value"><%= @total_opened %></div>
+      <div class="stat-desc"><%= @open_percentage %>%</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="inline-block h-8 w-8 stroke-current">
+          <path d="M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12.5"/>
+          <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          <path d="M20 14v4"/>
+          <path d="M20 22v.01"/>
+        </svg>
+      </div>
+      <div class="stat-title">Total Bounced</div>
+      <div class="stat-value"><%= @total_bounced %></div>
+      <div class="stat-desc"><%= @bounce_percentage %>%</div>
+    </div>
+  </div>
+</section>
+
+<section class="grid grid-cols-3 gap-2">
+  <div class="card shadow-xl col-span-2">
+    <div class="card-body">
+      <h3 class="card-title">Country</h3>
+      <%= bar_chart @country_distribution,
+        library: {
+          indexAxis: 'y',
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1,
+                precision: 0
+              }
+            }
+          }
+        } 
+      %>
+    </div>
+  </div>
+  <div class="card shadow-xl col-span-1">
+    <div class="card-body">
+      <h3 class="card-title">Browser</h3>
+      <%= pie_chart @device_distribution, suffix: "%" %>
+    </div>
+  </div>
+</section>

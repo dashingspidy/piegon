@@ -2,10 +2,16 @@ class CampaignMailer < ApplicationMailer
   layout false
   skip_before_action :attach_logo
 
-  def campaign_email(subscriber, email_template, email_from, email_header, email_subject, mail_setting)
+  def campaign_email(subscriber, email_template, email_from, email_header, email_subject, mail_setting, campaign)
     @subscriber = subscriber
+    @campaign = campaign
     @rendered_body = render_template(email_template.body)
     @unsubscribe_url = generate_unsubscribe_url(subscriber)
+    @tracking_pixel_url = Rails.application.routes.url_helpers.tracking_pixel_url(
+      campaign_id: @campaign.id,
+      subscriber_id: @subscriber.id,
+      host: default_url_options[:host]
+    )
 
     mail_options = {
       to: @subscriber.email,

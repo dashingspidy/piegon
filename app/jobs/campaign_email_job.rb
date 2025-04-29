@@ -12,7 +12,21 @@ class CampaignEmailJob < ApplicationJob
       campaign.from,
       campaign.header,
       campaign.subject,
-      campaign.user.mail_setting
+      campaign.user.mail_setting,
+      campaign
     ).deliver_later
+
+    CampaignEvent.create!(
+      campaign: campaign,
+      subscriber: subscriber,
+      event_type: "send"
+    )
+
+    total_recipients = campaign.contact.subscribers.subscribed.count
+    total_sent = campaign.campaign_events.where(event_type: "send").distinct.count(:subscriber_id)
+
+    if total_sent >= total_recipients
+      campaign.update!(finished: true, running: false)
+    end
   end
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "tracking/open"
   mount MissionControl::Jobs::Engine, at: "/jobs"
   root "home#index"
   get "privacy-policy", to: "home#privacy"
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
   post "webhook", to: "accounts#webhook"
+  get "tracking/open", to: "tracking#open", as: :tracking_pixel
 
   resource :registration, only: [ :new, :create ]
   resource :session
