@@ -62,11 +62,15 @@ class SubscribersController < ApplicationController
 
   def embed
     @contact = Contact.find_by(api_token: params[:api_token])
-    @contact.subscribers.build(subscribers_params)
-    if @contact.save
-      render json: { message: "Successfully" }, status: :created
+    unless @contact
+      return render json: { error: "Invalid API token" }, status: :unauthorized
+    end
+
+    subscriber = @contact.subscribers.build(subscribers_params)
+    if subscriber.save
+      render json: { message: "Successfully Subscribed." }, status: :created
     else
-      render json: { error: @contact.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      render json: { error: subscriber.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 

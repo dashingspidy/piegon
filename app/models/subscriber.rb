@@ -13,7 +13,7 @@ class Subscriber < ApplicationRecord
   def unique_email_by_contact
     return unless contact
     if contact.subscribers.where.not(id: id).exists?(email: email)
-      errors.add(:email, "Email already subscribed.")
+      errors.add(:email, "already subscribed.")
     end
   end
 end

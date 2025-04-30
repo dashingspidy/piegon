@@ -13,6 +13,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "geocoder"
 gem "countries"
+gem "browser"
 
 gem "solid_cache"
 gem "solid_queue"

@@ -10,7 +10,7 @@ class TrackingController < ApplicationController
       subscriber: subscriber,
       event_type: "open",
       ip_address: request.remote_ip,
-      user_agent: request.user_agent,
+      user_agent: Browser.new(request.user_agent).platform.name,
       occurred_at: Time.current
     )
 
