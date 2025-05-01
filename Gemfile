@@ -40,7 +40,7 @@ end
 gem "turnstiled"
 gem "invisible_captcha"
 
-gem "aws-sdk-s3", "1.170", require: false
+gem "aws-sdk-s3", "1.177.0", require: false
 gem "aws-sdk-core", "3.211"
 gem "csv"
 gem "httparty"
