@@ -41,7 +41,7 @@ gem "turnstiled"
 gem "invisible_captcha"
 
 gem "aws-sdk-s3", "1.170", require: false
-gem "aws-sdk-core", "3.211"
+gem "aws-sdk-core", "3.222.3"
 gem "csv"
 gem "httparty"
 gem "postmark-rails"
