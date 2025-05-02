@@ -5,17 +5,12 @@ class Plan
     "free" => {
       contacts: 1,
       email_templates: 1,
-      campaigns: 1
+      campaigns: 2
     },
     "echo" => {
       contacts: 5,
       email_templates: 5,
-      campaigns: 10
-    },
-    "whisper" => {
-      contacts: 10,
-      email_templates: 10,
-      campaigns: 20
+      campaigns: Float::INFINITY
     },
     "thunder" => {
       contacts: Float::INFINITY,

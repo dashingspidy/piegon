@@ -6,24 +6,8 @@
         <span class="self-center mt-3 font-logo text-2xl whitespace-nowrap">Piegon</span>
       <% end %>
       <div class="flex flex-row gap-3 order-2">
-        <%= link_to "Log in", new_session_path, class: "btn-getting" %>
-        <%= link_to "Get started", "#{root_path}#pricing", class: "btn-getting bg-prim" %>
-      </div>
-      <div>
-        <ul class="flex flex-row mt-0 space-x-8">
-          <li>
-            <%= link_to "Home", "#{root_path}#home", class: "block py-2 pr-2 pl-2 text-black rounded-sm hover:bg-gray-100" %>
-          </li>
-          <li>
-            <%= link_to "Features", "#{root_path}#features", class: "block py-2 pr-2 pl-2 text-black rounded-sm hover:bg-gray-100" %>
-          </li>
-          <li>
-            <%= link_to "Pricing", "#{root_path}#pricing", class: "block py-2 pr-2 pl-2 text-black rounded-sm hover:bg-gray-100" %>
-          </li>
-          <li>
-            <%= link_to "Contact", help_path, class: "block py-2 pr-2 pl-2 text-black rounded-sm hover:bg-gray-100" %>
-          </li>
-        </ul>
+        <%= link_to "Pricing", "#{root_path}#pricing", class: "block py-2 pr-2 pl-2 text-black rounded-sm hover:bg-gray-100" %>
+        <%= link_to "Sign in", new_session_path, class: "btn btn-neutral rounded-full" %>
       </div>
     </div>
   </nav>

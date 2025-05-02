@@ -10,6 +10,9 @@ application.register("clipboard", ClipboardController)
 import ColorCodeController from "./color_code_controller"
 application.register("color-code", ColorCodeController)
 
+import ComparisonController from "./comparison_controller"
+application.register("comparison", ComparisonController)
+
 import EmailEditorController from "./email_editor_controller"
 application.register("email-editor", EmailEditorController)
 

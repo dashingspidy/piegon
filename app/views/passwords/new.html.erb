@@ -1,5 +1,5 @@
 <% content_for(:title, "Forgot your password?") %>
-<section class="max-w-md mx-auto lg:mt-16">
+<section class="max-w-sm mx-auto lg:mt-16">
   <div class="fieldset border border-base-300 rounded-box p-8">
       <h1 class="text-xl font-bold leading-tight tracking-tight">
           Forgot your password?
@@ -9,7 +9,7 @@
           <legend class="fieldset-legend">Email Address</legend>
           <%= form.email_field :email_address, required: true, autofocus: true, placeholder: "Enter your email address", value: params[:email_address], class: "input" %>
           </fieldset>
-        <%= form.submit "Email reset instructions", class: "btn btn-neutral" %>
+        <%= form.submit "Email reset instructions", class: "btn btn-neutral mt-2" %>
       <% end %>
   </div>
 </section>

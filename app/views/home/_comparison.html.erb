@@ -1,0 +1,71 @@
+<div data-controller="comparison">
+  <div class="card card-border rounded-2xl overflow-hidden">
+    <table class="table w-full text-center">
+      <thead class="text-black">
+        <tr>
+          <th></th>
+          <th class="text-lg font-semibold">
+            Piegon
+          </th>
+          <th class="text-lg font-semibold">
+            <div class="flex flex-col items-center">
+              <select class="select select-ghost" data-action="change->comparison#change" data-comparison-target="provider">
+                <option value="mailchimp">Mailchimp</option>
+                <option value="sendgrid">SendGrid</option>
+                <option value="convertkit">ConvertKit</option>
+              </select>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="font-medium text-lg">10,000 Contacts</td>
+          <td>
+            <span class="font-bold text-xl">$99</span>
+            <div class="text-xs text-gray-400">one-time</div>
+          </td>
+          <td>
+            <span class="font-bold text-xl" data-comparison-target="price10k">$199</span>
+            <div class="text-xs text-gray-400">per month</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="font-medium text-lg">50,000 Contacts</td>
+          <td>
+            <span class="font-bold text-xl">$99</span>
+            <div class="text-xs text-gray-400">one-time</div>
+          </td>
+          <td>
+            <span class="font-bold text-xl" data-comparison-target="price50k">$499</span>
+            <div class="text-xs text-gray-400">per month</div>
+          </td>
+        </tr>
+        <tr>
+          <td class="font-medium text-lg">100,000 Contacts</td>
+          <td>
+            <span class="font-bold text-xl">$99</span>
+            <div class="text-xs text-gray-400">one-time</div>
+          </td>
+          <td>
+            <span class="font-bold text-xl" data-comparison-target="price100k">$999</span>
+            <div class="text-xs text-gray-400">per month</div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr class="bg-chambray text-white">
+          <td class="font-semibold text-lg">3 Year Cost</td>
+          <td>
+            <span class="font-bold text-xl">$99</span>
+            <div class="text-xs">total</div>
+          </td>
+          <td>
+            <span class="font-bold text-xl" data-comparison-target="total">$59,940</span>
+            <div class="text-xs">total</div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>

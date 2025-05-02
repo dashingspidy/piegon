@@ -1,75 +1,227 @@
-<section class="flex flex-col items-center justify-center p-20 h-96" id="home">
-  <h1 class="text-5xl font-bold">Pay Only for Your Outreach</h1>
-  <h5 class="text-2xl mt-4">Grow Your Audience Without Limits</h5>
-  <p class="text-xl mt-4">Expand your audience effortlessly and pay only for the outreach you make—simple, transparent, and limitless growth</p>
-  <%= link_to "Get started", "#pricing", class: "font-sans text-lg btn-getting mt-10 bg-prim p-4" %>    
+<section class="flex flex-col items-center justify-center px-8 py-14 bg-gradient-to-b from-white to-gray-50">
+  <h1 class="text-4xl md:text-6xl font-bold text-center">Pay Only for Your Outreach</h1>
+  <p class="text-lg mt-4 max-w-2xl text-center text-gray-600">Expand your audience effortlessly and pay only for the outreach you make—simple, transparent, and limitless growth</p>
+  <%= link_to "Get started", "#pricing", class: "font-sans text-lg btn-getting mt-6 bg-prim p-4" %>
+  <section class="flex gap-2 mt-4">
+    <p class="p-2 flex gap-2"><%= image_tag "circle-check.svg", class: "bg-prim rounded-full" %>Unlimited Contacts</p>
+    <p class="p-2 flex gap-2"><%= image_tag "circle-check.svg", class: "bg-prim rounded-full" %> Any Email provider</p>
+    <p class="p-2 flex gap-2"><%= image_tag "circle-check.svg", class: "bg-prim rounded-full" %> One-Time Payment</p>
+  </section>
+  <div class="mockup-window border border-base-300 lg:max-w-5xl mx-auto mt-6">
+    <%= image_tag "dashboard.png" %>
+  </div>
 </section>
 
-<section class="grid grid-cols-3 mt-20" id="features">
-  <div class="bg-prim p-3">
-    <h5 class="text-xl my-3">Subscriber Widgets</h5>
-    <p>Boost your audience effortlessly with sleek, customizable widgets that integrate seamlessly into any website. Attract and manage subscribers like never before.</p>
-    <div class="mt-20">
-      <%= image_tag("widget.png") %>
+<section class="max-w-(--breakpoint-xl) mx-auto">
+  <h1 class="text-3xl md:text-4xl text-center font-black m-4">Features</h1>
+  <div class="grid md:grid-cols-3 md:gap-4">
+    <div class="card shadow-md">
+      <figure class="w-14 h-14 bg-link-water rounded-full ml-6 mt-2">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="h-8 w-8 stroke-chambray">
+          <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </figure>
+      <div class="card-body">
+        <h1 class="text-2xl font-bold">Subscriber Forms</h1>
+        <h3 class="text-base font-medium">Grow your email list with ease</h3>
+        <p class="text-base leading-relaxed">Boost your audience effortlessly with sleek, customizable forms that integrate seamlessly into any website. Attract and manage subscribers like never before.</p>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <figure class="w-14 h-14 bg-link-water rounded-full ml-6 mt-2">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="h-8 w-8 stroke-chambray">
+          <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/>
+        </svg>
+      </figure>
+      <div class="card-body">
+        <h1 class="text-2xl font-bold">Schedule Campaigns</h1>
+        <h3 class="text-base font-medium">Send emails at the perfect time</h3>
+        <p class="text-base leading-relaxed">Plan and schedule your email campaigns in advance. Choose the exact date and time to launch, and let our platform handle the rest—ideal for time zones, promotions, and consistent engagement.</p>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <figure class="w-14 h-14 bg-link-water rounded-full ml-6 mt-2">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="h-8 w-8 stroke-chambray">
+          <rect width="16" height="13" x="6" y="4" rx="2"/><path d="m22 7-7.1 3.78c-.57.3-1.23.3-1.8 0L6 7"/><path d="M2 8v11c0 1.1.9 2 2 2h14"/>
+        </svg>
+      </figure>
+      <div class="card-body">
+        <h1 class="text-2xl font-bold">Scalable Bulk Emailing</h1>
+        <h3 class="text-base font-medium">Reach your audience at scale, effortlessly</h3>
+        <p class="text-base leading-relaxed">Reach thousands—or millions—of inboxes with confidence. Our powerful infrastructure ensures fast, reliable, and secure email delivery at any scale.</p>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <figure class="w-14 h-14 bg-link-water rounded-full ml-6 mt-2">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="h-8 w-8 stroke-chambray">
+          <path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="m19 9-5 5-4-4-3 3"/>
+        </svg>
+      </figure>
+      <div class="card-body">
+        <h1 class="text-2xl font-bold">Campaign Analytics</h1>
+        <h3 class="text-base font-medium">Track performance in real-time</h3>
+        <p class="text-base leading-relaxed">Measure the impact of every campaign with detailed analytics. Monitor open rates, click-throughs, bounces, and more to optimize your strategy and improve engagement.</p>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <figure class="w-14 h-14 bg-link-water rounded-full ml-6 mt-2">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="h-8 w-8 stroke-chambray">
+          <rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>
+        </svg>
+      </figure>
+      <div class="card-body">
+        <h1 class="text-2xl font-bold">Flexible Email Templates</h1>
+        <h3 class="text-base font-medium">Design emails your way.</h3>
+        <p class="text-base leading-relaxed">Easily build beautiful, responsive emails using our intuitive drag-and-drop editor. Want full control? Bring your own HTML and CSS templates to maintain brand consistency and creative freedom.</p>
+      </div>
+    </div>
+    <div class="card shadow-sm">
+      <figure class="w-14 h-14 bg-link-water rounded-full ml-6 mt-2">
+        <svg 
+          xmlns="http://www.w3.org/2000/svg" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke-width="2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          class="h-8 w-8 stroke-chambray">
+          <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 12v6"/><path d="m15 15-3-3-3 3"/>
+        </svg>
+      </figure>
+      <div class="card-body">
+        <h1 class="text-2xl font-bold">Import Contacts</h1>
+        <h3 class="text-base font-medium">Get started in minutes</h3>
+        <p class="text-base leading-relaxed">Import your existing email lists with a simple CSV upload. Map custom fields, segment your audience, and start sending without any hassle—no manual entry required.</p>
+      </div>
     </div>
   </div>
-  <div class="bg-link-water p-3">
-    <h5 class="text-xl my-3">Scalable Bulk Emailing</h5>
-    <p>Reach thousands—or millions—of inboxes with confidence. Our powerful infrastructure ensures fast, reliable, and secure email delivery at any scale.</p>
-    <%= image_tag("bulk_email.svg") %>
-  </div>
-  <div class="bg-lavender-gray p-3">
-    <h5 class="text-xl my-3">Flexible Email Templates</h5>
-    <p>Create emails that impress. Use your own designs or craft professional campaigns in minutes with our intuitive drag-and-drop editor.</p>
-    <%= image_tag("drag.svg")%>
-  </div>
 </section>
 
-<section id="pricing" class="p-6">
-  <div>
-    <h1 class="text-3xl text-center"><span class="bg-link-water p-2">Our Pricing Plan</span></h1>
+<section id="pricing" class="py-16 px-4">
+  <div class="mb-12">
+    <h1 class="text-3xl md:text-4xl text-center font-black">Our Pricing Plan</h1>
+    <p class="text-center text-lg mt-2 mb-8">One-time payment. <span class="font-medium">No recurring fees.</span> Use with your own email provider.</p>
   </div>
-   <section class="flex items-center justify-center gap-2 mt-8">
-    <div class="card w-96 border-2">
-      <div class="card-body">
-        <div class="flex justify-between">
-          <h2 class="text-3xl font-black">Echo</h2>
-          <span class="text-3xl font-black">$99</span>
-        </div>
-        <div class="flex justify-between">
-          <h2></h2>
-          <span class="font-light">one-time payment</span>
+  <section class="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
+    <div class="card w-full md:w-96 border-2 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+      <div class="card-body p-8">
+        <div class="flex justify-between items-center">
+          <h2 class="text-3xl font-black">Free</h2>
         </div>
         <ul class="mt-6 flex flex-col gap-4">
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">5 Websites</span>
+            <span class="text-[16px]">1 Website</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">10 Email templates</span>
+            <span class="text-[16px]">1 Email template</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Subscribers</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Unlimited Campaigns</span>
+            <span class="text-[16px]">2 Campaigns</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Real-Time Analytics</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Embeddable widget</span>
           </li>
-          <li>
+          <li class="opacity-50 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px] line-through">Import from CSV</span>
+          </li>
+          <li class="opacity-50 flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px] line-through">LifeTime Support</span>
+          </li>
+        </ul>
+        <div class="mt-6">
+          <%= link_to "Get started", new_registration_path(plan: "free"), class: "btn-block font-medium text-xl btn-getting" %>
+        </div>
+      </div>
+    </div>
+    <div class="card w-full md:w-96 border-2 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+      <div class="card-body p-8">
+        <div class="flex justify-between items-center">
+          <h2 class="text-3xl font-black">Echo</h2>
+          <span class="text-3xl font-black">$99</span>
+        </div>
+        <div class="flex justify-end">
+          <span class="font-light text-gray-600">one-time payment</span>
+        </div>
+        <ul class="mt-6 flex flex-col gap-4">
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">5 Websites</span>
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">10 Email templates</span>
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Subscribers</span>
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Unlimited Campaigns</span>
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Real-Time Analytics</span>
+          </li>
+          <li class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+            <span class="text-[16px]">Embeddable widget</span>
+          </li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Import from CSV</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">LifeTime Support</span>
           </li>
@@ -79,101 +231,45 @@
         </div>
       </div>
     </div>
-
-    <div class="card w-96 bg-base-200 border-2 border-lavender-gray">
-      <div class="card-body">
-        <span class="absolute -mt-9 badge border-lavender-gray bg-lavender-gray">Most Popular</span>
-        <div class="flex justify-between">
-          <h2 class="text-3xl font-black">Whisper</h2>
-          <span class="text-3xl font-black">$179</span>
-        </div>
-        <div class="flex justify-between">
-          <h2></h2>
-          <span class="font-light">one-time payment</span>
-        </div>
-        <ul class="mt-6 flex flex-col gap-4">
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">10 Websites</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">20 Email templates</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Unlimited Subscribers</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Unlimited Campaigns</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Real-Time Analytics</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Embeddable widget</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Import from CSV</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-lavender-gray" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">LifeTime Support</span>
-          </li>
-        </ul>
-        
-        <div class="mt-6">
-          <%= link_to "Get started", new_registration_path(plan: "whisper"), class: "btn-block font-medium text-xl btn-getting bg-lavender-gray" %>
-        </div>
-        <div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card w-96  border-2">
-      <div class="card-body">
-        <div class="flex justify-between">
+    <div class="card w-full md:w-96 border-2 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
+      <div class="card-body p-8">
+        <div class="flex justify-between items-center">
           <h2 class="text-3xl font-black">Thunder</h2>
           <span class="text-3xl font-black">$399</span>
         </div>
-        <div class="flex justify-between">
-          <h2></h2>
-          <span class="font-light">one-time payment</span>
+        <div class="flex justify-end">
+          <span class="font-light text-gray-600">one-time payment</span>
         </div>
         <ul class="mt-6 flex flex-col gap-4">
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Websites</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Email templates</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Subscribers</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Unlimited Campaigns</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Real-Time Analytics</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Embeddable widget</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">Import from CSV</span>
           </li>
-          <li>
+          <li class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             <span class="text-[16px]">LifeTime Support</span>
           </li>
@@ -184,61 +280,26 @@
       </div>
     </div>
   </section>
-  <section class="flex items-center justify-center mt-2">
-    <div class="card border-2 w-lg">
-      <div class="card-body">
-        <div class="flex justify-between">
-          <h2 class="text-2xl font-black">Free</h2>
-          <%= link_to "Get started", new_registration_path(plan: "free"), class: "font-medium btn-getting" %>
-        </div>
-        <ul class="grid grid-cols-2 gap-4">
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">1 Website</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">1 Email template</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Unlimited Subscribers</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">2 Campaigns</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Real-Time Analytics</span>
-          </li>
-          <li>
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px]">Embeddable widget</span>
-          </li>
-          <li class="opacity-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px] line-through">Import from CSV</span>
-          </li>
-          <li class="opacity-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-            <span class="text-[16px] line-through">LifeTime Support</span>
-          </li>
-        </ul>
-      </div>
+</section>
+<section class="max-w-(--breakpoint-xl) mx-auto m-12" id="comparison">
+  <h1 class="text-3xl md:text-4xl text-center font-black">Pricing Comparison</h1>
+  <div class="flex justify-between gap-4 mt-6">
+    <div class="w-2xl">
+      <h1 class="text-2xl font-bold">Save Thousands with Piegon</h1>
+      <p class="font-medium leading-relaxed mt-4">Why pay monthly forever when you can make a one-time investment? Piegon offers unmatched value—no recurring fees, no pricing traps. Whether you’re managing 10,000 or 100,000 contacts, your cost is the same: just <span class="text-white bg-chambray p-1 text-lg"> $99 once</span>.</p>
+      <p class="font-medium leading-relaxed mt-4">Compare that to traditional providers who charge $199–$999 every month, and you’re looking at savings of up to <span class="text-white bg-chambray p-1 text-lg"> $59,841</span> over 3 years.</p>
     </div>
-  </section>
-
+    <%= render "comparison" %>
+  </div>
 </section>
 
-<section class="bg-prim h-64 flex flex-col items-center justify-center">
-    <h1 class="font-sans text-3xl">Pay for impact. It’s the emails that matter.</h1>
-    <%= link_to "Get started", "#pricing", class: "btn-getting bg-link-water mt-4 p-4" %>    
+<section class="bg-prim py-20 flex flex-col items-center justify-center">
+    <h1 class="font-sans text-2xl md:text-3xl text-center max-w-2xl">Grow Your Audience Without Limits</h1>
+    <h1 class="md:text-lg mt-2 text-gray-700">Pay for impact. It’s the emails that matter.</h5>
+    <%= link_to "Start for free", new_registration_path, class: "btn-getting bg-link-water mt-4 p-4" %>    
 </section>
 
-<section></section>
-
-<footer class="p-4 bg-white mt-6">
+<footer class="p-8 bg-white  border-t border-gray-100">
     <div class="mx-auto max-w-(--breakpoint-xl)">
         <div class="flex justify-between">
             <div class="mb-0">
