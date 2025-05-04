@@ -5,16 +5,16 @@ export default class extends Controller {
 
   providers = {
     mailchimp: {
-      prices: { "10k": 199, "50k": 499, "100k": 999 },
-      total: 59940
+      prices: { "10k": 135, "50k": 450, "100k": 800 },
+      total: 48000
     },
-    sendgrid: {
-      prices: { "10k": 150, "50k": 400, "100k": 850 },
-      total: 51000
+    mailerlite: {
+      prices: { "10k": 73, "50k": 289, "100k": 440 },
+      total: 26400
     },
     convertkit: {
       prices: { "10k": 119, "50k": 379, "100k": 679 },
-      total: 40800
+      total: 40740
     }
   }
 
