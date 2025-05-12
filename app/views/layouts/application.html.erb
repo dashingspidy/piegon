@@ -2,10 +2,29 @@
 <html class="scroll-smooth">
   <head>
     <title>Piegon - <%= content_for(:title) || "Send marketing email with ease" %></title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name=”robots” content="index, follow">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="turbo-prefetch" content="false">
+    
+    <meta name="description" content="<%= content_for(:description) || "Stop wasting money on monthly email marketing fees. With Piegon, you pay once and get lifetime access to powerful email marketing tools. Connect your SMTP, launch stunning campaigns, and track results effortlessly — all without the ongoing costs. Take control of your email marketing budget today." %>">
+    <meta name="keywords" content="<%= content_for(:keywords) || "email marketing platform, affordable email marketing, cost-effective email marketing, email marketing for businesses, unlimited email campaigns, mailchimp alternative" %>">
+    
+    <meta property="og:title" content="Piegon - <%= content_for(:title) || "Send marketing email with ease" %>">
+    <meta property="og:description" content="<%= content_for(:description) || "Stop wasting money on monthly email marketing fees. With Piegon, you pay once and get lifetime access to powerful email marketing tools. Connect your SMTP, launch stunning campaigns, and track results effortlessly — all without the ongoing costs. Take control of your email marketing budget today." %>">
+    <meta property="og:image" content="<%= content_for(:og_image) || request.base_url + '/icon.png' %>">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Piegon - <%= content_for(:title) || "Send marketing email with ease" %>">
+    <meta name="twitter:description" content="<%= content_for(:description) || "Stop wasting money on monthly email marketing fees. With Piegon, you pay once and get lifetime access to powerful email marketing tools. Connect your SMTP, launch stunning campaigns, and track results effortlessly — all without the ongoing costs. Take control of your email marketing budget today." %>">
+    <meta name="twitter:image" content="<%= content_for(:og_image) || request.base_url + '/icon.png' %>">
+    
+    <link rel="canonical" href="<%= request.original_url %>">
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= turnstile_javascript_tag %>

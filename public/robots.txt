@@ -1,1 +1,19 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /sessions/
+Disallow: /subscribers/import
+Disallow: /campaigns/new
+Disallow: /templates/new
+
+# Disallow sensitive areas
+Disallow: /*/edit
+Disallow: /*/delete
+
+# Crawl delay to reduce server load
+Crawl-delay: 10
+
+# No sitemap available at this time
+
+

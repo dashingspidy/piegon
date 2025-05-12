@@ -13,33 +13,33 @@
     <label for="my-drawer-2" aria-label="close sidebar" class="drawer-overlay"></label>
     <ul class="menu bg-base-200 text-base-content min-h-full w-60 p-4">
       <div class="flex items-center justify-center gap-1 bg-base-200 mb-4">
-        <%= image_tag "logo.svg", width: 45 %>
+        <%= image_tag "logo.svg", width: 45, alt: "Piegon" %>
         <span class="font-logo text-xl mt-6">Piegon</span>
       </div>
       <li>
         <%= link_to dashboard_path, class: [active_link(dashboard_path)] do %>
-          <%= image_tag "dashboard.svg" %><span>Dashboard</span>
+          <%= image_tag "dashboard.svg", alt: "Dashboard" %><span>Dashboard</span>
         <% end %>
       </li>
       <li>
         <%= link_to campaigns_path, class: [active_link(campaigns_path)] do %>
-          <%= image_tag "megaphone.svg" %><span>Campaign</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:campaigns) %></span>
+          <%= image_tag "megaphone.svg", alt: "Campaign" %><span>Campaign</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:campaigns) %></span>
         <% end %>
       </li>
       <li>
         <%= link_to contacts_path, class: [active_link(contacts_path)] do %>
-          <%= image_tag "contact.svg" %><span>Contact List</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:contacts) %></span>
+          <%= image_tag "contact.svg", alt: "Contact List" %><span>Contact List</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:contacts) %></span>
         <% end %>
       </li>
       <li>
         <%= link_to email_templates_path, class: [active_link(email_templates_path)] do %>
-          <%= image_tag "template.svg" %><span>Template</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:email_templates) %></span>
+          <%= image_tag "template.svg", alt: "Template" %><span>Template</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:email_templates) %></span>
         <% end %>
       </li>
       <li>
         <details <%= 'open' if current_page?(profile_accounts_path) || current_page?(billing_accounts_path) || current_page?(mail_settings_path) || controller_name == 'mail_settings' %>>
           <summary>
-            <%= image_tag "user.svg" %><span>Account</span>
+            <%= image_tag "user.svg", alt: "Account" %><span>Account</span>
           </summary>
           <ul>
             <li><%= link_to "Profile", profile_accounts_path, class: [active_link(profile_accounts_path)] %></li>
@@ -50,7 +50,7 @@
       </li>
       <li>
         <%= link_to tickets_path, class: [active_link(tickets_path)] do %>
-          <%= image_tag "help.svg" %><span>Help</span>
+          <%= image_tag "help.svg", alt: "Help" %><span>Help</span>
         <% end %>
       </li>
       <li class="mt-auto self-center">
