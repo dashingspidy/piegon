@@ -6,6 +6,8 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :email_templates, dependent: :destroy
   has_many :campaigns, dependent: :destroy
+  has_many :tickets, dependent: :destroy
+  has_many :replies, dependent: :destroy
   has_one :mail_setting, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }

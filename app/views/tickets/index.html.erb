@@ -1,0 +1,25 @@
+<% if @tickets.any? %>
+  <section class="w-full max-w-lg mt-4">
+    <ul class="list bg-base-100 rounded-box shadow-md">
+      <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">Support tickets</li>
+      <% @tickets.each do |ticket| %>
+        <li class="list-row">
+          <div>
+            <h1>
+              <%= link_to ticket.subject.capitalize, ticket, class: "link" %>
+            </h1>
+          </div>
+          <div></div>
+          <div><%= l(ticket.created_at, format: :long) %></div>
+          <div class="badge badge-outline"><%= ticket.finished? ? "Closed" : "Open"%></div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% else %>
+  <h1>No tickets found</h1>
+<% end %>
+
+<div class="mt-4">
+  <%= link_to "Open a ticket", new_ticket_path, class: "btn btn-neutral" %>
+</div>

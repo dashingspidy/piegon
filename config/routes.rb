@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :tickets, except: [ :edit, :update, :destroy ] do
+    post "reply", to: "tickets#reply"
+  end
   get "tracking/open"
   mount MissionControl::Jobs::Engine, at: "/jobs"
   root "home#index"

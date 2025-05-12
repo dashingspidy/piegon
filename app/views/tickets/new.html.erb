@@ -1,0 +1,18 @@
+<section class="w-3xl">
+  <h1>Create a new ticket</h1>
+  <%= form_with model: @ticket do |form| %>
+    <fieldset class="fieldset">
+      <legend>Subject</legend>
+      <%= form.text_field :subject, class: "input" %>
+      <%= @ticket.errors[:subject].first if @ticket.errors.any? %>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>Description</legend>
+      <%= form.text_area :description, class: "textarea" %>
+      <%= @ticket.errors[:description].first if @ticket.errors.any? %>
+    </fieldset>
+
+    <%= form.submit "Submit", class: "btn btn-neutral" %>
+  <% end %>
+</section>

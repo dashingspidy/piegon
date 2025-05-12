@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_28_132114) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_12_175450) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -110,6 +110,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_132114) do
     t.index ["user_id"], name: "index_mail_settings_on_user_id"
   end
 
+  create_table "replies", force: :cascade do |t|
+    t.text "description"
+    t.integer "ticket_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["ticket_id"], name: "index_replies_on_ticket_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "ip_address"
@@ -126,6 +136,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_132114) do
     t.datetime "updated_at", null: false
     t.boolean "unsubscribed", default: false
     t.index ["contact_id"], name: "index_subscribers_on_contact_id"
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "subject"
+    t.text "description"
+    t.boolean "finished", default: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tickets_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -152,6 +172,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_28_132114) do
   add_foreign_key "csv_uploaders", "contacts"
   add_foreign_key "email_templates", "users"
   add_foreign_key "mail_settings", "users"
+  add_foreign_key "replies", "tickets"
+  add_foreign_key "replies", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "subscribers", "contacts"
+  add_foreign_key "tickets", "users"
 end
