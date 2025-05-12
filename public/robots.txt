@@ -6,6 +6,7 @@ Disallow: /sessions/
 Disallow: /subscribers/import
 Disallow: /campaigns/new
 Disallow: /templates/new
+Disallow: /cdn-cgi/l/email-protection
 
 # Disallow sensitive areas
 Disallow: /*/edit
