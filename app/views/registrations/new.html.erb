@@ -6,6 +6,7 @@
     </h1>
     <%= form_with(model: @user, url: registration_path, local: true, data: { turbo: false }) do |form| %>
       <%= form.hidden_field :plan, value: params[:plan] %>
+      <%= hidden_field_tag 'cf-turnstile-response', '', id: 'cf-turnstile-response' %>
 
       <fieldset class="fieldset">
         <legend class="fieldset-legend">Email Address</legend>
@@ -25,6 +26,11 @@
         <%= @user.errors[:password_confirmation].first if @user.errors.any? %>
       </fieldset>
       
+      <fieldset class="fieldset">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAABQ3MSwjUFHXbAke" data-callback="turnstileCallback"></div>
+        <%= @user.errors[:turnstile].first if @user.errors.any? %>
+      </fieldset>
+      
       <%= form.submit "Register", class: "btn btn-neutral" %>
     <% end %>
     <p class="text-sm ">
@@ -32,3 +38,12 @@
     </p>
   </div>
 </section>
+
+<% content_for :head do %>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script>
+    function turnstileCallback(token) {
+      document.getElementById('cf-turnstile-response').value = token;
+    }
+  </script>
+<% end %>

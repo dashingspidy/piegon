@@ -1,5 +1,7 @@
 class RegistrationsController < ApplicationController
   include Payment
+  include TurnstileValidatable
+
   rate_limit to: 4, within: 1.minute, only: :create
   allow_unauthenticated_access(only: [ :new, :create, :confirm ])
   def new
@@ -10,6 +12,11 @@ class RegistrationsController < ApplicationController
     @user = User.new(user_params)
     if @user.plan.blank?
       @user.plan = "free"
+    end
+
+    unless valid_turnstile_token?
+      @user.errors.add(:turnstile, "Please complete the security check")
+      return render :new, status: :unprocessable_entity
     end
 
     if @user.save
