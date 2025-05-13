@@ -10,6 +10,33 @@ export default class extends Controller {
       displayMode: 'email'
     })
 
+    unlayer.registerCallback('image', function (file, done) {
+      const data = new FormData();
+      data.append('file', file.attachments[0]);
+
+      fetch('/uploads', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.filelink) {
+            done({ progress: 100, url: data.filelink });
+          } else {
+            console.error('Upload error:', data.error);
+            done({ progress: 100, url: '' });
+          }
+        })
+        .catch((error) => {
+          console.error('Upload failed:', error);
+          done({ progress: 100, url: '' });
+        });
+    });
+
     const path = window.location.pathname
     if (path.includes('/edit')) {
       const templateId = path.split('/')[2]
