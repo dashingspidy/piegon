@@ -9,18 +9,18 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="turbo-prefetch" content="false">
     
-    <meta name="description" content="Stop paying monthly email marketing fees. With Piegon, pay once for lifetime access to powerful email tools. Connect SMTP, launch campaigns, and track results — no recurring costs.">
+    <meta name="description" content="Pay once for lifetime email marketing with Piegon. Connect SMTP, launch campaigns, and track results — no monthly fees.">
     <meta name="keywords" content="<%= content_for(:keywords) || "email marketing platform, affordable email marketing, cost-effective email marketing, email marketing for businesses, unlimited email campaigns, mailchimp alternative" %>">
     
     <meta property="og:title" content="Piegon - <%= content_for(:title) || "Send marketing email with ease" %>">
-    <meta property="og:description" content="<%= content_for(:description) || "Stop paying monthly email marketing fees. With Piegon, pay once for lifetime access to powerful email tools. Connect SMTP, launch campaigns, and track results — no recurring costs." %>">
+    <meta property="og:description" content="<%= content_for(:description) || "Pay once for lifetime email marketing with Piegon. Connect SMTP, launch campaigns, and track results — no monthly fees." %>">
     <meta property="og:image" content="<%= content_for(:og_image) || request.base_url + '/icon.png' %>">
     <meta property="og:url" content="<%= request.original_url %>">
     <meta property="og:type" content="website">
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Piegon - <%= content_for(:title) || "Send marketing email with ease" %>">
-    <meta name="twitter:description" content="<%= content_for(:description) || "Stop paying monthly email marketing fees. With Piegon, pay once for lifetime access to powerful email tools. Connect SMTP, launch campaigns, and track results — no recurring costs." %>">
+    <meta name="twitter:description" content="<%= content_for(:description) || "Pay once for lifetime email marketing with Piegon. Connect SMTP, launch campaigns, and track results — no monthly fees." %>">
     <meta name="twitter:image" content="<%= content_for(:og_image) || request.base_url + '/icon.png' %>">
     
     <link rel="canonical" href="<%= request.original_url %>">
@@ -34,11 +34,9 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/views/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <script src="https://editor.unlayer.com/embed.js"></script>
   </head>
 
   <body>
