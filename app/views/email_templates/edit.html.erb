@@ -50,12 +50,7 @@
           </div>
         </div>
         <div class="mt-3">
-          <%= form.textarea :body, 
-              is: "highlighted-code",
-              language: "html",
-              placeholder: "// start here",
-              data: { controller:"color-code" },
-              class: "input w-full h-[87vh] overflow-y-auto resize-none" %>
+          <%= form.rich_textarea :body, class: "h-[80vh] overflow-y-auto resize-none" %>
         </div>
       <% end %>
     </div>

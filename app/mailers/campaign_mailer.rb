@@ -27,7 +27,11 @@ class CampaignMailer < ApplicationMailer
   private
 
   def render_template(body)
-    ERB.new(body).result(binding)
+    if body.is_a?(ActionText::RichText)
+      body.to_s
+    else
+      ERB.new(body.to_s).result(binding)
+    end
   rescue => e
     Rails.logger.error("Error rendering email template: #{e.message}")
   end

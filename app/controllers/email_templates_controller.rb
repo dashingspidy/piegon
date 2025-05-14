@@ -1,6 +1,7 @@
 class EmailTemplatesController < ApplicationController
   before_action :check_confirmed_user, only: %i[new create]
-  before_action :require_payment, only: %i[new create draganddrop]
+  before_action :require_payment, only: %i[new create]
+  before_action :require_paid_plan, only: %i[draganddrop]
   before_action :set_email_template, only: [ :show, :edit, :update, :destroy ]
   skip_before_action :verify_authenticity_token, only: [ :token ]
   layout "editor_only", only: [ :draganddrop ]
@@ -73,8 +74,8 @@ class EmailTemplatesController < ApplicationController
 
   def token
     payload = {
-      pluginId: "f7c28edf9b7a4f87b185881780ca6e14",
-      secretKey: "c494ee43e32b4df3a3a278b88a3d6682",
+      pluginId: "ebc379f90a5f4440a3bb66a42c7fe420",
+      secretKey: "9aebba8862fd4fe68c45a108aa5570a7",
       userId: 1,
       role: "user"
     }
@@ -100,5 +101,12 @@ class EmailTemplatesController < ApplicationController
 
   def email_template_params
     params.require(:email_template).permit(:name, :body, :template, :editor, :html, :css)
+  end
+
+  def require_paid_plan
+    return unless authenticated?
+    if Current.user.plan == "free"
+      redirect_to email_templates_path, alert: "Drag and drop editor is not available on the Free plan. Please upgrade to access this feature."
+    end
   end
 end
