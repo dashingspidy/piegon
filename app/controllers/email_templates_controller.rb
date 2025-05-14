@@ -2,11 +2,17 @@ class EmailTemplatesController < ApplicationController
   before_action :check_confirmed_user, only: %i[new create]
   before_action :require_payment, only: %i[new create draganddrop]
   before_action :set_email_template, only: [ :show, :edit, :update, :destroy ]
+  skip_before_action :verify_authenticity_token, only: [ :token ]
+  layout "editor_only", only: [ :draganddrop ]
   def index
     @email_templates = Current.user.email_templates
   end
 
   def show
+    respond_to do |format|
+      format.html
+      format.json { render json: { html: @email_template.html, css: @email_template.css, name: @email_template.name } }
+    end
   end
 
   def new
@@ -35,7 +41,7 @@ class EmailTemplatesController < ApplicationController
   def edit
     respond_to do |format|
       format.html
-      format.json { render json: @email_template }
+      format.json { render json: { html: @email_template.html, css: @email_template.css, name: @email_template.name } }
     end
   end
 
@@ -65,6 +71,27 @@ class EmailTemplatesController < ApplicationController
   def draganddrop
   end
 
+  def token
+    payload = {
+      pluginId: "f7c28edf9b7a4f87b185881780ca6e14",
+      secretKey: "c494ee43e32b4df3a3a278b88a3d6682",
+      userId: 1,
+      role: "user"
+    }
+
+    response = Net::HTTP.post(
+      URI("https://plugins.stripo.email/api/v1/auth"),
+      payload.to_json,
+      { "Content-Type" => "application/json" }
+    )
+
+    if response.code == "200"
+      render json: { token: JSON.parse(response.body)["token"] }
+    else
+      render json: { error: "Failed to authenticate with Stripo" }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_email_template
@@ -72,6 +99,6 @@ class EmailTemplatesController < ApplicationController
   end
 
   def email_template_params
-    params.require(:email_template).permit(:name, :body, :template, :editor)
+    params.require(:email_template).permit(:name, :body, :template, :editor, :html, :css)
   end
 end

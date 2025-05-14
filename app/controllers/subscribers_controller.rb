@@ -75,7 +75,7 @@ class SubscribersController < ApplicationController
   end
 
   def destroy
-    @contact.subscribers.find(params[:id]).delete
+    @contact.subscribers.find(params[:id]).destroy
     redirect_to contact_subscribers_path(@contact)
   end
 

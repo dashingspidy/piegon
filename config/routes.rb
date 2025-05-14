@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   post "embed/:api_token", to: "subscribers#embed"
   post "webhook", to: "accounts#webhook"
   get "tracking/open", to: "tracking#open", as: :tracking_pixel
-  post "/uploads", to: "uploads#create"
+  post "token", to: "email_templates#token"
 
   resource :registration, only: [ :new, :create ]
   resource :session

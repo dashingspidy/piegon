@@ -1,3 +1,8 @@
+<% content_for :head do %>
+  <script src="https://unpkg.com/zone.js@0.13.0/dist/zone.min.js"></script>
+  <script id="UiEditorScript" type="module" src="https://plugins.stripo.email/resources/uieditor/latest/UIEditor.js"></script>
+<% end %>
+
 <% if @email_template.editor == "draganddrop" %>
   <div data-controller="email-editor">
     <div class="flex items-end justify-end gap-1 mb-1">
@@ -7,13 +12,27 @@
         required
         class="input">
       <button
+        id="saveButton"
         class="btn"
         data-action="click->email-editor#saveHtml">Update</button>
     </div>
     <div class="flex items-end justify-end">
       <span class="text-sm text-red-600" data-email-editor-target="error"></span>
     </div>
-    <div id="editor" class="h-[700px]" data-template-id="<%= @email_template.id %>"></div>
+    
+    <div id="externalSystemContainer" class="bg-gray-100 p-2 flex justify-between items-center h-10">
+      <div class="btn-group">
+        <button id="undoButton" class="border border-gray-300 px-3 py-1 bg-white">Undo</button>
+        <button id="redoButton" class="border border-gray-300 px-3 py-1 bg-white border-l-0">Redo</button>
+      </div>
+      <button id="codeEditor" class="border border-gray-300 px-3 py-1 bg-white">Code Editor</button>
+      <div id="viewSwitcher" class="btn-group">
+        <button id="desktopViewButton" class="border border-gray-300 px-3 py-1 bg-white active">Desktop</button>
+        <button id="mobileViewButton" class="border border-gray-300 px-3 py-1 bg-white border-l-0">Mobile</button>
+      </div>
+    </div>
+    
+    <div id="stripoEditorContainer" class="h-[650px]" data-template-id="<%= @email_template.id %>"></div>
   </div>
 <% else %>
   <section>

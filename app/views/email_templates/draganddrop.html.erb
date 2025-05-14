@@ -1,16 +1,35 @@
+<% content_for :head do %>
+  <script src="https://unpkg.com/zone.js@0.13.0/dist/zone.min.js"></script>
+  <script id="UiEditorScript" type="module" src="https://plugins.stripo.email/resources/uieditor/latest/UIEditor.js"></script>
+<% end %>
+
 <div data-controller="email-editor">
-  <div class="flex items-end justify-end gap-1 mb-1">
-    <input type="text" 
-            placeholder="Enter template name"
-            data-email-editor-target="name"
-            required
-            class="input">
-    <button
-      class="btn"
-      data-action="click->email-editor#saveHtml">Save</button>
+  <div id="externalSystemContainer" class="p-2 flex justify-between items-center">
+    <%= link_to "Back", email_templates_path, class: "btn" %>
+    <div class="join">
+      <button id="undoButton" class="btn join-item">Undo</button>
+      <button id="redoButton" class="btn join-item">Redo</button>
+    </div>
+    <button id="codeEditor" class="btn btn-info">Code Editor</button>
+    <div id="viewSwitcher" class="join">
+      <button id="desktopViewButton" class="btn btn-primary join-item">Desktop</button>
+      <button id="mobileViewButton" class="btn join-item">Mobile</button>
+    </div>
+    <div class="flex items-center gap-1">
+      <input type="text" 
+              placeholder="Enter template name"
+              data-email-editor-target="name"
+              required
+              class="input">
+      <button
+        id="saveButton"
+        class="btn btn-neutral"
+        data-action="click->email-editor#saveHtml">Save</button>
+    </div>
   </div>
-  <div class="flex items-end justify-end">
+  <div class="flex items-end justify-end mr-4">
     <span class="text-sm text-red-600" data-email-editor-target="error"></span>
   </div>
-  <div id="editor" class="h-[700px]"></div>
+  
+  <div id="stripoEditorContainer" class="h-screen"></div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_12_175450) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_13_195445) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -91,11 +91,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_12_175450) do
   create_table "email_templates", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.json "template"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "editor"
+    t.text "html"
+    t.text "css"
     t.index ["user_id"], name: "index_email_templates_on_user_id"
   end
 
