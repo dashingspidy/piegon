@@ -3,7 +3,9 @@
     <h1 class="text-xl">List of Contacts</h1>
     <div class="flex gap-1">
       <%= render "widget_modal" %>
-      <%= render "upload_modal" %>
+      <% if Current.user.plan != "free" %>
+        <%= render "upload_modal" %>
+      <% end %>
       <%= link_to "Start Campaign", new_campaign_path, class: "btn btn-neutral" %>
     </div>
   </div>
