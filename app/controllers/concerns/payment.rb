@@ -8,9 +8,8 @@ module Payment
   API_URL = "https://api.creem.io/v1/checkouts"
   API_KEY = "creem_4x2oER23SBPEcDcZL4r4IX"
   PRODUCTS = {
-      "echo"  => { id: "prod_2DZbUpGOu8G5K3ukSP26yW", price: 99 },
-      "whisper" => { id: "prod_3BdRN1jqov4CYCMcrviiSe", price: 179 },
-      "thunder" => { id: "prod_1EIBj1OR6bj0dRkkzzFzhz", price: 399 },
+      "echo"  => { id: "prod_2DZbUpGOu8G5K3ukSP26yW", price: 29 },
+      "thunder" => { id: "prod_1EIBj1OR6bj0dRkkzzFzhz", price: 99 },
       "free"      => { id: "", price: 0 }
   }.freeze
 
