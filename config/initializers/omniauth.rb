@@ -1,7 +1,7 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :google_oauth2,
-           Rails.application.credentials.google[:client_id],
-           Rails.application.credentials.google[:client_secret],
+          Rails.application.credentials.dig(:google, :client_id),
+          Rails.application.credentials.dig(:google, :client_secret),
            {
              scope: "email,profile",
              prompt: "select_account",
