@@ -22,6 +22,9 @@ Rails.application.routes.draw do
 
   resource :registration, only: [ :new, :create ]
   resource :session
+
+  get "/auth/:provider/callback", to: "oauth#google"
+  get "/auth/failure", to: "oauth#failure"
   resources :passwords, param: :token
   resources :accounts, only: [ :destroy ] do
     collection do

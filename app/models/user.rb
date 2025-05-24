@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   include DisposableEmailCheck
-  has_secure_password
+  has_secure_password validations: false
   has_secure_token :confirmation_token
   has_many :sessions, dependent: :destroy
   has_many :contacts, dependent: :destroy
@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, presence: true, if: :password_required?
 
   def confirm!
     update!(confirmed_at: Time.current, confirmation_token: nil)
@@ -37,5 +38,26 @@ class User < ApplicationRecord
   def limit_reached?(resource)
     current_count = public_send(resource).count
     current_count >= plan_object.limit_for(resource)
+  end
+
+  def self.from_omniauth(auth)
+    where(email_address: auth.info.email).first_or_create do |user|
+      user.email_address = auth.info.email
+      user.name = auth.info.name
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.plan = "free"
+      user.confirmed_at = Time.current
+    end
+  end
+
+  def oauth_user?
+    provider.present? && uid.present?
+  end
+
+  private
+
+  def password_required?
+    !oauth_user? && (password_digest.blank? || !password.blank?)
   end
 end
