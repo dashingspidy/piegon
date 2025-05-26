@@ -10,6 +10,7 @@ class OauthController < ApplicationController
     if user.persisted?
       clear_selected_plan
       start_new_session_for user
+      user.send_welcome_email
       if user.created_at > 1.minute.ago
         redirect_to after_authentication_url, notice: "Welcome to Piegon! Your account has been created with the #{selected_plan} plan."
       else
