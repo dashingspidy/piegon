@@ -46,6 +46,7 @@ gem "csv"
 gem "httparty"
 gem "postmark-rails"
 gem "mailgun-ruby"
+gem "sendgrid-ruby"
 
 group :production do
   gem "tailwindcss-rails"
