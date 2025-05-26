@@ -19,7 +19,7 @@
     <div class="divider">OR</div>
     
     <%= form_with(model: @user, url: registration_path, local: true, data: { turbo: false }) do |form| %>
-      <%= form.hidden_field :plan, value: params[:plan] %>
+      <%= form.hidden_field :plan, value: session[:selected_plan] || params[:plan] %>
       <%= hidden_field_tag 'cf-turnstile-response', '', id: 'cf-turnstile-response' %>
 
       <fieldset class="fieldset">

@@ -40,13 +40,13 @@ class User < ApplicationRecord
     current_count >= plan_object.limit_for(resource)
   end
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth, plan = "free")
     where(email_address: auth.info.email).first_or_create do |user|
       user.email_address = auth.info.email
       user.name = auth.info.name
       user.provider = auth.provider
       user.uid = auth.uid
-      user.plan = "free"
+      user.plan = plan
       user.confirmed_at = Time.current
     end
   end

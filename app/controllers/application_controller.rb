@@ -7,6 +7,20 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def set_selected_plan(plan)
+    if plan.present? && Plan::LIMITS.keys.include?(plan)
+      session[:selected_plan] = plan
+    end
+  end
+
+  def get_selected_plan
+    session[:selected_plan] || "free"
+  end
+
+  def clear_selected_plan
+    session.delete(:selected_plan)
+  end
+
   def require_payment
     return unless authenticated?
     return if Current.user.plan == "free"
@@ -29,7 +43,7 @@ class ApplicationController < ActionController::Base
     limited_resources.each do |resource|
       if action_name == "create" && controller_name == resource.to_s.pluralize
         if Current.user.limit_reached?(resource)
-          redirect_to request.referer || dashboard_path, alert: "You’ve reached your #{resource.to_s.humanize.downcase} limit for your current plan."
+          redirect_to request.referer || dashboard_path, alert: "You've reached your #{resource.to_s.humanize.downcase} limit for your current plan."
           break
         end
       end

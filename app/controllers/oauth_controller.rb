@@ -3,12 +3,15 @@ class OauthController < ApplicationController
 
   def google
     auth = request.env["omniauth.auth"]
-    user = User.from_omniauth(auth)
+
+    selected_plan = get_selected_plan
+    user = User.from_omniauth(auth, selected_plan)
 
     if user.persisted?
+      clear_selected_plan
       start_new_session_for user
       if user.created_at > 1.minute.ago
-        redirect_to after_authentication_url, notice: "Welcome to Piegon! Your account has been created with the free plan."
+        redirect_to after_authentication_url, notice: "Welcome to Piegon! Your account has been created with the #{selected_plan} plan."
       else
         redirect_to after_authentication_url, notice: "Successfully signed in with Google!"
       end

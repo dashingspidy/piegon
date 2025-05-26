@@ -6,13 +6,17 @@ class RegistrationsController < ApplicationController
   allow_unauthenticated_access(only: [ :new, :create, :confirm ])
   def new
     @user = User.new
+    set_selected_plan(params[:plan])
   end
 
   def create
     @user = User.new(user_params)
-    if @user.plan.blank?
-      @user.plan = "free"
+
+    plan_to_use = get_selected_plan
+    if params.dig(:user, :plan).present? && Plan::LIMITS.keys.include?(params.dig(:user, :plan))
+      plan_to_use = params.dig(:user, :plan)
     end
+    @user.plan = plan_to_use
 
     unless valid_turnstile_token?
       @user.errors.add(:turnstile, "Please complete the security check")
@@ -20,6 +24,7 @@ class RegistrationsController < ApplicationController
     end
 
     if @user.save
+      clear_selected_plan
       start_new_session_for @user
       redirect_to dashboard_path, notice: "Welcome to Piegon! Confirm your email address to continue further."
     else
