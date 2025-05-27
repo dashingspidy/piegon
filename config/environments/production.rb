@@ -65,7 +65,7 @@ Rails.application.configure do
 
   # Specify outgoing SMTP server. Remember to add smtp/* credentials via rails credentials:edit.
   config.action_mailer.smtp_settings = {
-    user_name: "api",
+    user_name: "apikey",
     password: Rails.application.credentials.dig(:sendgrid, :api_key),
     domain: "piegon.pro",
     address: "smtp.sendgrid.net",

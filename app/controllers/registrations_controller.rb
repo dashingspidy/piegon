@@ -26,7 +26,7 @@ class RegistrationsController < ApplicationController
     if @user.save
       clear_selected_plan
       start_new_session_for @user
-      @user.send_welcome_email
+      @user.send_confirmation_instructions
       redirect_to dashboard_path, notice: "Welcome to Piegon! Confirm your email address to continue further."
     else
       render :new, status: :unprocessable_entity
