@@ -41,7 +41,7 @@ group :development do
 end
 
 gem "aws-sdk-s3", "1.170", require: false
-gem "aws-sdk-core", "3.211"
+gem "aws-sdk-core", "3.224.1"
 gem "csv"
 gem "httparty"
 gem "postmark-rails"
