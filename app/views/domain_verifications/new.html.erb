@@ -1,0 +1,49 @@
+<section class="w-full max-w-2xl">
+  <div class="bg-base-100 rounded-box shadow-md p-8">
+    <h1 class="text-2xl font-bold mb-6">Add New Domain for Verification</h1>
+    
+    <div class="mb-6 p-4 bg-info/10 rounded-lg">
+      <h3 class="font-semibold mb-2">What is domain verification?</h3>
+      <p class="text-sm text-base-content/70">
+        Domain verification allows you to send emails from your own domain through SendGrid. 
+        This improves email deliverability and builds trust with your recipients.
+      </p>
+    </div>
+
+    <%= form_with model: @domain_verification, local: true, class: "space-y-4" do |form| %>
+      <% if @domain_verification.errors.any? %>
+        <div class="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <div>
+            <h3 class="font-bold">Please fix the following errors:</h3>
+            <ul class="list-disc list-inside">
+              <% @domain_verification.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="form-control">
+        <%= form.label :domain, class: "label" do %>
+          <span class="label-text font-semibold">Domain Name</span>
+        <% end %>
+        <%= form.text_field :domain, 
+            placeholder: "example.com", 
+            class: "input input-bordered w-full",
+            required: true %>
+        <div class="label">
+          <span class="label-text-alt text-base-content/60">
+            Enter your domain without 'www' (e.g., example.com)
+          </span>
+        </div>
+      </div>
+
+      <div class="flex gap-4 pt-4">
+        <%= form.submit "Add Domain", class: "btn btn-primary" %>
+        <%= link_to "Cancel", domain_verifications_path, class: "btn btn-ghost" %>
+      </div>
+    <% end %>
+  </div>
+</section> 

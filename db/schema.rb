@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_24_084012) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_07_205830) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -96,6 +96,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_084012) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_csv_uploaders_on_contact_id"
+  end
+
+  create_table "domain_verifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "domain", null: false
+    t.string "verification_status", default: "pending"
+    t.string "sendgrid_domain_id"
+    t.text "dns_records"
+    t.datetime "verified_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "domain"], name: "index_domain_verifications_on_user_id_and_domain", unique: true
+    t.index ["user_id"], name: "index_domain_verifications_on_user_id"
+    t.index ["verification_status"], name: "index_domain_verifications_on_verification_status"
   end
 
   create_table "email_templates", force: :cascade do |t|
@@ -184,6 +198,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_24_084012) do
   add_foreign_key "campaigns", "users"
   add_foreign_key "contacts", "users"
   add_foreign_key "csv_uploaders", "contacts"
+  add_foreign_key "domain_verifications", "users"
   add_foreign_key "email_templates", "users"
   add_foreign_key "mail_settings", "users"
   add_foreign_key "replies", "tickets"

@@ -48,4 +48,10 @@ Rails.application.routes.draw do
   end
   resources :mail_settings
   resources :campaigns
+  resources :domain_verifications do
+    member do
+      post :verify
+      post :check_status
+    end
+  end
 end

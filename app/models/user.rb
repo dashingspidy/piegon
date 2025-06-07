@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :tickets, dependent: :destroy
   has_many :replies, dependent: :destroy
   has_one :mail_setting, dependent: :destroy
+  has_many :domain_verifications, dependent: :destroy
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
   validates :email_address, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }

@@ -1,0 +1,57 @@
+<% if @domain_verifications.any? %>
+<section class="w-full max-w-4xl">
+  <ul class="list bg-base-100 rounded-box shadow-md">
+    <li class="p-4 pb-2 text-xl opacity-60 tracking-wide">Domain Verifications</li>
+    <% @domain_verifications.each do |domain_verification| %>
+      <li class="list-row">
+        <div>
+          <div class="text-lg">
+            <%= link_to domain_verification.domain, domain_verification_path(domain_verification), class: "link link-hover" %>
+          </div>
+          <div class="text-sm opacity-60">
+            Added <%= time_ago_in_words(domain_verification.created_at) %> ago
+          </div>
+        </div>
+        <div>
+          <% case domain_verification.verification_status %>
+          <% when 'verified' %>
+            <div class="badge badge-success gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              Verified
+            </div>
+          <% when 'pending' %>
+            <div class="badge badge-warning gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path></svg>
+              Pending
+            </div>
+          <% when 'failed' %>
+            <div class="badge badge-error gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+              Failed
+            </div>
+          <% end %>
+        </div>
+        <div class="flex gap-2">
+          <%= link_to "View", domain_verification_path(domain_verification), class: "btn btn-sm btn-secondary" %>
+          <% unless domain_verification.verified? %>
+            <%= button_to "Verify", verify_domain_verification_path(domain_verification), method: :post, class: "btn btn-sm btn-primary" %>
+          <% end %>
+          <%= button_to "Delete", domain_verification_path(domain_verification), method: :delete, data: { turbo_confirm: "Are you sure? This will also remove the domain from SendGrid." }, class: "btn btn-sm btn-warning" %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>
+<% else %>
+<section class="w-full max-w-2xl">
+  <div class="bg-base-100 rounded-box shadow-md p-8 text-center">
+    <h2 class="text-2xl font-bold mb-4">No Domain Verifications</h2>
+    <p class="text-base-content/70 mb-6">
+      You haven't added any domains for verification yet. Add a domain to start sending emails with your own sender signature.
+    </p>
+  </div>
+</section>
+<% end %>
+
+<section class="mt-4">
+  <%= link_to "Add New Domain", new_domain_verification_path, class: "btn btn-neutral" %> 
