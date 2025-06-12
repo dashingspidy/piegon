@@ -1,6 +1,6 @@
 class BulkCampaignService
   BATCH_SIZE = 100 # Smaller batches for SMTP to avoid timeouts
-  DELAY_BETWEEN_BATCHES = 2.seconds # Rate limiting
+  DELAY_BETWEEN_BATCHES = 10.seconds # Rate limiting
 
   def self.send_campaign(campaign)
     new(campaign).send_all
