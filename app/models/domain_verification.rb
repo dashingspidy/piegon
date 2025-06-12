@@ -2,6 +2,10 @@ class DomainVerification < ApplicationRecord
   belongs_to :user
 
   validates :domain, presence: true, uniqueness: { scope: :user_id }
+  validates :domain, format: {
+    with: /\A(?:[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9\-]{0,61}[a-z0-9])?\z/i,
+    message: "must be a valid domain name (e.g. piegon.pro)"
+  }
   validates :verification_status, inclusion: { in: %w[pending verified failed] }
 
   serialize :dns_records, coder: JSON

@@ -1,6 +1,7 @@
 class DomainVerificationsController < ApplicationController
   before_action :set_domain_verification, only: [ :show, :verify, :destroy, :check_status ]
   before_action :authenticate_user!
+  before_action :check_confirmed_user, only: [ :new, :create, :verify ]
 
   def index
     @domain_verifications = Current.user.domain_verifications.order(created_at: :desc)

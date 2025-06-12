@@ -23,21 +23,26 @@
       </li>
       <li>
         <%= link_to campaigns_path, class: [active_link(campaigns_path)] do %>
-          <%= image_tag "megaphone.svg", alt: "Campaign" %><span>Campaign</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:campaigns) %></span>
+          <%= image_tag "megaphone.svg", alt: "Campaign" %><span>Campaign</span>
         <% end %>
       </li>
       <li>
         <%= link_to contacts_path, class: [active_link(contacts_path)] do %>
-          <%= image_tag "contact.svg", alt: "Contact List" %><span>Contact List</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:contacts) %></span>
+          <%= image_tag "contact.svg", alt: "Contact List" %><span>Contact List</span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to domain_verifications_path, class: [active_link(domain_verifications_path)] do %>
+          <%= image_tag "at-sign.svg", alt: "Domain" %><span>Domain Verification</span>
         <% end %>
       </li>
       <li>
         <%= link_to email_templates_path, class: [active_link(email_templates_path)] do %>
-          <%= image_tag "template.svg", alt: "Template" %><span>Template</span> <span class="badge badge-sm rounded-full badge-secondary"><%= resource_usage_label(:email_templates) %></span>
+          <%= image_tag "template.svg", alt: "Template" %><span>Template</span>
         <% end %>
       </li>
       <li>
-        <details <%= 'open' if current_page?(profile_accounts_path) || current_page?(billing_accounts_path) || current_page?(mail_settings_path) || controller_name == 'mail_settings' || controller_name == 'domain_verifications' %>>
+        <details <%= 'open' if current_page?(profile_accounts_path) || current_page?(billing_accounts_path) || current_page?(mail_settings_path) || controller_name == 'mail_settings' %>>
           <summary>
             <%= image_tag "user.svg", alt: "Account" %><span>Account</span>
           </summary>
@@ -45,7 +50,6 @@
             <li><%= link_to "Profile", profile_accounts_path, class: [active_link(profile_accounts_path)] %></li>
             <li><%= link_to "Billing", billing_accounts_path, class: [active_link(billing_accounts_path)] %></li>
             <li><%= link_to "SMTP Setting", mail_settings_path, class: [active_link(mail_settings_path)] %></li>
-            <li><%= link_to "Domain Verification", domain_verifications_path, class: [active_link(domain_verifications_path)] %></li>
           </ul>
         </details>
       </li>
