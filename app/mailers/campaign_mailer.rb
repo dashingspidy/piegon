@@ -2,10 +2,10 @@ class CampaignMailer < ApplicationMailer
   layout false
   skip_before_action :attach_logo
 
-  def campaign_email(subscriber, email_template, email_from, email_header, email_subject, mail_setting, campaign)
+  def campaign_email(subscriber, campaign)
     @subscriber = subscriber
     @campaign = campaign
-    @rendered_body = render_template(email_template.body)
+    @rendered_body = render_template(campaign.email_template.body)
     @unsubscribe_url = generate_unsubscribe_url(subscriber)
     @tracking_pixel_url = Rails.application.routes.url_helpers.tracking_pixel_url(
       campaign_id: @campaign.id,
@@ -13,15 +13,11 @@ class CampaignMailer < ApplicationMailer
       host: default_url_options[:host]
     )
 
-    mail_options = {
+    mail(
       to: @subscriber.email,
-      subject: email_subject,
-      from: "#{email_header} <#{email_from}>",
-      delivery_method: :smtp,
-      delivery_method_options: mail_setting.to_smtp_settings
-    }
-
-    mail(mail_options)
+      subject: campaign.subject,
+      from: campaign.full_from_address
+    )
   end
 
   private
@@ -39,7 +35,7 @@ class CampaignMailer < ApplicationMailer
   def generate_unsubscribe_url(subscriber)
     signature = OpenSSL::HMAC.hexdigest(
       "SHA256",
-      Rails.application.credentials.secret_key_base,
+      Rails.application.secret_key_base,
       "#{subscriber.contact_id}:#{subscriber.email}"
     )
 

@@ -8,7 +8,7 @@ class UnsubscribeController < ApplicationController
 
     expected_signature = OpenSSL::HMAC.hexdigest(
       "SHA256",
-      Rails.application.credentials.secret_key_base,
+      Rails.application.secret_key_base,
       "#{contact_id}:#{email}"
     )
 

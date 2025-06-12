@@ -2,6 +2,7 @@ class Campaign < ApplicationRecord
   belongs_to :contact
   belongs_to :user
   belongs_to :email_template
+  belongs_to :domain_verification, optional: true
   has_many :campaign_events, dependent: :destroy
   has_many :subscribers, through: :contact
 
@@ -16,6 +17,38 @@ class Campaign < ApplicationRecord
     if send_at < Time.current
       errors.add(:send_at, "Select a future date")
     end
+  end
+
+  def verified_domain
+    domain_verification || user.domain_verifications.verified.first
+  end
+
+  def sender_domain
+    verified_domain&.domain || "piegon.pro"
+  end
+
+  def full_from_address
+    # Sanitize header to remove problematic characters
+    sanitized_header = header.to_s.gsub(/[<>"\\\r\n]/, "").strip
+
+    # Check if from field already contains a complete email address
+    if from.include?("@")
+      # from field already has domain, use as-is
+      email_address = from.strip
+    else
+      # from field is just local part, add domain
+      email_address = "#{from.strip}@#{sender_domain}"
+    end
+
+    if sanitized_header.present?
+      "#{sanitized_header} <#{email_address}>"
+    else
+      email_address
+    end
+  end
+
+  def using_verified_domain?
+    verified_domain.present?
   end
 
   def total_events(event_type)

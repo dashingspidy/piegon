@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_07_205830) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_12_120218) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -76,7 +76,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_205830) do
     t.boolean "running", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "domain_verification_id"
     t.index ["contact_id"], name: "index_campaigns_on_contact_id"
+    t.index ["domain_verification_id"], name: "index_campaigns_on_domain_verification_id"
     t.index ["email_template_id"], name: "index_campaigns_on_email_template_id"
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
@@ -122,17 +124,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_205830) do
     t.text "html"
     t.text "css"
     t.index ["user_id"], name: "index_email_templates_on_user_id"
-  end
-
-  create_table "mail_settings", force: :cascade do |t|
-    t.string "host"
-    t.string "username"
-    t.string "password"
-    t.string "port", default: "587"
-    t.integer "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_mail_settings_on_user_id"
   end
 
   create_table "replies", force: :cascade do |t|
@@ -194,13 +185,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_07_205830) do
   add_foreign_key "campaign_events", "campaigns"
   add_foreign_key "campaign_events", "subscribers"
   add_foreign_key "campaigns", "contacts"
+  add_foreign_key "campaigns", "domain_verifications"
   add_foreign_key "campaigns", "email_templates"
   add_foreign_key "campaigns", "users"
   add_foreign_key "contacts", "users"
   add_foreign_key "csv_uploaders", "contacts"
   add_foreign_key "domain_verifications", "users"
   add_foreign_key "email_templates", "users"
-  add_foreign_key "mail_settings", "users"
   add_foreign_key "replies", "tickets"
   add_foreign_key "replies", "users"
   add_foreign_key "sessions", "users"

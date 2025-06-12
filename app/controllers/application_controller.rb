@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def check_plan_limits
     return unless authenticated?
 
-    limited_resources = %w[contacts email_templates campaigns]
+    limited_resources = %w[contacts email_templates campaigns domain_verifications]
     limited_resources.each do |resource|
       if action_name == "create" && controller_name == resource.to_s.pluralize
         if Current.user.limit_reached?(resource)

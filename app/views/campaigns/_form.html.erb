@@ -19,8 +19,32 @@
     </fieldset>
 
     <fieldset class="fieldset">
-      <legend class="fieldset-legend">From</legend>
+      <legend class="fieldset-legend">From Email</legend>
       <%= form.email_field :from, placeholder: "no-reply@piegon.pro", class: "input" %>
+      <% verified_domains = Current.user.domain_verifications.verified %>
+      <% if verified_domains.count > 1 %>
+        <div class="mt-2">
+          <label class="text-sm font-medium text-base-content/80">Send from domain:</label>
+          <%= form.select :domain_verification_id, 
+              options_from_collection_for_select(verified_domains, :id, :domain, campaign.domain_verification_id || verified_domains.first.id), 
+              {}, 
+              { class: "select select-secondary w-full mt-1" } %>
+          <div class="text-sm text-success mt-1">
+            ✓ You have <%= verified_domains.count %> verified domains available
+          </div>
+        </div>
+      <% elsif verified_domains.any? %>
+        <%= form.hidden_field :domain_verification_id, value: verified_domains.first.id %>
+        <div class="text-sm text-success mt-1">
+          ✓ Will send from: <strong><%= verified_domains.first.domain %></strong>
+        </div>
+      <% else %>
+        <div class="text-sm text-warning mt-1">
+          ⚠ Will send from: <strong>piegon.pro</strong> (default) - 
+          <%= link_to "Verify your domain", new_domain_verification_path, class: "link link-primary" %>
+          for better deliverability
+        </div>
+      <% end %>
       <%= campaign.errors[:from].first if campaign.errors.any? %>
     </fieldset>
 

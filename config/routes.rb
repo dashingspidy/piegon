@@ -46,7 +46,7 @@ Rails.application.routes.draw do
       get :draganddrop
     end
   end
-  resources :mail_settings
+
   resources :campaigns
   resources :domain_verifications do
     member do

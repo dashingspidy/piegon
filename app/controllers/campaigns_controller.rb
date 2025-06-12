@@ -58,7 +58,7 @@ class CampaignsController < ApplicationController
   private
 
   def campaign_params
-    params.require(:campaign).permit(:name, :subject, :header, :from, :contact_id, :email_template_id, :send_at)
+    params.require(:campaign).permit(:name, :subject, :header, :from, :contact_id, :email_template_id, :send_at, :domain_verification_id, :send_time_option)
   end
 
   def set_contact_and_template

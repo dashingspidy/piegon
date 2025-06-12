@@ -1,6 +1,30 @@
 <%= content_for :title, "Campaign Analytics" %>
 
 <h1 class="text-xl mb-4"><%= @campaign.name %> Reports</h1>
+
+<!-- Campaign Domain Info -->
+<div class="alert <%= @campaign.using_verified_domain? ? 'alert-success' : 'alert-warning' %> mb-4">
+  <div class="flex items-center gap-2">
+    <% if @campaign.using_verified_domain? %>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span>
+        <strong>Sent from verified domain:</strong> <%= @campaign.sender_domain %>
+        <br><small>Emails sent from: <%= @campaign.full_from_address %></small>
+      </span>
+    <% else %>
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+      </svg>
+      <span>
+        <strong>Sent from default domain:</strong> <%= @campaign.sender_domain %>
+        <br><small>Emails sent from: <%= @campaign.full_from_address %></small>
+        <br><small><%= link_to "Verify your domain", new_domain_verification_path, class: "link link-primary" %> for better deliverability</small>
+      </span>
+    <% end %>
+  </div>
+</div>
 <section class="mb-4">
   <div class="stats shadow">
     <div class="stat">
