@@ -41,6 +41,7 @@ jobs:
           tags: ${{ env.REGISTRY }}/dashingspidy/${{ github.event.repository.name }}:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: linux/arm64
 
       - uses: webfactory/ssh-agent@v0.9.1
         with:
