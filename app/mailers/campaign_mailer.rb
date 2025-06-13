@@ -13,6 +13,20 @@ class CampaignMailer < ApplicationMailer
       host: default_url_options[:host]
     )
 
+    # Add SendGrid tracking headers and unique args
+    headers["X-SMTPAPI"] = {
+      unique_args: {
+        campaign_id: campaign.id.to_s,
+        subscriber_id: subscriber.id.to_s,
+        user_id: campaign.user.id.to_s
+      },
+      category: [ "campaign_#{campaign.id}", "user_#{campaign.user.id}" ],
+      filters: {
+        clicktrack: { settings: { enable: 1 } },
+        opentrack: { settings: { enable: 1 } }
+      }
+    }.to_json
+
     mail(
       to: @subscriber.email,
       subject: campaign.subject,

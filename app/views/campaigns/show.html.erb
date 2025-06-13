@@ -25,94 +25,220 @@
     <% end %>
   </div>
 </div>
-<section class="mb-4">
-  <div class="stats shadow">
+
+<!-- Core Metrics -->
+<section class="mb-6">
+  <h2 class="text-lg font-semibold mb-3">Delivery & Engagement Metrics</h2>
+  <div class="stats shadow w-full">
     <div class="stat">
       <div class="stat-figure text-secondary">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke-width="2" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          class="inline-block h-8 w-8 stroke-current">
-          <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h8"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block h-8 w-8 stroke-current">
+          <path d="M22 13V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2-2v12c0 1.1.9 2 2 2h8"/>
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
           <path d="m16 19 2 2 4-4"/>
         </svg>
       </div>
-      <div class="stat-title">Total Sent</div>
-      <div class="stat-value"><%= @total_sent %></div>
-      <div class="stat-desc"></div>
+      <div class="stat-title">Delivered</div>
+      <div class="stat-value text-success"><%= number_with_delimiter(@total_delivered) %></div>
+      <div class="stat-desc"><%= @delivery_rate %>% delivery rate</div>
     </div>
 
     <div class="stat">
       <div class="stat-figure text-secondary">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke-width="2" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          class="inline-block h-8 w-8 stroke-current">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block h-8 w-8 stroke-current">
           <path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/>
           <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/>
         </svg>
       </div>
-      <div class="stat-title">Total Opened</div>
-      <div class="stat-value"><%= @total_opened %></div>
-      <div class="stat-desc"><%= @open_percentage %>%</div>
+      <div class="stat-title">Opened</div>
+      <div class="stat-value text-info"><%= number_with_delimiter(@total_opened) %></div>
+      <div class="stat-desc"><%= @open_rate %>% open rate</div>
     </div>
 
     <div class="stat">
       <div class="stat-figure text-secondary">
-        <svg 
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24" 
-          fill="none" 
-          stroke-width="2" 
-          stroke-linecap="round" 
-          stroke-linejoin="round" 
-          class="inline-block h-8 w-8 stroke-current">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block h-8 w-8 stroke-current">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        </svg>
+      </div>
+      <div class="stat-title">Clicked</div>
+      <div class="stat-value text-accent"><%= number_with_delimiter(@total_clicked) %></div>
+      <div class="stat-desc"><%= @click_rate %>% click rate</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-figure text-secondary">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block h-8 w-8 stroke-current">
           <path d="M22 10.5V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12c0 1.1.9 2 2 2h12.5"/>
           <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
           <path d="M20 14v4"/>
           <path d="M20 22v.01"/>
         </svg>
       </div>
-      <div class="stat-title">Total Bounced</div>
-      <div class="stat-value"><%= @total_bounced %></div>
-      <div class="stat-desc"><%= @bounce_percentage %>%</div>
+      <div class="stat-title">Bounced</div>
+      <div class="stat-value text-error"><%= number_with_delimiter(@total_bounced) %></div>
+      <div class="stat-desc"><%= @bounce_rate %>% bounce rate</div>
     </div>
   </div>
 </section>
 
-<section class="grid grid-cols-3 gap-2">
-  <div class="card shadow-xl col-span-2">
-    <div class="card-body">
-      <h3 class="card-title">Country</h3>
-      <%= bar_chart @country_distribution,
-        library: {
-          indexAxis: 'y',
-          scales: {
-            x: {
-              beginAtZero: true,
-              ticks: {
-                stepSize: 1,
-                precision: 0
-              }
-            }
-          }
-        } 
-      %>
+<!-- Additional Metrics -->
+<section class="mb-6">
+  <h2 class="text-lg font-semibold mb-3">Additional Metrics</h2>
+  <div class="stats shadow w-full">
+    <div class="stat">
+      <div class="stat-title">Click-to-Open Rate</div>
+      <div class="stat-value text-sm"><%= @click_to_open_rate %>%</div>
+      <div class="stat-desc">Of opened emails</div>
     </div>
-  </div>
-  <div class="card shadow-xl col-span-1">
-    <div class="card-body">
-      <h3 class="card-title">Device</h3>
-      <%= pie_chart @device_distribution, suffix: "%" %>
+
+    <div class="stat">
+      <div class="stat-title">Spam Reports</div>
+      <div class="stat-value text-sm text-warning"><%= number_with_delimiter(@total_spam_reports) %></div>
+      <div class="stat-desc"><%= @spam_rate %>% spam rate</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Unsubscribed</div>
+      <div class="stat-value text-sm text-warning"><%= number_with_delimiter(@total_unsubscribed) %></div>
+      <div class="stat-desc"><%= @unsubscribe_rate %>% unsubscribe rate</div>
+    </div>
+
+    <div class="stat">
+      <div class="stat-title">Dropped</div>
+      <div class="stat-value text-sm text-error"><%= number_with_delimiter(@total_dropped) %></div>
+      <div class="stat-desc">Before delivery</div>
     </div>
   </div>
 </section>
+
+<!-- Charts Section -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+  <!-- Country Distribution -->
+  <div class="card shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title">Opens by Country</h3>
+      <% if @country_distribution.any? %>
+        <%= bar_chart @country_distribution,
+          library: {
+            indexAxis: 'y',
+            scales: {
+              x: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1,
+                  precision: 0
+                }
+              }
+            }
+          } 
+        %>
+      <% else %>
+        <div class="text-center py-8 text-base-content/60">
+          <p>No open data available yet</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Email Client Distribution -->
+  <div class="card shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title">Email Clients</h3>
+      <% if @email_client_distribution.any? %>
+        <%= pie_chart @email_client_distribution, suffix: "%" %>
+      <% else %>
+        <div class="text-center py-8 text-base-content/60">
+          <p>No email client data available yet</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Click URLs Analysis -->
+<% if @click_url_distribution.any? %>
+<section class="mb-6">
+  <div class="card shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title">Top Clicked Links</h3>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>URL</th>
+              <th>Clicks</th>
+              <th>Percentage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% total_clicks = @click_url_distribution.values.sum %>
+            <% @click_url_distribution.sort_by { |_, count| -count }.first(10).each do |url, count| %>
+              <tr>
+                <td class="max-w-xs truncate"><%= url %></td>
+                <td><%= number_with_delimiter(count) %></td>
+                <td><%= ((count.to_f / total_clicks) * 100).round(1) %>%</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<!-- Bounce Reasons -->
+<% if @bounce_reason_distribution.any? %>
+<section class="mb-6">
+  <div class="card shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title">Bounce Reasons</h3>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>Reason</th>
+              <th>Count</th>
+              <th>Percentage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% total_bounces = @bounce_reason_distribution.values.sum %>
+            <% @bounce_reason_distribution.sort_by { |_, count| -count }.each do |reason, count| %>
+              <tr>
+                <td><%= reason %></td>
+                <td><%= number_with_delimiter(count) %></td>
+                <td><%= ((count.to_f / total_bounces) * 100).round(1) %>%</td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+<% end %>
+
+<!-- Time-based Analytics -->
+<% if @daily_activity.any? %>
+<section class="mb-6">
+  <div class="card shadow-xl">
+    <div class="card-body">
+      <h3 class="card-title">Activity Over Time (Last 30 Days)</h3>
+      <% 
+        # Transform data for charting
+        chart_data = {}
+        @daily_activity.each do |key, count|
+          date = key[0]
+          event_type = key[1]
+          chart_data[event_type] ||= {}
+          chart_data[event_type][date] = count
+        end
+      %>
+      <%= line_chart chart_data %>
+    </div>
+  </div>
+</section>
+<% end %>

@@ -16,6 +16,7 @@
         <%= image_tag "logo.svg", width: 45, alt: "Piegon" %>
         <span class="font-logo text-xl mt-6">Piegon</span>
       </div>
+      
       <li>
         <%= link_to dashboard_path, class: [active_link(dashboard_path)] do %>
           <%= image_tag "dashboard.svg", alt: "Dashboard" %><span>Dashboard</span>
@@ -57,7 +58,20 @@
           <%= image_tag "help.svg", alt: "Help" %><span>Help</span>
         <% end %>
       </li>
-      <li class="mt-auto self-center">
+      
+      <!-- Email Usage -->
+      <div class="w-full mt-auto mb-4 px-2">
+        <div class="flex justify-between text-sm mb-2">
+          <span>Email Usage</span>
+          <span><%= Current.user.email_usage_percentage %>%</span>
+        </div>
+        <progress class="progress progress-primary w-full" value="<%= Current.user.email_usage_percentage %>" max="100"></progress>
+        <div class="text-sm text-base-content/70 mt-1">
+          <%= number_with_delimiter(Current.user.emails_sent) %> of <%= number_with_delimiter(Current.user.total_available_emails) %> emails used
+        </div>
+      </div>
+      
+      <li class="self-center">
         <div class="tooltip" data-tip="logout">
           <div class="tooltip-content">
             <div>logout</div>

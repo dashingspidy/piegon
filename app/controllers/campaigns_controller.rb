@@ -8,13 +8,40 @@ class CampaignsController < ApplicationController
   end
 
   def show
+    # Core metrics
     @total_sent = @campaign.total_sent
+    @total_processed = @campaign.total_processed
+    @total_delivered = @campaign.total_delivered
     @total_opened = @campaign.total_opened
+    @total_clicked = @campaign.total_clicked
     @total_bounced = @campaign.total_bounced
+    @total_dropped = @campaign.total_dropped
+    @total_spam_reports = @campaign.total_spam_reports
+    @total_unsubscribed = @campaign.total_unsubscribed
+
+    # Rate calculations
+    @delivery_rate = @campaign.delivery_rate
+    @open_rate = @campaign.open_rate
+    @click_rate = @campaign.click_rate
+    @click_to_open_rate = @campaign.click_to_open_rate
+    @bounce_rate = @campaign.bounce_rate
+    @spam_rate = @campaign.spam_rate
+    @unsubscribe_rate = @campaign.unsubscribe_rate
+
+    # Legacy compatibility
     @open_percentage = @campaign.open_percentage
     @bounce_percentage = @campaign.bounce_percentage
+
+    # Distribution analytics
     @country_distribution = @campaign.country_distribution
     @device_distribution = @campaign.device_distribution
+    @email_client_distribution = @campaign.email_client_distribution
+    @click_url_distribution = @campaign.click_url_distribution
+    @bounce_reason_distribution = @campaign.bounce_reason_distribution
+
+    # Time-based analytics
+    @hourly_engagement = @campaign.hourly_engagement
+    @daily_activity = @campaign.daily_activity
   end
 
   def new

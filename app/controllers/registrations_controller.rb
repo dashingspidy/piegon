@@ -58,19 +58,23 @@ class RegistrationsController < ApplicationController
     @user = Current.user
     selected_plan = params[:plan]
 
+    # Validate the selected plan
     if selected_plan.present?
       unless Plan::LIMITS.keys.include?(selected_plan)
         redirect_to dashboard_path, alert: "Invalid plan selected."
         return
       end
-      @user.update!(plan: selected_plan)
     end
 
-    if @user.plan == "free"
+    # Use the selected plan for payment, but don't update user's plan yet
+    plan_for_payment = selected_plan || @user.plan
+
+    if plan_for_payment == "free"
       redirect_to dashboard_path, notice: "You are on free plan."
+      return
     end
 
-    payment_url = Payment.create_checkout(@user.plan, @user.email_address)
+    payment_url = Payment.create_checkout(plan_for_payment, @user.email_address)
     respond_to do |format|
       format.html { redirect_to payment_url.to_s, allow_other_host: true }
     end

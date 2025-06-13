@@ -8,10 +8,20 @@ class BulkCampaignService
 
   def initialize(campaign)
     @campaign = campaign
+    @user = campaign.user
   end
 
   def send_all
     subscribers = @campaign.contact.subscribers.subscribed
+    total_emails_needed = subscribers.count
+
+    # Check if user has enough email credits
+    unless @user.can_send_emails?(total_emails_needed)
+      Rails.logger.error "Campaign #{@campaign.id} cancelled - user #{@user.id} has insufficient email credits"
+      @campaign.update!(finished: true, running: false)
+      return
+    end
+
     total_batches = (subscribers.count.to_f / BATCH_SIZE).ceil
 
     Rails.logger.info "Starting campaign #{@campaign.id} - #{subscribers.count} subscribers in #{total_batches} batches"

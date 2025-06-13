@@ -1,4 +1,22 @@
 <section>
+  <!-- Email Usage Info -->
+  <div class="alert alert-info mb-6">
+    <div class="flex flex-col gap-2">
+      <div class="flex justify-between items-center">
+        <h3 class="font-semibold">Email Usage</h3>
+        <%= link_to "Manage Credits", billing_accounts_path, class: "btn btn-sm btn-primary" %>
+      </div>
+      <div class="text-sm">
+        <div class="flex justify-between">
+          <span>Used: <%= number_with_delimiter(Current.user.emails_sent) %></span>
+          <span>Available: <%= number_with_delimiter(Current.user.total_available_emails) %></span>
+          <span>Remaining: <%= number_with_delimiter(Current.user.emails_remaining) %></span>
+        </div>
+        <progress class="progress progress-primary w-full mt-2" value="<%= Current.user.email_usage_percentage %>" max="100"></progress>
+      </div>
+    </div>
+  </div>
+
   <%= form_with model: campaign, data: { controller: "send-timing" } do |form| %>
     <fieldset class="fieldset">
       <legend class="fieldset-legend">Campaign Name</legend>
@@ -9,6 +27,18 @@
     <fieldset class="fieldset">
       <legend class="fieldset-legend">Select Contact list</legend>
       <%= form.select :contact_id, @contacts.map { |c| [c.name, c.id] }, {include_blank: "Select Contact list" }, { class: "select select-secondary" } %>
+      <% if form.object.contact_id.present? %>
+        <% contact = Contact.find(form.object.contact_id) %>
+        <% subscriber_count = contact.subscribers.subscribed.count %>
+        <div class="text-sm mt-2 p-2 bg-base-200 rounded">
+          <strong>Email Cost Preview:</strong> This campaign will send to <%= number_with_delimiter(subscriber_count) %> subscribers
+          <% if Current.user.can_send_emails?(subscriber_count) %>
+            <span class="text-success">✓ You have enough credits</span>
+          <% else %>
+            <span class="text-error">⚠ Insufficient credits! You need <%= number_with_delimiter(subscriber_count) %> but only have <%= number_with_delimiter(Current.user.emails_remaining) %></span>
+          <% end %>
+        </div>
+      <% end %>
       <%= campaign.errors[:contact_id].first if campaign.errors.any? %>
     </fieldset>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_12_120218) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_13_191503) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -59,8 +59,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_120218) do
     t.integer "subscriber_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "sendgrid_event_id"
+    t.string "reason"
+    t.string "url"
+    t.string "email_client"
+    t.string "category"
+    t.json "unique_args"
+    t.bigint "timestamp"
+    t.string "smtp_id"
     t.index ["campaign_id"], name: "index_campaign_events_on_campaign_id"
+    t.index ["event_type"], name: "index_campaign_events_on_event_type"
+    t.index ["sendgrid_event_id"], name: "index_campaign_events_on_sendgrid_event_id", unique: true
     t.index ["subscriber_id"], name: "index_campaign_events_on_subscriber_id"
+    t.index ["timestamp"], name: "index_campaign_events_on_timestamp"
   end
 
   create_table "campaigns", force: :cascade do |t|
@@ -176,6 +187,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_06_12_120218) do
     t.string "provider"
     t.string "uid"
     t.string "name"
+    t.integer "emails_sent", default: 0
+    t.integer "additional_emails", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end

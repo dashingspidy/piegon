@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
   post "webhook", to: "accounts#webhook"
+  post "sendgrid/webhook", to: "sendgrid_webhooks#webhook"
   get "tracking/open", to: "tracking#open", as: :tracking_pixel
   post "token", to: "email_templates#token"
 
@@ -31,6 +32,7 @@ Rails.application.routes.draw do
       get :profile
       get :billing
       patch :update_password
+      post :purchase_email_credits
     end
   end
   resources :contacts do
