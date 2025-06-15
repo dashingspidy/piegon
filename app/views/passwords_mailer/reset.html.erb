@@ -1,9 +1,11 @@
 <h2>Password Reset</h2>
-<p>Hello,</p>
+<p><strong>Hello,</strong></p>
 <p>You can reset your password within the next 15 minutes by clicking the button below:</p>
-<div style="text-align: center;">
+
+<div style="text-align: center; margin: 30px 0;">
   <%= link_to "Reset Password", edit_password_url(@user.password_reset_token), class: "btn" %>
 </div>
+
 <p>If you didn't request a password reset, you can safely ignore this email. Your password will remain unchanged.</p>
-<p>If the button doesn't work, you can copy and paste this link into your browser:</p>
-<p style="word-break: break-all;"><%= edit_password_url(@user.password_reset_token) %></p>
+<p>If the button doesn't work, copy and paste this link into your browser:</p>
+<p style="word-break: break-all; font-family: monospace; background-color: #f5f5f5; padding: 10px; border: 1px solid #cccccc;"><%= edit_password_url(@user.password_reset_token) %></p>
