@@ -1,5 +1,4 @@
 <%= @rendered_body.present? ? @rendered_body.html_safe : "" %>
-<img src="<%= tracking_pixel_url(campaign_id: @campaign.id, subscriber_id: @subscriber.id) %>" width="1" height="1" style="display:none;" />
 <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #666; text-align: center;">
   <p>
     If you would like to unsubscribe from these emails, 

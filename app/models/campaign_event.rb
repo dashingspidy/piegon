@@ -61,8 +61,22 @@ class CampaignEvent < ApplicationRecord
   end
 
   def skip_duplicate_open_event
-    if open_event? && CampaignEvent.find_by(campaign_id: campaign_id, subscriber_id: subscriber_id, event_type: "open").present?
-      throw(:abort)
+    return unless open_event?
+
+    # If this event has a SendGrid Event ID, only check for duplicates with the same SendGrid Event ID
+    if sendgrid_event_id.present?
+      existing_event = CampaignEvent.find_by(sendgrid_event_id: sendgrid_event_id)
+      throw(:abort) if existing_event.present?
+    else
+      # For events without SendGrid Event ID, check for any existing open event for this campaign/subscriber
+      # but only if there's no existing event with a SendGrid Event ID
+      existing_events = CampaignEvent.where(campaign_id: campaign_id, subscriber_id: subscriber_id, event_type: "open")
+      existing_with_sendgrid_id = existing_events.where.not(sendgrid_event_id: [ nil, "" ])
+      existing_without_sendgrid_id = existing_events.where(sendgrid_event_id: [ nil, "" ])
+
+      # Allow if there are only events with SendGrid IDs (this is a manual/system event)
+      # Block if there are already events without SendGrid IDs
+      throw(:abort) if existing_without_sendgrid_id.present?
     end
   end
 

@@ -18,7 +18,7 @@
             <div class="mt-2"><%= campaign.running ? "Running" : "Start at: #{l(campaign.send_at, format: :long)}".html_safe %></div>
         <% end %>
         <% if !campaign.running && !campaign.finished %>
-          <%= link_to "Edit", edit_campaign_path(campaign), class: "btn btn-secondary" %>
+        <%= link_to "Edit", edit_campaign_path(campaign), class: "btn btn-secondary" %>
         <% end %>
         <%= button_to "Delete", campaign_path(campaign), method: :delete, data: { turbo_confirm: "Are you sure?"}, class: "btn btn-warning" %>
       </li>

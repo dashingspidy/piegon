@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :tickets, except: [ :edit, :update, :destroy ] do
     post "reply", to: "tickets#reply"
   end
-  get "tracking/open"
   mount MissionControl::Jobs::Engine, at: "/jobs"
   root "home#index"
   get "privacy-policy", to: "home#privacy"
@@ -18,7 +17,7 @@ Rails.application.routes.draw do
   post "embed/:api_token", to: "subscribers#embed"
   post "webhook", to: "accounts#webhook"
   post "sendgrid/webhook", to: "sendgrid_webhooks#webhook"
-  get "tracking/open", to: "tracking#open", as: :tracking_pixel
+
   post "token", to: "email_templates#token"
 
   resource :registration, only: [ :new, :create ]

@@ -7,11 +7,6 @@ class CampaignMailer < ApplicationMailer
     @campaign = campaign
     @rendered_body = render_template(campaign.email_template.body)
     @unsubscribe_url = generate_unsubscribe_url(subscriber)
-    @tracking_pixel_url = Rails.application.routes.url_helpers.tracking_pixel_url(
-      campaign_id: @campaign.id,
-      subscriber_id: @subscriber.id,
-      host: default_url_options[:host]
-    )
 
     # Add SendGrid tracking headers and unique args
     headers["X-SMTPAPI"] = {
