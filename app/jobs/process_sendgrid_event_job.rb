@@ -5,10 +5,13 @@ class ProcessSendgridEventJob < ApplicationJob
   discard_on ActiveRecord::RecordNotFound
 
   def perform(event_data)
-    # Extract campaign and subscriber info from unique_args or custom headers
-    unique_args = event_data["unique_args"] || {}
-    campaign_id = unique_args["campaign_id"] || extract_from_smtp_id(event_data["smtp-id"])
-    subscriber_id = unique_args["subscriber_id"]
+    # Extract campaign and subscriber info from event data or unique_args
+    campaign_id = event_data["campaign_id"] ||
+                  event_data.dig("unique_args", "campaign_id") ||
+                  extract_from_smtp_id(event_data["smtp-id"])
+
+    subscriber_id = event_data["subscriber_id"] ||
+                    event_data.dig("unique_args", "subscriber_id")
 
     return unless campaign_id && subscriber_id
 

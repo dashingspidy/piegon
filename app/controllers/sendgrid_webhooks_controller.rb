@@ -4,7 +4,11 @@ class SendgridWebhooksController < ApplicationController
 
   def webhook
     # Parse the events from the request body
-    events = params["_json"] || JSON.parse(request.body.read)
+    events = if params["_json"].present?
+               params["_json"].map(&:to_unsafe_h)
+    else
+               JSON.parse(request.body.read)
+    end
 
     events.each do |event|
       ProcessSendgridEventJob.perform_later(event)
