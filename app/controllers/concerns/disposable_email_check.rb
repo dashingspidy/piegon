@@ -21,7 +21,7 @@ module DisposableEmailCheck
   private
 
   def email_is_not_disposable
-    error.add(:email_address, "is from a disposable email provider") if disposable_email?
+    errors.add(:email_address, "is from a disposable email provider") if disposable_email?
   end
 
   def disposable_domains
