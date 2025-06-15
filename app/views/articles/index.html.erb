@@ -1,0 +1,67 @@
+<% content_for :title, "Blog" %>
+<% content_for :keywords, "email marketing blog, SaaS articles, marketing insights" %>
+<% content_for :description, "Discover expert insights on email marketing, SaaS growth, and business automation strategies." %>
+
+<% if @latest_article %>
+  <section>
+    <div class="hero bg-prim min-h-[70vh] mb-4">
+      <div class="hero-content flex-col lg:flex-row-reverse">
+        <% if @latest_article.cover_image.attached? %>
+          <%= image_tag @latest_article.cover_image, alt: @latest_article.title, class: "max-w-sm rounded-lg shadow-md" %>
+        <% end %>
+        <div>
+          <h1 class="text-5xl font-bold"><%= @latest_article.title %></h1>
+          <p class="py-6">
+            <%= html_excerpt(@latest_article.content, 210) %>
+          </p>
+          <%= link_to "Read More", article_path(@latest_article), class: "btn" %>
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>
+
+<section class="max-w-(--breakpoint-xl) mx-auto mb-12">
+  <% if @articles.any? %>
+    <div class="grid gap-4 xl:grid-cols-3 grid-cols-1">
+      <% @articles.each do |article| %>
+        <div class="card bg-base-100 shadow-md shadow-chambray rounded-md">
+          <%= link_to article_path(article) do %>
+          <% if article.cover_image.attached? %>
+            <figure class="h-48 overflow-hidden p-2">
+              <%= image_tag article.cover_image, alt: article.title, class: "w-full h-full object-cover rounded-md" %>
+            </figure>
+          <% end %>
+          
+          <div class="card-body">
+              <div class="flex items-end justify-end">
+                <%= article.reading_time %> MIN READ
+              </div>
+            
+            <h2 class="card-title text-lg leading-tight line-clamp-2 font-normal">
+              <%= article.title %>
+            </h2>
+            
+            <p class="text-base-content/80 leading-relaxed line-clamp-3 font-normal">
+              <%= html_excerpt(article.content, 150) %>
+            </p>
+            
+            <div class="flex flex-wrap gap-1">
+              <% article.keywords.split(',').first(3).each do |keyword| %>
+                <div class="badge badge-sm badge-soft"><%= keyword.strip %></div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <% if @pagy.pages > 1 %>
+    <div class="flex justify-center mt-8">
+      <div class="join">
+        <%= pagy_nav(@pagy).html_safe %>
+      </div>
+    </div>
+  <% end %>
+</section>

@@ -10,20 +10,17 @@
   <% end %>
 </section>
 
-<!-- Tabbed Content -->
 <div class="mt-8">
   <div class="tabs tabs-border">
-    <!-- Email Credits Tab -->
     <input type="radio" name="billing_tabs" class="tab" aria-label="Email Credits" checked="checked" />
     <div class="tab-content border-base-300 bg-base-100 p-6">
-      <h2 class="text-xl font-bold mb-4">Email Credits Dashboard</h2>
+      <h2 class="text-xl font-bold mb-4">Email Credits</h2>
       
-      <!-- Usage Overview -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <div class="stat bg-primary text-primary-content rounded-lg">
           <div class="stat-title text-primary-content/70">Plan Limit</div>
           <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:limit) || 0) %></div>
-          <div class="stat-desc text-primary-content/70">emails per month</div>
+          <div class="stat-desc text-primary-content/70">once</div>
         </div>
 
         <div class="stat bg-secondary text-secondary-content rounded-lg">
@@ -47,8 +44,8 @@
       <!-- Purchase Additional Credits -->
       <div class="card bg-base-100 shadow-xl">
         <div class="card-body">
-          <h3 class="card-title text-xl mb-4">Purchase Additional Email Credits</h3>
-          <p class="text-base-content/70 mb-6">Need more emails? Purchase additional credits that never expire!</p>
+          <h3 class="card-title text-xl">Purchase Additional Email Credits</h3>
+          <p class="text-base-content/70">Need more emails? Purchase additional credits that never expire!</p>
 
           <div class="max-w-md">
             <!-- Email Credits Package -->
@@ -104,13 +101,9 @@
       </script>
     </div>
 
-    <!-- Plan Tab -->
     <input type="radio" name="billing_tabs" class="tab" aria-label="Plan" />
-    <div class="tab-content border-base-300 bg-base-100 p-6">
-      <h2 class="text-xl font-bold mb-4">Plan Management</h2>
-      
+    <div class="tab-content border-base-300 bg-base-100 p-6">      
       <% if Current.user.plan == "free" %>
-        <!-- Plan Upgrade Section for Free Users -->
         <div class="flex gap-2">
           <div class="card w-96 border-2">
             <div class="card-body">

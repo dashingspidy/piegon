@@ -1,0 +1,45 @@
+<footer class="p-8 bg-white border-t border-gray-100">
+  <div class="mx-auto max-w-(--breakpoint-xl)">
+    <div class="flex flex-col md:flex-row md:justify-between gap-8">
+      <div class="mb-0">
+        <%= link_to root_path, class: "flex items-center" do %>
+        <span class="self-center mt-3 font-logo text-2xl whitespace-nowrap">Piegon</span>
+        <% end %>
+        <div class="flex">
+        <span class="mr-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E1D6DC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </span>
+        <a href="mailto:arif@piegon.pro">arif@piegon.pro</a>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        <div>
+          <h2 class="mb-6 text-base font-semibold">Resources</h2>
+          <ul>
+            <li class="mb-4">
+              <%= link_to "FAQ", "#{help_path}#faq", class: "hover:underline" %>
+            </li>
+            <li>
+              <%= link_to "Contact Us", "#{help_path}#contact", class: "hover:underline" %>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-6 text-base font-semibold">Legal</h2>
+          <ul>
+            <li class="mb-4">
+              <%= link_to "Privacy Policy", privacy_policy_path , class: "hover:underline" %>
+            </li>
+            <li>
+              <%= link_to "Terms and Conditions", term_and_conditions_path, class: "hover:underline" %>                        
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <hr class="my-6 border-gray-200" />
+    <div class="flex items-center justify-center">
+      <span class="text-sm">© <%= Date.current.year %> <%= link_to "Piegon", root_path, class: "hover:underline" %>. All Rights Reserved.</span>
+    </div>
+  </div>
+</footer>

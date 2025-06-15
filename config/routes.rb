@@ -56,4 +56,6 @@ Rails.application.routes.draw do
       post :check_status
     end
   end
+
+  resources :articles, only: [ :index, :show ]
 end

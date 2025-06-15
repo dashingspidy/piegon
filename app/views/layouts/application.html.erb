@@ -9,7 +9,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="turbo-prefetch" content="false">
     
-    <meta name="description" content="Pay once for lifetime email marketing with Piegon. Connect SMTP, launch campaigns, and track results — no monthly fees.">
+    <meta name="description" content="<%= content_for(:description) || "Pay once for lifetime email marketing with Piegon. Connect SMTP, launch campaigns, and track results — no monthly fees." %>">
     <meta name="keywords" content="<%= content_for(:keywords) || "email marketing platform, affordable email marketing, cost-effective email marketing, email marketing for businesses, unlimited email campaigns, mailchimp alternative" %>">
     
     <meta property="og:title" content="Piegon - <%= content_for(:title) || "Send marketing email with ease" %>">
@@ -51,7 +51,7 @@
         <%= render "layouts/flash" %>
         <%= yield %>
       </main>
+      <%= render "layouts/footer" %>
     <% end %>
-    
   </body>
 </html>

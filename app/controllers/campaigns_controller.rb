@@ -71,6 +71,9 @@ class CampaignsController < ApplicationController
     end
 
     if @campaign.update(campaign_params)
+      unless @campaign.running? || @campaign.finished?
+        schedule_campaign_emails(@campaign)
+      end
       redirect_to campaigns_path, notice: "Campaign updated successfully."
     else
       render :edit, status: :unprocessable_entity
@@ -98,6 +101,10 @@ class CampaignsController < ApplicationController
   end
 
   def schedule_campaign_emails(campaign)
-    CampaignSchedulerJob.perform_later(campaign.id)
+    if campaign.send_at <= Time.current
+      CampaignSchedulerJob.perform_later(campaign.id)
+    else
+      CampaignSchedulerJob.set(wait_until: campaign.send_at).perform_later(campaign.id)
+    end
   end
 end

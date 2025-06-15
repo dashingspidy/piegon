@@ -54,3 +54,5 @@ end
 
 gem "chartkick"
 gem "groupdate"
+
+gem "ruby-openai"

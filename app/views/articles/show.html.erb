@@ -1,0 +1,41 @@
+<% content_for :title, @article.title %>
+<% content_for :keywords, @article.keywords %>
+<% content_for :description, @article.meta_description %>
+
+<div class="max-w-4xl mx-auto">
+  <div class="breadcrumbs text-sm mb-6">
+    <ul>
+      <li>
+        <%= link_to articles_path, class: "link link-hover" do %>
+          <%= image_tag "newspaper.svg", class: "w-6 h-6" %>
+          Articles
+        <% end %>
+      </li>
+      <li class="text-base-content/60"><%=@article.title %></li>
+    </ul>
+  </div>
+
+  <article>
+    <header>
+      <h1 class="text-4xl font-black leading-tight mb-6"><%= @article.title %></h1>
+      <% if @article.cover_image.attached? %>
+        <figure class="h-80">
+          <%= image_tag @article.cover_image, alt: @article.title, class: "w-full h-full object-cover rounded-md" %>
+        </figure>
+      <% end %>
+
+      <div class="flex items-center justify-between gap-2 mt-4 p-1">
+        <div class="flex flex-wrap gap-2">
+          <% @article.keywords.split(',').each do |keyword| %>
+            <div class="badge badge-soft badge-info"><%= keyword.strip %></div>
+          <% end %>
+        </div>
+        <%= @article.reading_time %> MIN READ
+      </div>
+    </header>
+    <div class="article-content mt-6 mb-6">
+      <div class="leading-relaxed text-base-content">
+        <%= render_html(@article.content) %>
+      </div>
+    </div>
+  </article>

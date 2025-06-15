@@ -116,7 +116,7 @@
 <!-- Charts Section -->
 <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
   <!-- Country Distribution -->
-  <div class="card shadow-xl">
+  <div class="card shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Opens by Country</h3>
       <% if @country_distribution.any? %>
@@ -143,7 +143,7 @@
   </div>
 
   <!-- Email Client Distribution -->
-  <div class="card shadow-xl">
+  <div class="card shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Email Clients</h3>
       <% if @email_client_distribution.any? %>
@@ -157,10 +157,9 @@
   </div>
 </section>
 
-<!-- Click URLs Analysis -->
 <% if @click_url_distribution.any? %>
 <section class="mb-6">
-  <div class="card shadow-xl">
+  <div class="card shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Top Clicked Links</h3>
       <div class="overflow-x-auto">
@@ -192,7 +191,7 @@
 <!-- Bounce Reasons -->
 <% if @bounce_reason_distribution.any? %>
 <section class="mb-6">
-  <div class="card shadow-xl">
+  <div class="card shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Bounce Reasons</h3>
       <div class="overflow-x-auto">
@@ -224,7 +223,7 @@
 <!-- Time-based Analytics -->
 <% if @daily_activity.any? %>
 <section class="mb-6">
-  <div class="card shadow-xl">
+  <div class="card shadow-sm">
     <div class="card-body">
       <h3 class="card-title">Activity Over Time (Last 30 Days)</h3>
       <% 

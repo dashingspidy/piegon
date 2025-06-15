@@ -3,9 +3,13 @@ class CampaignSchedulerJob < ApplicationJob
 
   def perform(campaign_id)
     campaign = Campaign.find(campaign_id)
+
+    return if campaign.running? || campaign.finished?
+
     campaign.update!(running: true)
 
-    # Use bulk service for better rate limiting and performance
     BulkCampaignService.send_campaign(campaign)
+
+    campaign.update!(finished: true, running: false)
   end
 end
