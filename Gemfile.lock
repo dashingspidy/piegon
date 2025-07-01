@@ -360,7 +360,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.3.0)
-    rdoc (6.14.0)
+    rdoc (6.14.1)
       erb
       psych (>= 4.0.0)
     regexp_parser (2.10.0)
@@ -461,7 +461,7 @@ GEM
     thruster (0.1.13-x86_64-darwin)
     thruster (0.1.13-x86_64-linux)
     timeout (0.4.3)
-    turbo-rails (2.0.13)
+    turbo-rails (2.0.16)
       actionpack (>= 7.1.0)
       railties (>= 7.1.0)
     tzinfo (2.0.6)
