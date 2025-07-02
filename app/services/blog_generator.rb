@@ -90,12 +90,19 @@ class BlogGenerator
         - Data-driven: Reference relevant email marketing statistics and benchmarks when possible
         - Practical: Prioritize actionable tactics and real-world examples readers can apply today
 
+        ## Writing Style Guidelines
+        - Use clear, direct sentences with minimal punctuation complexity
+        - Avoid excessive use of em dashes, semicolons, or complex punctuation
+        - Prefer simple periods, commas, and occasional colons for better readability
+        - Use parentheses sparingly for brief clarifications or citations
+        - Keep sentences concise and easy to scan
+
         ## Content Requirements
-        1. **SEO-optimized title** under 60 characters — include the target keyword, ideally at the beginning
-        2. **Compelling hook** — open with a challenge, surprising statistic, or relatable success story
+        1. **SEO-optimized title** under 60 characters (include the target keyword, ideally at the beginning)
+        2. **Compelling hook** (open with a challenge, surprising statistic, or relatable success story)
         3. **Well-structured body** using clear H2 and H3 headings (with keyword variations)
-        4. **Actionable takeaways** in every section — focus on what the reader can *do*
-        5. **Scannable format** — use short paragraphs, HTML bullet points, and emphasis sparingly
+        4. **Actionable takeaways** in every section (focus on what the reader can *do*)
+        5. **Scannable format** (use short paragraphs, HTML bullet points, and emphasis sparingly)
         6. **Natural integration** of email marketing best practices (e.g., list hygiene, A/B testing, segmentation)
         7. **Strong conclusion** with actionable next steps for improving email marketing
         8. **Avoid all AI disclaimers or generic language** (e.g., "As an AI model...")
@@ -122,10 +129,10 @@ class BlogGenerator
 
         ## Response Format (MANDATORY)
         TITLE: [SEO title with keyword, under 60 characters]
-        META_DESCRIPTION: [Compelling 150–160 character meta description with target keyword]
+        META_DESCRIPTION: [Compelling 150-160 character meta description with target keyword]
 
         ARTICLE:
-        [Complete, comprehensive blog post — 2500–4000 words, HTML formatted]
+        [Complete, comprehensive blog post (2500-4000 words, HTML formatted)]
 
         IMPORTANT: Do not include the title as a heading (<h1>Title</h1>) in the ARTICLE section. The title should only appear in the TITLE section.
 
@@ -149,23 +156,30 @@ class BlogGenerator
         - Engaging: Use short, punchy headers and compelling examples or stats
         - Lightly persuasive: Naturally highlight how email marketing tools can support these strategies
 
+        ## Writing Style Guidelines
+        - Use clear, direct sentences with minimal punctuation complexity
+        - Avoid excessive use of em dashes, semicolons, or complex punctuation
+        - Prefer simple periods, commas, and occasional colons for better readability
+        - Use parentheses sparingly for brief clarifications or citations
+        - Keep sentences concise and easy to scan
+
         ## Listicle Structure Requirements
         1. **SEO-optimized title** with a number + keyword (under 60 characters)
         2. **Compelling intro** that frames the challenge and hooks the reader
         3. **Each list item:**
           - Clear H3 heading
-          - 1–3 short paragraphs
+          - 1-3 short paragraphs
           - Include one action tip or takeaway
           - Use stats or examples where possible
-        4. **Scannable format** — short paragraphs, bullet points, bold for key ideas
+        4. **Scannable format** (short paragraphs, bullet points, bold for key ideas)
         5. **Strong conclusion** with actionable next steps for implementation
 
         ## Response Format
         TITLE: [SEO title with keyword and number]
-        META_DESCRIPTION: [150–160 character summary with keyword and benefit]
+        META_DESCRIPTION: [150-160 character summary with keyword and benefit]
 
         ARTICLE:
-        [Complete comprehensive listicle — 2500–4000 words, HTML formatted]
+        [Complete comprehensive listicle (2500-4000 words, HTML formatted)]
 
         IMPORTANT: Do not include the title as a heading (<h1>Title</h1>) in the ARTICLE section. The title should only appear in the TITLE section.
 
@@ -188,6 +202,13 @@ class BlogGenerator
         - Supportive: Reassure users with tips, examples, and common pitfalls
         - Practical: Emphasize outcomes, not theory
 
+        ## Writing Style Guidelines
+        - Use clear, direct sentences with minimal punctuation complexity
+        - Avoid excessive use of em dashes, semicolons, or complex punctuation
+        - Prefer simple periods, commas, and occasional colons for better readability
+        - Use parentheses sparingly for brief clarifications or citations
+        - Keep sentences concise and easy to scan
+
         ## Guide Structure Requirements
         1. **SEO-optimized title** starting with "How to..." or "Step-by-step guide..." (under 60 characters)
         2. **Hook**: Identify the problem readers face + promise of solution
@@ -200,10 +221,10 @@ class BlogGenerator
 
         ## Response Format
         TITLE: [SEO title with keyword, e.g. "How to Set Up a Welcome Email Series"]
-        META_DESCRIPTION: [150–160 char summary with keyword + benefit of guide]
+        META_DESCRIPTION: [150-160 char summary with keyword + benefit of guide]
 
         ARTICLE:
-        [Complete comprehensive how-to guide — 2500–4000 words, HTML formatted]
+        [Complete comprehensive how-to guide (2500-4000 words, HTML formatted)]
 
         IMPORTANT: Do not include the title as a heading (<h1>Title</h1>) in the ARTICLE section. The title should only appear in the TITLE section.
 
@@ -226,6 +247,13 @@ class BlogGenerator
         - Helpful: Act as a guide to help readers make informed decisions
         - Professional: Avoid sounding salesy, stay factual and focused on value
 
+        ## Writing Style Guidelines
+        - Use clear, direct sentences with minimal punctuation complexity
+        - Avoid excessive use of em dashes, semicolons, or complex punctuation
+        - Prefer simple periods, commas, and occasional colons for better readability
+        - Use parentheses sparingly for brief clarifications or citations
+        - Keep sentences concise and easy to scan
+
         ## Comparison Article Requirements
         1. **SEO title** that includes keywords and product names (under 60 characters)
         2. **Intro** that explains what's being compared and who the article is for
@@ -238,10 +266,10 @@ class BlogGenerator
 
         ## Response Format
         TITLE: [SEO title, e.g. "Email Platform Comparison: Which Is Better for SMBs?"]
-        META_DESCRIPTION: [150–160 character summary with keyword and main takeaway]
+        META_DESCRIPTION: [150-160 character summary with keyword and main takeaway]
 
         ARTICLE:
-        [Complete comprehensive comparison post — 2500–4000 words, HTML formatted]
+        [Complete comprehensive comparison post (2500-4000 words, HTML formatted)]
 
         IMPORTANT: Do not include the title as a heading (<h1>Title</h1>) in the ARTICLE section. The title should only appear in the TITLE section.
 
@@ -278,6 +306,14 @@ class BlogGenerator
       - Create multiple detailed sections with substantial content in each
       - Provide thorough coverage of the topic from multiple angles
       - Include step-by-step processes, troubleshooting tips, and best practices
+
+      WRITING STYLE REQUIREMENTS:
+      - Use clean, readable writing with simple punctuation
+      - AVOID using em dashes (—) throughout the content
+      - Use periods, commas, and colons for sentence structure
+      - Keep parentheses minimal (only for brief clarifications or citations)
+      - Write clear, direct sentences that are easy to scan and read
+      - Prefer shorter sentences over complex, heavily punctuated ones
     ADDITIONAL
 
     prompt
