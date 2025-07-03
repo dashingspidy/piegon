@@ -56,3 +56,7 @@ gem "chartkick"
 gem "groupdate"
 
 gem "ruby-openai"
+
+gem "posthog-ruby"
+gem "sentry-ruby"
+gem "sentry-rails"

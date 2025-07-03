@@ -12,6 +12,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.10",
     "@rails/actiontext": "^8.0.200",
+    "@sentry/browser": "^9.34.0",
     "autoprefixer": "^10.4.20",
     "chart.js": "^4.4.9",
     "chartkick": "^5.0.1",
