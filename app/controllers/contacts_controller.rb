@@ -33,8 +33,14 @@ class ContactsController < ApplicationController
   end
 
   def destroy
-    @contact.destroy
-    redirect_to contacts_path, alert: "Contact list deleted."
+    begin
+      @contact.destroy
+      redirect_to contacts_path, notice: "Contact list and all associated data deleted successfully."
+    rescue ActiveRecord::RecordNotDestroyed
+      redirect_to contacts_path, alert: "Unable to delete contact list. It may have associated campaigns or subscribers."
+    rescue ActiveRecord::InvalidForeignKey
+      redirect_to contacts_path, alert: "Cannot delete contact list because it has associated campaigns or subscribers."
+    end
   end
 
   private

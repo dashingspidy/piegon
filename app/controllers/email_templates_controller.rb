@@ -65,8 +65,16 @@ class EmailTemplatesController < ApplicationController
   end
 
   def destroy
-    @email_template.destroy
-    redirect_to email_templates_path, notice: "Email template successfully deleted."
+    begin
+      @email_template.destroy!
+      redirect_to email_templates_path, notice: "Email template successfully deleted."
+    rescue ActiveRecord::RecordNotDestroyed
+      redirect_to email_templates_path,
+                  alert: "Unable to delete template because it is being used by campaign."
+    rescue ActiveRecord::InvalidForeignKey
+      redirect_to email_templates_path,
+                  alert: "Unable to delete template because it is currently in use. Please delete or update any campaigns using this template."
+    end
   end
 
   def draganddrop

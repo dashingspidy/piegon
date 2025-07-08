@@ -12,7 +12,7 @@ class CsvImportJob < ApplicationJob
 
     @contact.csv_uploader.csv_file.open do |temp|
       batch = []
-      CSV.foreach(temp, headers: true) do |row|
+      CSV.foreach(temp, headers: true, encoding: "UTF-8:UTF-8", liberal_parsing: true) do |row|
         @processed += 1
         mapped_attributes = map_attributes(row, column_mapping)
         if should_import?(mapped_attributes)
@@ -33,6 +33,24 @@ class CsvImportJob < ApplicationJob
   end
 
   private
+
+  def detect_and_parse_csv(temp_file)
+    # Try different encodings
+    encodings = [ "UTF-8:UTF-8", "ISO-8859-1:UTF-8", "Windows-1252:UTF-8", "BOM|UTF-8" ]
+
+    encodings.each do |encoding|
+      begin
+        temp_file.rewind
+        return CSV.foreach(temp_file, headers: true, encoding: encoding)
+      rescue CSV::InvalidEncodingError, ArgumentError
+        next
+      end
+    end
+
+    # If all encodings fail, try with liberal parsing
+    temp_file.rewind
+    CSV.foreach(temp_file, headers: true, encoding: "UTF-8:UTF-8", liberal_parsing: true)
+  end
 
   def map_attributes(row, column_mapping)
     mapped_attributes = {}

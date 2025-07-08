@@ -11,7 +11,7 @@ class SubscribersController < ApplicationController
     @csv_upload = CsvUploader.new
     if @contact.csv_uploader
       @contact.csv_uploader.csv_file.open do |temp|
-        @headers = CSV.foreach(temp, headers: false).first
+        @headers = detect_csv_headers(temp)
       end
     end
     @columns = [ "email" ]
@@ -26,7 +26,7 @@ class SubscribersController < ApplicationController
     @csv_upload = @contact.build_csv_uploader(params.require(:csv_uploader).permit(:csv_file))
     if @csv_upload.save
       @csv_upload.csv_file.open do |temp|
-        @headers = CSV.foreach(temp, headers: false).first
+        @headers = detect_csv_headers(temp)
       end
       @columns = [ "email" ]
       render turbo_stream: turbo_stream.replace(
@@ -87,5 +87,23 @@ class SubscribersController < ApplicationController
 
   def subscribers_params
     params.require(:subscriber).permit(:email)
+  end
+
+  def detect_csv_headers(temp_file)
+    # Try different encodings for header detection
+    encodings = [ "UTF-8:UTF-8", "ISO-8859-1:UTF-8", "Windows-1252:UTF-8", "BOM|UTF-8" ]
+
+    encodings.each do |encoding|
+      begin
+        temp_file.rewind
+        return CSV.foreach(temp_file, headers: false, encoding: encoding).first
+      rescue CSV::InvalidEncodingError, ArgumentError
+        next
+      end
+    end
+
+    # If all encodings fail, try with liberal parsing
+    temp_file.rewind
+    CSV.foreach(temp_file, headers: false, encoding: "UTF-8:UTF-8", liberal_parsing: true).first
   end
 end
