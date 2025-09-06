@@ -3,7 +3,7 @@ image: dashingspidy/piegon
 
 servers:
   web:
-    - 168.119.115.216
+    - 144.202.94.74
 
 proxy:
   ssl: true
