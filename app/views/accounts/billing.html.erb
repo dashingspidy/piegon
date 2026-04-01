@@ -1,273 +1,61 @@
 <section>
-  <h1 class="text-2xl font-bold">Billing</h1>
-  <p>Current Plan: <span class="font-black text-xl"><%=  Current.user.plan %></span></p>
-  <% unless Current.user.plan == "free" %>
-    <p>Status: <%= Current.user.customer_id ? "Paid" : "Unpaid" %></p>
-  <% end %>
-  <% if Current.user.customer_id? %>
-    <p class="mt-2 font-bold text-lg">Customer Portal: You can see your payments and other details. Provided by Creem.io</p>
-    <%= link_to "Customer Portal", customer_portal_path, class: "btn btn-secondary" %>
-  <% end %>
+  <h1 class="text-2xl font-bold">Usage</h1>
+  <p>Current Plan: <span class="font-black text-xl"><%= Current.user.plan %></span></p>
+  <p class="mt-2 text-base-content/70">Payment and checkout integrations have been removed from this open-source version.</p>
 </section>
 
 <div class="mt-8">
-  <div class="tabs tabs-border">
-    <input type="radio" name="billing_tabs" class="tab" aria-label="Email Credits" checked="checked" />
-    <div class="tab-content border-base-300 bg-base-100 p-6">
-      <h2 class="text-xl font-bold mb-4">Email Credits</h2>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <div class="stat bg-primary text-primary-content rounded-lg">
-          <div class="stat-title text-primary-content/70">Plan Limit</div>
-          <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:limit) || 0) %></div>
-          <div class="stat-desc text-primary-content/70">once</div>
-        </div>
-
-        <div class="stat bg-secondary text-secondary-content rounded-lg">
-          <div class="stat-title text-secondary-content/70">Additional Credits</div>
-          <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:additional) || 0) %></div>
-          <div class="stat-desc text-secondary-content/70">purchased</div>
-        </div>
-
-        <div class="stat bg-accent text-accent-content rounded-lg">
-          <div class="stat-title text-accent-content/70">Emails Sent</div>
-          <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:sent) || 0) %></div>
-          <div class="stat-desc text-accent-content/70">this period</div>
-        </div>
-
-        <div class="stat bg-neutral text-neutral-content rounded-lg">
-          <div class="stat-title text-neutral-content/70">Remaining</div>
-          <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:remaining) || 0) %></div>
-          <div class="stat-desc text-neutral-content/70">emails left</div>
-        </div>
-      </div>
-      <!-- Purchase Additional Credits -->
-      <div class="card bg-base-100 shadow-xl">
-        <div class="card-body">
-          <h3 class="card-title text-xl">Purchase Additional Email Credits</h3>
-          <p class="text-base-content/70">Need more emails? Purchase additional credits that never expire!</p>
-
-          <div class="max-w-md">
-            <!-- Email Credits Package -->
-            <%= form_with url: purchase_email_credits_accounts_path, method: :post, local: true, data: { turbo: false } do |form| %>
-              <div class="flex items-center gap-3 mb-4">
-                <label class="text-sm font-medium">Units:</label>
-                <%= form.number_field :units, 
-                    min: 1, 
-                    value: 1, 
-                    required: true,
-                    class: "input input-bordered input-sm w-20",
-                    onchange: "updateTotal()" %>
-                <span class="text-sm text-base-content/70">× 10,000 credits = <span id="total-credits" class="font-semibold">10,000 credits</span></span>
-              </div>
-
-              <div class="card bg-base-100 shadow">
-                <div class="card-body">
-                  <h3 class="card-title">Email Credits</h3>
-                  <div class="stats">
-                    <div class="stat">
-                      <div class="stat-title">Price per Unit</div>
-                      <div class="stat-value text-primary">$10.00</div>
-                      <div class="stat-desc">$0.001 per email</div>
-                    </div>
-                    <div class="stat">
-                      <div class="stat-title">Total Cost</div>
-                      <div class="stat-value" id="total-price">$10.00</div>
-                      <div class="stat-desc">Including all credits</div>
-                    </div>
-                  </div>
-                  <div class="card-actions justify-end">
-                    <%= form.submit "Purchase Credits", class: "btn btn-neutral" %>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <script>
-        function updateTotal() {
-          const units = document.querySelector('input[name="units"]').value || 1;
-          const creditsPerUnit = 10000;
-          const pricePerUnit = 10;
-          
-          const totalCredits = units * creditsPerUnit;
-          const totalPrice = units * pricePerUnit;
-          
-          document.getElementById('total-credits').textContent = totalCredits.toLocaleString() + ' credits';
-          document.getElementById('total-price').textContent = '$' + totalPrice.toFixed(2);
-        }
-      </script>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+    <div class="stat bg-primary text-primary-content rounded-lg">
+      <div class="stat-title text-primary-content/70">Plan Limit</div>
+      <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:limit) || 0) %></div>
+      <div class="stat-desc text-primary-content/70">per period</div>
     </div>
 
-    <input type="radio" name="billing_tabs" class="tab" aria-label="Plan" />
-    <div class="tab-content border-base-300 bg-base-100 p-6">      
-      <% if Current.user.plan == "free" %>
-        <div class="flex gap-2">
-          <div class="card w-96 border-2">
-            <div class="card-body">
-              <div class="flex justify-between">
-                <h2 class="text-3xl font-black">Echo</h2>
-                <span class="text-3xl font-black">$29</span>
-              </div>
-              <div class="flex justify-between">
-                <h2></h2>
-                <span class="font-light">one-time payment</span>
-              </div>
-              <ul class="mt-6 flex flex-col gap-4">
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">5 Websites</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">5,000 emails/month</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">10 Email templates</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Unlimited Subscribers</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Unlimited Campaigns</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Embeddable widget, Import contacts</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Real-Time Analytics</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">LifeTime Support</span>
-                </li>
-              </ul>
-              <div class="mt-6">
-                <%= link_to "Upgrade to Echo", procced_to_payment_path(plan: "echo"), class: "btn btn-neutral btn-block" %>
-              </div>
-            </div>
+    <div class="stat bg-secondary text-secondary-content rounded-lg">
+      <div class="stat-title text-secondary-content/70">Additional Credits</div>
+      <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:additional) || 0) %></div>
+      <div class="stat-desc text-secondary-content/70">legacy field</div>
+    </div>
+
+    <div class="stat bg-accent text-accent-content rounded-lg">
+      <div class="stat-title text-accent-content/70">Emails Sent</div>
+      <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:sent) || 0) %></div>
+      <div class="stat-desc text-accent-content/70">current period</div>
+    </div>
+
+    <div class="stat bg-neutral text-neutral-content rounded-lg">
+      <div class="stat-title text-neutral-content/70">Remaining</div>
+      <div class="stat-value text-2xl"><%= number_with_delimiter(@email_usage&.dig(:remaining) || 0) %></div>
+      <div class="stat-desc text-neutral-content/70">available now</div>
+    </div>
+  </div>
+
+  <div class="card bg-base-100 shadow-xl">
+    <div class="card-body">
+      <h2 class="card-title text-xl">Plan Details</h2>
+      <p class="text-base-content/70">This page is informational in the open-source version. If you want plan upgrades, credits, or billing, wire your own provider and update the related account flows.</p>
+
+      <% plan_limits = Plan::LIMITS[Current.user.plan] %>
+      <% if plan_limits %>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+          <div>
+            <h3 class="font-semibold text-lg mb-3">Limits</h3>
+            <ul class="space-y-2">
+              <li><span class="font-medium">Websites:</span> <%= plan_limits[:contacts] == Float::INFINITY ? "Unlimited" : plan_limits[:contacts] %></li>
+              <li><span class="font-medium">Emails:</span> <%= number_with_delimiter(plan_limits[:email_limit]) %> per period</li>
+              <li><span class="font-medium">Templates:</span> <%= plan_limits[:email_templates] == Float::INFINITY ? "Unlimited" : plan_limits[:email_templates] %></li>
+              <li><span class="font-medium">Campaigns:</span> <%= plan_limits[:campaigns] == Float::INFINITY ? "Unlimited" : plan_limits[:campaigns] %></li>
+            </ul>
           </div>
 
-          <div class="card w-96  border-2">
-            <div class="card-body">
-              <div class="flex justify-between">
-                <h2 class="text-3xl font-black">Thunder</h2>
-                <span class="text-3xl font-black">$99</span>
-              </div>
-              <div class="flex justify-between">
-                <h2></h2>
-                <span class="font-light">one-time payment</span>
-              </div>
-              <ul class="mt-6 flex flex-col gap-4">
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Unlimited Websites</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">10,000 emails/month</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Unlimited Email templates</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Unlimited Subscribers</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Unlimited Campaigns</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Embeddable widget, Import contacts</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">Real-Time Analytics</span>
-                </li>
-                <li>
-                  <svg xmlns="http://www.w3.org/2000/svg" class="size-6 me-2 inline-block text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                  <span class="text-[16px]">LifeTime Support</span>
-                </li>
-              </ul>
-              <div class="mt-6">
-                <%= link_to "Upgrade to Thunder", procced_to_payment_path(plan: "thunder"), class: "btn btn-neutral btn-block" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% else %>
-        <!-- Current Plan Details for Paid Users -->
-        <div class="card bg-base-100 shadow-xl">
-          <div class="card-body">
-            <h3 class="card-title text-xl mb-4">Current Plan: <%= Current.user.plan.titleize %></h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4 class="font-semibold text-lg mb-3">Plan Features</h4>
-                <ul class="space-y-2">
-                  <% plan_limits = Plan::LIMITS[Current.user.plan] %>
-                  <% if plan_limits %>
-                    <li class="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="size-5 me-2 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                      <span><%= plan_limits[:contacts] == Float::INFINITY ? "Unlimited" : plan_limits[:contacts] %> Websites</span>
-                    </li>
-                    <li class="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="size-5 me-2 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                      <span><%= number_with_delimiter(plan_limits[:email_limit]) %> emails/month</span>
-                    </li>
-                    <li class="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="size-5 me-2 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                      <span><%= plan_limits[:email_templates] == Float::INFINITY ? "Unlimited" : plan_limits[:email_templates] %> Email templates</span>
-                    </li>
-                    <li class="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="size-5 me-2 text-success" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
-                      <span><%= plan_limits[:campaigns] == Float::INFINITY ? "Unlimited" : plan_limits[:campaigns] %> Campaigns</span>
-                    </li>
-                  <% end %>
-                </ul>
-              </div>
-              
-              <div>
-                <h4 class="font-semibold text-lg mb-3">Plan Status</h4>
-                <div class="space-y-2">
-                  <div class="flex justify-between">
-                    <span>Status:</span>
-                    <span class="badge badge-success">Active</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span>Payment:</span>
-                    <span class="text-success">One-time (Lifetime)</span>
-                  </div>
-                  <div class="flex justify-between">
-                    <span>Email Credits:</span>
-                    <span><%= number_with_delimiter(@email_usage&.dig(:total_available) || 0) %> total</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <% if Current.user.plan != "thunder" %>
-              <div class="mt-6 p-4 bg-base-200 rounded-lg">
-                <h4 class="font-semibold mb-2">Want to upgrade?</h4>
-                <p class="text-sm text-base-content/70 mb-4">Get more features and higher email limits with our premium plans.</p>
-                <% if Current.user.plan == "free" %>
-                  <%= link_to "Upgrade to Echo ($29)", procced_to_payment_path(plan: "echo"), class: "btn btn-primary btn-sm mr-2" %>
-                  <%= link_to "Upgrade to Thunder ($99)", procced_to_payment_path(plan: "thunder"), class: "btn btn-secondary btn-sm" %>
-                <% elsif Current.user.plan == "echo" %>
-                  <%= link_to "Upgrade to Thunder ($99)", procced_to_payment_path(plan: "thunder"), class: "btn btn-secondary btn-sm" %>
-                <% end %>
-              </div>
-            <% end %>
+          <div>
+            <h3 class="font-semibold text-lg mb-3">Usage Summary</h3>
+            <ul class="space-y-2">
+              <li><span class="font-medium">Total available emails:</span> <%= number_with_delimiter(@email_usage&.dig(:total_available) || 0) %></li>
+              <li><span class="font-medium">Usage percentage:</span> <%= @email_usage&.dig(:usage_percentage) || 0 %>%</li>
+              <li><span class="font-medium">Plan:</span> <%= Current.user.plan.titleize %></li>
+            </ul>
           </div>
         </div>
       <% end %>

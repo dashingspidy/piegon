@@ -1,5 +1,4 @@
 class RegistrationsController < ApplicationController
-  include Payment
   include TurnstileValidatable
 
   rate_limit to: 4, within: 1.minute, only: :create
@@ -42,41 +41,13 @@ class RegistrationsController < ApplicationController
     @user = User.find_by(confirmation_token: params[:token])
 
     if @user
-      if @user.confirm! && @user.plan == "free"
-      redirect_to dashboard_path, notice: "Your account has been confirmed."
-      elsif @user.confirm! && @user.plan != "free"
-        redirect_to procced_to_payment_path, notice: "Your account has been confirmed. Proceed to payment."
+      if @user.confirm!
+        redirect_to dashboard_path, notice: "Your account has been confirmed."
       else
         redirect_to dashboard_path, alert: "Your account could not be confirmed. Please try again.", status: :unprocessable_entity
       end
     else
       redirect_to dashboard_path, alert: "Invalid confirmation token.", status: :unprocessable_entity
-    end
-  end
-
-  def procced_to_payment
-    @user = Current.user
-    selected_plan = params[:plan]
-
-    # Validate the selected plan
-    if selected_plan.present?
-      unless Plan::LIMITS.keys.include?(selected_plan)
-        redirect_to dashboard_path, alert: "Invalid plan selected."
-        return
-      end
-    end
-
-    # Use the selected plan for payment, but don't update user's plan yet
-    plan_for_payment = selected_plan || @user.plan
-
-    if plan_for_payment == "free"
-      redirect_to dashboard_path, notice: "You are on free plan."
-      return
-    end
-
-    payment_url = Payment.create_checkout(plan_for_payment, @user.email_address)
-    respond_to do |format|
-      format.html { redirect_to payment_url.to_s, allow_other_host: true }
     end
   end
 

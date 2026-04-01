@@ -1,6 +1,5 @@
 class EmailTemplatesController < ApplicationController
   before_action :check_confirmed_user, only: %i[new create]
-  before_action :require_payment, only: %i[new create]
   before_action :require_paid_plan, only: %i[draganddrop]
   before_action :set_email_template, only: [ :show, :edit, :update, :destroy ]
   skip_before_action :verify_authenticity_token, only: [ :token ]
@@ -81,9 +80,14 @@ class EmailTemplatesController < ApplicationController
   end
 
   def token
+    secret_key = Rails.application.credentials.dig(:stripo, :secret_key)
+    if secret_key.blank?
+      return render json: { error: "Missing Stripo secret key. Set credentials.stripo.secret_key." }, status: :service_unavailable
+    end
+
     payload = {
       pluginId: "ebc379f90a5f4440a3bb66a42c7fe420",
-      secretKey: "9aebba8862fd4fe68c45a108aa5570a7",
+      secretKey: secret_key,
       userId: 1,
       role: "user"
     }

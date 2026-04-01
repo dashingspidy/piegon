@@ -11,11 +11,8 @@ Rails.application.routes.draw do
   get "unsubscribe", to: "unsubscribe#unsubscribe", as: :unsubscribe
   get "confirm_registration", to: "registrations#confirm"
   post "resend_confirmation_email", to: "registrations#resend_confirmation"
-  get "procced_to_payment", to: "registrations#procced_to_payment"
-  get "customer_portal", to: "accounts#customer_portal"
   get "up" => "rails/health#show", as: :rails_health_check
   post "embed/:api_token", to: "subscribers#embed"
-  post "webhook", to: "accounts#webhook"
   post "sendgrid/webhook", to: "sendgrid_webhooks#webhook"
 
   post "token", to: "email_templates#token"
@@ -31,7 +28,6 @@ Rails.application.routes.draw do
       get :profile
       get :billing
       patch :update_password
-      post :purchase_email_credits
     end
   end
   resources :contacts do

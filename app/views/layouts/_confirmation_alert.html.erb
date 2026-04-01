@@ -3,8 +3,3 @@
     <p>Please confirm your email address to activate your account. <%= button_to "Re-send confirmation email", resend_confirmation_email_path, class: "link" %></p>
   </div>
 <% end %>
-<% if Current.user.confirmed? && Current.user.customer_id.nil? && Current.user.plan != "free" %>
-  <div role="alert" class="alert alert-info alert-soft">
-    <p>Please proceed to payment. <%= link_to "Proceed to Payment", procced_to_payment_path, class: "link" %></p>
-  </div>
-<% end %>
