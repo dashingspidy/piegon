@@ -40,10 +40,6 @@
         <%= @user.errors[:password_confirmation].first if @user.errors.any? %>
       </fieldset>
       
-      <fieldset class="fieldset">
-        <div class="cf-turnstile" data-sitekey="0x4AAAAAABQ3MSwjUFHXbAke" data-callback="turnstileCallback"></div>
-        <%= @user.errors[:turnstile].first if @user.errors.any? %>
-      </fieldset>
       
       <%= form.submit "Register", class: "btn btn-neutral" %>
     <% end %>
